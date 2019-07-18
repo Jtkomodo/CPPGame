@@ -1,0 +1,9 @@
+﻿  ShaderProgram.cpp
+  Start.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\shared\minwindef.h(130,1): warning C4005:  'APIENTRY': macro redefinition
+D:\Platformer\PlatformerGame\depend\GLFW\include\GLFW\glfw3.h(104): message :  see previous definition of 'APIENTRY'
+D:\Platformer\PlatformerGame\src\GameEngine\HeaderFiles\Model.h(10,15): warning C4200:  nonstandard extension used: zero-sized array in struct/union
+D:\Platformer\PlatformerGame\src\GameEngine\HeaderFiles\Model.h(10,15): message :  This member will be ignored by a defaulted constructor or copy/move assignment operator
+  Generating Code...
+D:\Platformer\PlatformerGame\src\GameEngine\Start.cpp(75,8): warning C4551:  function call missing argument list
+  PlatformerGame.vcxproj -> D:\Platformer\PlatformerGame\Debug\PlatformerGame.exe
