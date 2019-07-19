@@ -22,16 +22,24 @@
     <ClCompile Include="src\GameEngine\ShaderProgram.cpp" />
     <ClCompile Include="src\GameEngine\Model.cpp" />
     <ClCompile Include="src\GameEngine\Start.cpp" />
+    <ClCompile Include="src\GameEngine\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameEngine\HeaderFiles\Model.h" />
     <ClInclude Include="src\GameEngine\HeaderFiles\ShaderProgram.h" />
+    <ClInclude Include="src\GameEngine\HeaderFiles\stb_image.h" />
+    <ClInclude Include="src\GameEngine\HeaderFiles\Vendor\Header.h" />
+    <ClInclude Include="src\GameEngine\HeaderFiles\Vendor\stb_image.h" />
     <ClInclude Include="src\GameEngine\ShaderProgramClass.h" />
     <ClInclude Include="src\GameEngine\Model.h" />
+    <ClInclude Include="src\GameEngine\HeaderFiles\Texture.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="src\Shaders\Shader.vs" />
-    <Text Include="src\Shaders\Shader.fs" />
+    <Text Include="src\Shaders\Shader.vert" />
+    <Text Include="src\Shaders\Shader.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="src\res\Textures\newsprite.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

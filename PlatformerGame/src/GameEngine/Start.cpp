@@ -34,14 +34,18 @@ int main(int argc, char* argv[])
 		std::cout << "problem" << std::endl;
 		return 7;
 	}
-	float verts[6] = {
-		0.5f,0.5f,
-		0,0,
+	float verts[8] = {
+		-0.5f,0.5f,
+	    0.5f,0.5f,
+		0.5f,-0.5f,
 		-0.5f,-0.5f
 
 	};
+
+
+
 	//unsigned int vert;
-	Model m(verts);
+	
 	std::string programName = "Shader";
 	
 	
@@ -50,6 +54,10 @@ int main(int argc, char* argv[])
 	ShaderProgram* a=new ShaderProgram(programName);
 
 
+	a->Bind();
+
+
+	
 		/* Loop until the user closes the window */
 		while (!glfwWindowShouldClose(window))
 		{
