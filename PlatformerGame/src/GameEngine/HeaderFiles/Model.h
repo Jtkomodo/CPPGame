@@ -6,18 +6,28 @@ class Model
 public:
 
 private:
+<<<<<<< HEAD
 	unsigned int VertI,UVI,INDI,drawCount;
+	//float Verts[];
+=======
+	unsigned int Vert;
 	float Verts[];
+>>>>>>> parent of a38d0db... added a whole lot
 
 //functions
 
 	public:
-		Model(float verts[],float uv[],float ind[]);
+<<<<<<< HEAD
+		Model(float verts[8],float uv[8],int ind[6]);
 		void Draw();
+=======
+		Model(float verts[]);
+		//void Draw();
+>>>>>>> parent of a38d0db... added a whole lot
 	     ~Model();
-private:
-	  
-	
+		void printTest();
+
+
 
 
 

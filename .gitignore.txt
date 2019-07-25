@@ -1,0 +1,3 @@
+#ingnore these files
+
+\PlatformerGame\.vs\*

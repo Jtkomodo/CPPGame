@@ -1,0 +1,4 @@
+PlatformerGame\src\GameEngine\HeaderFiles
+PlatformerGame\.vs
+*ipch
+*.opendb

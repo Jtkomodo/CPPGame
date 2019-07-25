@@ -12,7 +12,7 @@ public:
 private:
 	unsigned int Id;
 	std::string path;
-	unsigned char* cpuBuffer;
+	 unsigned char *cpuBuffer;
 	int width, height,BPP;
 
 

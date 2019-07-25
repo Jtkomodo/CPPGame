@@ -1,0 +1,45 @@
+﻿ShaderProgram.obj : error LNK2001: unresolved external symbol __imp___glewAttachShader
+ShaderProgram.obj : error LNK2001: unresolved external symbol __imp___glewBindAttribLocation
+ShaderProgram.obj : error LNK2001: unresolved external symbol __imp___glewCompileShader
+ShaderProgram.obj : error LNK2001: unresolved external symbol __imp___glewCreateProgram
+ShaderProgram.obj : error LNK2001: unresolved external symbol __imp___glewCreateShader
+ShaderProgram.obj : error LNK2001: unresolved external symbol __imp___glewGetProgramInfoLog
+ShaderProgram.obj : error LNK2001: unresolved external symbol __imp___glewGetProgramiv
+ShaderProgram.obj : error LNK2001: unresolved external symbol __imp___glewGetShaderInfoLog
+ShaderProgram.obj : error LNK2001: unresolved external symbol __imp___glewGetShaderiv
+ShaderProgram.obj : error LNK2001: unresolved external symbol __imp___glewGetUniformLocation
+ShaderProgram.obj : error LNK2001: unresolved external symbol __imp___glewLinkProgram
+ShaderProgram.obj : error LNK2001: unresolved external symbol __imp___glewShaderSource
+ShaderProgram.obj : error LNK2001: unresolved external symbol __imp___glewUniform1f
+ShaderProgram.obj : error LNK2001: unresolved external symbol __imp___glewUniform1i
+ShaderProgram.obj : error LNK2001: unresolved external symbol __imp___glewUniform2f
+ShaderProgram.obj : error LNK2001: unresolved external symbol __imp___glewUniform4f
+ShaderProgram.obj : error LNK2001: unresolved external symbol __imp___glewUseProgram
+ShaderProgram.obj : error LNK2001: unresolved external symbol __imp___glewValidateProgram
+Model.obj : error LNK2019: unresolved external symbol __imp_glDrawElements referenced in function "public: void __cdecl Model::Draw(void)" (?Draw@Model@@QEAAXXZ)
+Model.obj : error LNK2001: unresolved external symbol __imp___glewBindBuffer
+Model.obj : error LNK2001: unresolved external symbol __imp___glewBufferData
+Model.obj : error LNK2001: unresolved external symbol __imp___glewDeleteBuffers
+Model.obj : error LNK2001: unresolved external symbol __imp___glewGenBuffers
+Model.obj : error LNK2001: unresolved external symbol __imp___glewEnableVertexAttribArray
+Model.obj : error LNK2001: unresolved external symbol __imp___glewVertexAttribPointer
+Start.obj : error LNK2019: unresolved external symbol __imp_glewInit referenced in function main
+Start.obj : error LNK2019: unresolved external symbol glfwInit referenced in function main
+Start.obj : error LNK2019: unresolved external symbol glfwTerminate referenced in function main
+Start.obj : error LNK2019: unresolved external symbol glfwWindowHint referenced in function main
+Start.obj : error LNK2019: unresolved external symbol glfwCreateWindow referenced in function main
+Start.obj : error LNK2019: unresolved external symbol glfwWindowShouldClose referenced in function main
+Window.obj : error LNK2001: unresolved external symbol glfwWindowShouldClose
+Start.obj : error LNK2019: unresolved external symbol glfwPollEvents referenced in function main
+Start.obj : error LNK2019: unresolved external symbol glfwMakeContextCurrent referenced in function main
+Start.obj : error LNK2019: unresolved external symbol glfwSwapBuffers referenced in function main
+Texture.obj : error LNK2019: unresolved external symbol __imp_glBindTexture referenced in function "public: __cdecl Texture::Texture(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (??0Texture@@QEAA@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Texture.obj : error LNK2019: unresolved external symbol __imp_glDeleteTextures referenced in function "public: __cdecl Texture::~Texture(void)" (??1Texture@@QEAA@XZ)
+Texture.obj : error LNK2019: unresolved external symbol __imp_glGenTextures referenced in function "public: __cdecl Texture::Texture(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (??0Texture@@QEAA@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Texture.obj : error LNK2019: unresolved external symbol __imp_glPixelStorei referenced in function "public: __cdecl Texture::Texture(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (??0Texture@@QEAA@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Texture.obj : error LNK2019: unresolved external symbol __imp_glTexImage2D referenced in function "public: __cdecl Texture::Texture(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (??0Texture@@QEAA@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Texture.obj : error LNK2019: unresolved external symbol __imp_glTexParameterf referenced in function "public: __cdecl Texture::Texture(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (??0Texture@@QEAA@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Texture.obj : error LNK2001: unresolved external symbol __imp___glewActiveTexture
+D:\Platformer\CPPGame\PlatformerGame\depend\GLFW\lib-vc2019\glfw3.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\Platformer\CPPGame\PlatformerGame\depend\GLEW\lib\Release\Win32\glew32s.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+D:\Platformer\CPPGame\PlatformerGame\x64\Debug\PlatformerGame.exe : fatal error LNK1120: 41 unresolved externals
