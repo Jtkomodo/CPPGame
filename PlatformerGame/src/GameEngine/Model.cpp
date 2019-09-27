@@ -5,8 +5,7 @@
 
 
 
-<<<<<<< HEAD
-Model::Model(float Verts[8],float uv[8],int ind[6]) {
+Model::Model(std::array Verts[8],std::array uv[8],std::array ind[6]) {
 	//Model::Verts[0] = Verts[0];
 	//defing buffers to load values in
 	
@@ -21,7 +20,7 @@ Model::Model(float Verts[8],float uv[8],int ind[6]) {
 
    //loading values into buffers 
 	glBindBuffer(GL_ARRAY_BUFFER, VertI);//binding buffer
-	glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(float), Verts, GL_STATIC_DRAW);//loading data
+	glBufferData(GL_ARRAY_BUFFER,Vertts.size() * sizeof(float), Verts, GL_STATIC_DRAW);//loading data
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);//defing the vertex atrib
 
 																		  
@@ -34,8 +33,6 @@ Model::Model(float Verts[8],float uv[8],int ind[6]) {
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(int), ind, GL_STATIC_DRAW);//loading data
 
 	
-
-=======
 Model::Model(float Verts[]) {
 	//Model::Verts[0] = Verts[0];
 	//defing buffers to load values in
@@ -47,12 +44,12 @@ Model::Model(float Verts[]) {
 	
 	glEnableVertexAttribArray(0);//enabling vertex attrib
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);//defing the vertex atrib
->>>>>>> parent of a38d0db... added a whole lot
+
 
 	glBindBuffer(GL_ARRAY_BUFFER,0);
 
 }
-<<<<<<< HEAD
+
 void Model::Draw()
 {
 	glBindBuffer(GL_ARRAY_BUFFER, VertI);
@@ -73,7 +70,7 @@ void Model::Draw()
 
 
 }
-=======
+
 /*void Model::Draw() {
 >>>>>>> parent of a38d0db... added a whole lot
 

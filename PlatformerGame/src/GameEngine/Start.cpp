@@ -21,12 +21,12 @@ int main(int argc, char* argv[])
 
 	Window window("Platformer",width,height);
     float verts[] = {
-		-0.5f,0.5f,//0,1
-	    0.5f,0.5f,//1,1
-		0.5f,-0.5f,//1,0
-		-0.5f,-0.5f//0,0
+		-0.5f,0.5f,,0,//0,1
+	    0.5f,0.5f,0,//1,1
+		0.5f,-0.5f,0,//1,0
+		-0.5f,-0.5f,0,//0,0
 
-<<<<<<< HEAD
+
 	};
 
 	float uv[] = {
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 
 	//unsigned int vert;
 	Camera cam(width, height);
-=======
+
 	/* Make the window's context current */
 	glfwMakeContextCurrent(window);
 	if (glewInit() != GLEW_OK) {
@@ -60,33 +60,33 @@ int main(int argc, char* argv[])
 	};
 	//unsigned int vert;
 	Model m(verts);
->>>>>>> parent of a38d0db... added a whole lot
+
 	std::string programName = "Shader";
 	
 	ShaderProgram Shader(programName);//my shader program
 	Shader.Bind();
 	Texture tex("src/res/Textures/newsprite.png");
 
-	Model m(verts,TIleData::Grass.getValue(),ind);
+	Model m(verts,TIleData::Grass.getValue(),ind),8,8,6;
 	int samplerLocation=Shader.makeLocation("sampler");
 	int projectionLocation = Shader.makeLocation("projection");
 	int  RTSLocation = Shader.makeLocation("rts");
 	//int colorLocation = Shader.makeLocation("color");
 	
 	
-<<<<<<< HEAD
+
 
 	Shader.loadInt(samplerLocation,1);
 	
 	//Shader.loadvec4(colorLocation, 1, 1, 1, 1);
 	
-=======
+
     
 
 	ShaderProgram* a=new ShaderProgram(programName);
 
 
->>>>>>> parent of a38d0db... added a whole lot
+
 		/* Loop until the user closes the window */
 		while (!window.IsClosed())//this returns wether i closed the window or not
 		{

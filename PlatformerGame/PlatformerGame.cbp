@@ -156,7 +156,7 @@
 		<Unit filename="src/GameEngine/HeaderFiles/MatrixMath.h" />
 		<Unit filename="src/GameEngine/HeaderFiles/Model.h" />
 		<Unit filename="src/GameEngine/HeaderFiles/ShaderProgram.h" />
-		<Unit filename="src/GameEngine/HeaderFiles/Texture.h" />
+		<Unit filename="src/GameEngine/HeaderFiles/TIleData.h" />
 		<Unit filename="src/GameEngine/HeaderFiles/Vendor/Header.h" />
 		<Unit filename="src/GameEngine/HeaderFiles/Vendor/glm/common.hpp" />
 		<Unit filename="src/GameEngine/HeaderFiles/Vendor/glm/detail/_features.hpp" />
@@ -539,14 +539,13 @@
 		<Unit filename="src/GameEngine/HeaderFiles/Vendor/stb/stb_image.h" />
 		<Unit filename="src/GameEngine/HeaderFiles/Vendor/stb_image.h" />
 		<Unit filename="src/GameEngine/HeaderFiles/Window.h" />
-		<Unit filename="src/GameEngine/HeaderFiles/stb_image.h" />
 		<Unit filename="src/GameEngine/MatrixMath.cpp" />
 		<Unit filename="src/GameEngine/Model.cpp" />
 		<Unit filename="src/GameEngine/Model.h" />
 		<Unit filename="src/GameEngine/ShaderProgram.cpp" />
 		<Unit filename="src/GameEngine/ShaderProgramClass.h" />
 		<Unit filename="src/GameEngine/Start.cpp" />
-		<Unit filename="src/GameEngine/Texture.cpp" />
+		<Unit filename="src/GameEngine/TIleData.cpp" />
 		<Unit filename="src/GameEngine/Window.cpp" />
 		<Extensions>
 			<code_completion />

@@ -17,7 +17,6 @@ ShaderProgram::ShaderProgram(std::string Name) {
 
 }
 
-<<<<<<< HEAD
 ShaderProgram::~ShaderProgram()
 {
 	glDeleteShader(vs);
@@ -26,8 +25,6 @@ ShaderProgram::~ShaderProgram()
 
 
 
-=======
->>>>>>> parent of a38d0db... added a whole lot
 std::string ShaderProgram::LoadShader(std::string path) {
 	std::ifstream a(path);
 	std::string line;
@@ -107,7 +104,5 @@ void ShaderProgram::loadMat4(int location, glm::mat4 matrix)
 {
 	glUniformMatrix4fv(location,1,GL_FALSE,&matrix[0][0]);
 }
-=======
-//deconstructor
->>>>>>> parent of a38d0db... added a whole lot
+
 
