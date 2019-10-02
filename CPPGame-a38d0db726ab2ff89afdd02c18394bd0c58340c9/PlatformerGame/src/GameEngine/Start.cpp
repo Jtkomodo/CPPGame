@@ -13,11 +13,12 @@
 #include "Window.h"
 #include <Entity.h>
 #include <chrono>
+#include <objLoader.h>
 
 
 const int width = 640, height = 480;
-double framecap = 1.0/60.0;
-glm::vec3 CamPosition,Position;
+double framecap = 1.0/60.0;//controls the frame limit 
+glm::vec3 CamPosition,Position(0,0,-5);
 int frames,FPS;
 
 Window window(width, height, "Engine3d");
@@ -37,16 +38,28 @@ void Input() {
 	byte left = window.checkState(GLFW_KEY_LEFT);
 	byte w = window.checkState(GLFW_KEY_W);
 	byte s = window.checkState(GLFW_KEY_S);
+	byte c = window.checkState(GLFW_KEY_C);
+
+
 	float camspeed = 3;
-	if (up > 0)CamPosition.y-=(DeltaT*camspeed);
-	if (down > 0) CamPosition.y+=(DeltaT*camspeed);
-	if (left > 0) CamPosition.x+=(DeltaT*camspeed);
-	if (right > 0) CamPosition.x-=(DeltaT*camspeed);
-	if (s > 0) CamPosition.z-=(DeltaT*camspeed);
-	if (w > 0) CamPosition.z+=(DeltaT*camspeed);
 
 
-
+	if (c > 0) {
+		if (up > 0)CamPosition.y -= (DeltaT * camspeed);
+		if (down > 0) CamPosition.y += (DeltaT * camspeed);
+		if (left > 0) CamPosition.x += (DeltaT * camspeed);
+		if (right > 0) CamPosition.x -= (DeltaT * camspeed);
+		if (s > 0) CamPosition.z -= (DeltaT * camspeed);
+		if (w > 0) CamPosition.z += (DeltaT * camspeed);
+	}
+	else{
+	
+		if (up > 0)Position.y -= (DeltaT * camspeed);
+		if (down > 0)Position.y += (DeltaT * camspeed);
+		if (left > 0)Position.x += (DeltaT * camspeed);
+		if (right > 0)Position.x -= (DeltaT * camspeed);
+	
+	}
 
 }
 
@@ -144,7 +157,7 @@ int main(int argc, char* argv[])
 	
 	
 	float verts[]= {
-				-0.5f,0.5f,-0.5f,
+					-0.5f,0.5f,-0.5f,
 				-0.5f,-0.5f,-0.5f,
 				0.5f,-0.5f,-0.5f,
 				0.5f,0.5f,-0.5f,
@@ -192,15 +205,12 @@ int main(int argc, char* argv[])
 	0.5f,0.25f,
 	0.25f,0.25f,
 
-		 0.25f,0,
+
+ 0.25f,0,
 	0.5f,0,
 	0.5f,0.25f,
 	0.25f,0.25f,
 
-		 0.25f,0,
-	0.5f,0,
-	0.5f,0.25f,
-	0.25f,0.25f,
 
 	 0.25f,0,
 	0.5f,0,
@@ -208,28 +218,33 @@ int main(int argc, char* argv[])
 	0.25f,0.25f,
 
 	 0.25f,0,
+	0.5f,0,
+	0.5f,0.25f,
+	0.25f,0.25f,
+
+
+ 0.25f,0,
 	0.5f,0,
 	0.5f,0.25f,
 	0.25f,0.25f
 
 
+
 	};
 
 	int ind[] = {
-			1,0,3,
-			3,1,2,
-			4,5,7,
-			7,5,6,
-
-			8,9,11,
-			11,9,10,
-			12,13,15,
-			15,13,14,
-
-			16,17,19,
-			19,17,18,
-			20,21,23,
-			23,21,22
+			0,1,3,
+				3,1,2,
+				4,5,7,
+				7,5,6,
+				8,9,11,
+				11,9,10,
+				12,13,15,
+				15,13,14,
+				16,17,19,
+				19,17,18,
+				20,21,23,
+				23,21,22
 
 	};
 
@@ -239,6 +254,8 @@ int main(int argc, char* argv[])
 	Camera cam(width,height,70,glm::vec3(0));
 	
 	ShaderProgram* a=new ShaderProgram(programName);//allocates the ShaderProgram to the heap for use later
+	objLoader f("stall");
+
 
 	//gets all the shader locations ids so that we can load values into the GPU's uniforms 
 	const int pLocation =a->makeLocation("projection");
@@ -246,8 +263,9 @@ int main(int argc, char* argv[])
 	const int samplerLocation =a->makeLocation("sampler");
 
 
-	Model model(verts,uv,ind,72,46,36);//put in the data and the size of the arrays
-	Texture tex("src/res/Textures/newsprite.png");
+	Model model(f.getverts(),f.getUVS(),f.getInds(),f.getVertSize(),f.getUvSize(),f.getindSize());//put in the data and the size of the arrays
+	Texture tex("stallTexture");
+	//Texture tex("stallTexture");
    Entity en(&model, glm::vec3(0,0,-2), glm::vec3(0),1);
 
 	a->Bind();//tells the GPU to use the specified shader program for rendering 
@@ -278,7 +296,9 @@ int main(int argc, char* argv[])
 
 
 				glm::mat4 target = en.getTRS();
-				en.setRotation(glm::vec3(0,rotx+=1,rotx));
+
+				en.setPosition(Position);
+				en.setRotation(glm::vec3(0,rotx+=1,0));
 
 
 

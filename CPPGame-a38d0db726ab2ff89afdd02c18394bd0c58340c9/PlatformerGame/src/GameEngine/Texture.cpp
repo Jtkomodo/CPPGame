@@ -4,15 +4,24 @@
 #include <string>
 #include <GL\glew.h>
 #include "HeaderFiles/Vendor/stb_image.h"
+#include <iostream>
 
 
 
 Texture::Texture(std::string name) {
 	Texture::path = name;
-	
-	cpuBuffer = stbi_load(path.c_str(),&width,&height,&BPP,4);//loads in the texture data into cpuBuffer and stores the width,height and bpp
 
+	std::string FILE = "src/res/Textures/";
+	std::string ending = ".png";
+
+	std::string fullpath = FILE + path + ending;
 	
+	cpuBuffer = stbi_load(fullpath.c_str(),&width,&height,&BPP,4);//loads in the texture data into cpuBuffer and stores the width,height and bpp
+
+	if (cpuBuffer ==0) {
+		std::cout << "the file " + fullpath + " could not be found!!!" << std::endl;
+
+	}
 	glGenTextures(1,&Id);//this allocates a buffer and sets a id to use it
 	glBindTexture(GL_TEXTURE_2D,Id);//binds the buffer to texture2d
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);//tells how the data is formated 

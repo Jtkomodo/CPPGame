@@ -105,7 +105,7 @@ std::string ShaderProgram::LoadShader(std::string path) {
 	std::string returnstream;
 
 
-
+	
 	if (!a) {
 
 		std::cout << "file : " << path << " not loaded" << std::endl;

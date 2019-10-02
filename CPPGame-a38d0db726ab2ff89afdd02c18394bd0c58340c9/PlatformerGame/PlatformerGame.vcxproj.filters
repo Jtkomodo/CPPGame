@@ -42,6 +42,9 @@
     <ClCompile Include="src\GameEngine\WIndow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameEngine\objLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameEngine\Model.h">
@@ -815,16 +818,22 @@
     <ClInclude Include="src\GameEngine\HeaderFiles\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\GameEngine\HeaderFiles\objLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="src\Shaders\Shader.vert" />
     <Text Include="src\Shaders\Shader.frag" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="src\res\Textures\testBackground.png">
+      <Filter>Resource Files</Filter>
+    </Image>
     <Image Include="src\res\Textures\newsprite.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="src\res\Textures\testBackground.png">
+    <Image Include="src\res\Textures\stallTexture.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
