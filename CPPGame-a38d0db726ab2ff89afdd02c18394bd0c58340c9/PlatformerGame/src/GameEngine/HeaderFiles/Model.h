@@ -6,7 +6,7 @@ class Model
 public:
 
 private:
-	unsigned int VertI,UVI,INDI,drawCount;
+	unsigned int VertI,UVI,INDI,NORMALSI,drawCount,VAO_ID;
 	float* Verts;
 
 //functions
@@ -14,7 +14,7 @@ private:
 	public:
 	//	Model(float verts[],float uv[],float ind[]);
 		
-		Model(float Verts[], float uv[], int ind[], int size1, int size2, int size3);
+		Model(float Verts[], float uv[],float normals[], int ind[], int size1, int size2, int size3,int size4);
 		
 		void Draw();
 		float * getvert();
@@ -23,7 +23,7 @@ private:
 	     ~Model();
 private:
 	  
-	
+	void enableAtrib();
 
 
 

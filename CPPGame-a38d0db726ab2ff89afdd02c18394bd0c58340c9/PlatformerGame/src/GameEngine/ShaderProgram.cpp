@@ -65,6 +65,10 @@ ShaderProgram::ShaderProgram(std::string& Name) {
 
 	glBindAttribLocation(program, 0, "vertices");
 	glBindAttribLocation(program, 1, "textureCoords");
+	glBindAttribLocation(program, 2, "normals");
+
+
+
 	int statusofLink=0;
 	int statusofValidate=0;
 	glLinkProgram(program);
@@ -153,6 +157,12 @@ int ShaderProgram::makeLocation(const char name[])
 	}
 }
 
+void ShaderProgram::loadBool(int location, bool value)
+{
+	glUniform1i(location, value);
+}
+
+
 void ShaderProgram::loadInt(int location, int value)
 {
 	glUniform1i(location,value);
@@ -178,3 +188,7 @@ void ShaderProgram::loadMat4(int location,glm::mat4 matrix) {
 
 }
 
+void ShaderProgram::loadvec3(int location, float x, float y, float z)
+{
+	glUniform3f(location, x, y, z);
+}

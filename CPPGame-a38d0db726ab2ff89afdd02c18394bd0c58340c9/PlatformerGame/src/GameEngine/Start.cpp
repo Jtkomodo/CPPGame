@@ -14,11 +14,12 @@
 #include <Entity.h>
 #include <chrono>
 #include <objLoader.h>
+#include <Light.h>
 
 
 const int width = 640, height = 480;
 double framecap = 1.0/60.0;//controls the frame limit 
-glm::vec3 CamPosition,Position(0,0,-5);
+glm::vec3 CamPosition,Position(0,0,-25),lightPosition(0);
 int frames,FPS;
 
 Window window(width, height, "Engine3d");
@@ -39,7 +40,7 @@ void Input() {
 	byte w = window.checkState(GLFW_KEY_W);
 	byte s = window.checkState(GLFW_KEY_S);
 	byte c = window.checkState(GLFW_KEY_C);
-
+	byte L = window.checkState(GLFW_KEY_L);
 
 	float camspeed = 3;
 
@@ -51,13 +52,24 @@ void Input() {
 		if (right > 0) CamPosition.x -= (DeltaT * camspeed);
 		if (s > 0) CamPosition.z -= (DeltaT * camspeed);
 		if (w > 0) CamPosition.z += (DeltaT * camspeed);
+	}else if(L>0 ) {
+		if (up > 0)lightPosition.y -= (DeltaT * camspeed);
+		if (down > 0)lightPosition.y += (DeltaT * camspeed);
+		if (left > 0)lightPosition.x += (DeltaT * camspeed);
+		if (right > 0)lightPosition.x -= (DeltaT * camspeed);
+
+		if (s > 0) lightPosition.z -= (DeltaT * camspeed);
+		if (w > 0) lightPosition.z += (DeltaT * camspeed);
+
 	}
+
 	else{
 	
 		if (up > 0)Position.y -= (DeltaT * camspeed);
 		if (down > 0)Position.y += (DeltaT * camspeed);
 		if (left > 0)Position.x += (DeltaT * camspeed);
 		if (right > 0)Position.x -= (DeltaT * camspeed);
+
 	
 	}
 
@@ -144,129 +156,33 @@ void intFPS() {
 int main(int argc, char* argv[])
 {
 	
-	//::ShowWindow(::GetConsoleWindow(), SW_SHOW);
-
-
-	/* Initialize the library */
-	
-
-	//allow gfwKeycallbacks for Callback
-
-	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
-
-	
-	
-	float verts[]= {
-					-0.5f,0.5f,-0.5f,
-				-0.5f,-0.5f,-0.5f,
-				0.5f,-0.5f,-0.5f,
-				0.5f,0.5f,-0.5f,
-
-				-0.5f,0.5f,0.5f,
-				-0.5f,-0.5f,0.5f,
-				0.5f,-0.5f,0.5f,
-				0.5f,0.5f,0.5f,
-
-				0.5f,0.5f,-0.5f,
-				0.5f,-0.5f,-0.5f,
-				0.5f,-0.5f,0.5f,
-				0.5f,0.5f,0.5f,
-
-				-0.5f,0.5f,-0.5f,
-				-0.5f,-0.5f,-0.5f,
-				-0.5f,-0.5f,0.5f,
-				-0.5f,0.5f,0.5f,
-
-				-0.5f,0.5f,0.5f,
-				-0.5f,0.5f,-0.5f,
-				0.5f,0.5f,-0.5f,
-				0.5f,0.5f,0.5f,
-
-				-0.5f,-0.5f,0.5f,
-				-0.5f,-0.5f,-0.5f,
-				0.5f,-0.5f,-0.5f,
-				0.5f,-0.5f,0.5f
-
-	};
-
-
-
-	
-	float uv[] = {
-
-	 0.25f,0,
-	0.5f,0,
-	0.5f,0.25f,
-	0.25f,0.25f,
-
-
-	 0.25f,0,
-	0.5f,0,
-	0.5f,0.25f,
-	0.25f,0.25f,
-
-
- 0.25f,0,
-	0.5f,0,
-	0.5f,0.25f,
-	0.25f,0.25f,
-
-
-	 0.25f,0,
-	0.5f,0,
-	0.5f,0.25f,
-	0.25f,0.25f,
-
-	 0.25f,0,
-	0.5f,0,
-	0.5f,0.25f,
-	0.25f,0.25f,
-
-
- 0.25f,0,
-	0.5f,0,
-	0.5f,0.25f,
-	0.25f,0.25f
-
-
-
-	};
-
-	int ind[] = {
-			0,1,3,
-				3,1,2,
-				4,5,7,
-				7,5,6,
-				8,9,11,
-				11,9,10,
-				12,13,15,
-				15,13,14,
-				16,17,19,
-				19,17,18,
-				20,21,23,
-				23,21,22
-
-	};
-
-	//unsigned int vert;
 	
 	std::string programName = "Shader";
 	Camera cam(width,height,70,glm::vec3(0));
 	
 	ShaderProgram* a=new ShaderProgram(programName);//allocates the ShaderProgram to the heap for use later
-	objLoader f("stall");
 
+	Texture tex("texDragon");
+	objLoader f("dragon");
+	objLoader l("box");
+
+	//Texture tex("stallTexture");
+	//objLoader f("stall");
 
 	//gets all the shader locations ids so that we can load values into the GPU's uniforms 
 	const int pLocation =a->makeLocation("projection");
 	const int rtsLocation= a->makeLocation("rts");
 	const int samplerLocation =a->makeLocation("sampler");
-
-
-	Model model(f.getverts(),f.getUVS(),f.getInds(),f.getVertSize(),f.getUvSize(),f.getindSize());//put in the data and the size of the arrays
-	Texture tex("stallTexture");
+	const int LightPosLocation = a->makeLocation("LightPosition");
+    const int LightCOlORLocation = a->makeLocation("lightColor");
+	const int hasLocation = a->makeLocation("haslight");
+	Model model(f.getverts(),f.getUVS(),f.getNormals(),f.getInds(),f.getVertSize(),f.getUvSize(),f.getNormSize(),f.getindSize());//put in the data and the size of the arrays
+	Model lightM(l.getverts(), l.getUVS(), l.getNormals(), l.getInds(), l.getVertSize(), l.getUvSize(), l.getNormSize(), l.getindSize());
 	//Texture tex("stallTexture");
    Entity en(&model, glm::vec3(0,0,-2), glm::vec3(0),1);
+
+   Light light(glm::vec3(0,0,-20),glm::vec3(1,1,1));
+   Entity lightE(&lightM,light.getPosition(), glm::vec3(0), .24f);
 
 	a->Bind();//tells the GPU to use the specified shader program for rendering 
 
@@ -275,11 +191,11 @@ int main(int argc, char* argv[])
 		/* Loop until the user closes the window */
 	
 
-
+	//CamPosition = glm::vec3(0, 0, -20);
 	intFPS();
 	float rotx= 0;
 
-//________________________________________________________________________________________________________
+//______________c__________________________________________________________________________________________
 //                      GAME---LOOP                                                                      |
 
 		while (!window.SHouldExit() && !(window.checkState(GLFW_KEY_ESCAPE)>0))
@@ -289,7 +205,10 @@ int main(int argc, char* argv[])
 			fps();
 			
 			if (canRender) {
+				a->loadBool(hasLocation, true);
 				Input();
+				lightE.setPosition(lightPosition);
+				light.setPosition(lightPosition);
 				cam.setPosition(CamPosition);
 
 				tex.Bind(1);//this binds the texture data to the specified slot in texture2d
@@ -301,17 +220,22 @@ int main(int argc, char* argv[])
 				en.setRotation(glm::vec3(0,rotx+=1,0));
 
 
+				glm::vec3 lightposition=light.getPosition();
+				glm::vec3 lightColor=light.getColor();
 
 				glm::mat4 projection = cam.getProjection();//this is the projection matrix 
 				a->loadMat4(pLocation, projection);//this loads in the projection matrix to the GPU for the world 
+				a->loadvec3(LightPosLocation,lightposition.x,lightposition.y,lightposition.z);
+				a->loadvec3(LightCOlORLocation, lightColor.x, lightColor.y, lightColor.z);
 				a->loadMat4(rtsLocation, target);//this loads in the rotation translation and scale(RTS) matix to the GPU 
 				a->loadInt(samplerLocation, 1);//this loads in the id for the texture2d sampler to pick the correct texture
 				//m.printTest();
 
 				en.Draw();//actually draws the model to the screen
-
-
-
+				a->loadBool(hasLocation,false);
+				a->loadMat4(rtsLocation, lightE.getTRS());
+				lightE.Draw();
+				
 				window.Render();
 				window.clear();
 			}

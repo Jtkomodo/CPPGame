@@ -1,7 +1,7 @@
 #pragma once
 #include <string.h>
 #include <iostream>
-
+#include <chrono>
 
 class objLoader {
 
@@ -14,7 +14,7 @@ public:
 
 
 private:
-
+	std::chrono::time_point<std::chrono::high_resolution_clock> Time1, Time2;
 	float* verts;
 	float* uvs;
 	float* normals;

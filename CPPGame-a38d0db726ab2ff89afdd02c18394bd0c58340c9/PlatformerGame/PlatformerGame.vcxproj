@@ -22,6 +22,7 @@
     <ClCompile Include="src\GameEngine\Entity.cpp" />
     <ClCompile Include="src\GameEngine\BatchedModel.cpp" />
     <ClCompile Include="src\GameEngine\Camera.cpp" />
+    <ClCompile Include="src\GameEngine\Light.cpp" />
     <ClCompile Include="src\GameEngine\MatrixMath.cpp" />
     <ClCompile Include="src\GameEngine\objLoader.cpp" />
     <ClCompile Include="src\GameEngine\ShaderProgram.cpp" />
@@ -34,6 +35,7 @@
     <ClInclude Include="src\GameEngine\HeaderFiles\BatchedModel.h" />
     <ClInclude Include="src\GameEngine\HeaderFiles\Camera.h" />
     <ClInclude Include="src\GameEngine\HeaderFiles\Entity.h" />
+    <ClInclude Include="src\GameEngine\HeaderFiles\Light.h" />
     <ClInclude Include="src\GameEngine\HeaderFiles\objLoader.h" />
     <ClInclude Include="src\GameEngine\HeaderFiles\Window.h" />
     <ClInclude Include="src\GameEngine\HeaderFiles\MatrixMath.h" />
@@ -297,6 +299,7 @@
     <Image Include="src\res\Textures\newsprite.png" />
     <Image Include="src\res\Textures\stallTexture.png" />
     <Image Include="src\res\Textures\testBackground.png" />
+    <Image Include="src\res\Textures\texDragon.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\GameEngine\HeaderFiles\Vendor\glm\detail\func_common.inl" />

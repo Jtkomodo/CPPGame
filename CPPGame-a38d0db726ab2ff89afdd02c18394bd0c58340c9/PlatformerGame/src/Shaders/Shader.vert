@@ -1,20 +1,31 @@
-#version 120
+#version 400 core
 
 
-attribute vec2  textureCoords;
+in vec2  textureCoords;
+in vec3 vertices;
+in vec3 normals;
 
-attribute vec3 vertices;
-
+uniform vec3 LightPosition;
 uniform mat4 projection;
 uniform mat4 rts;
-mat4 matrix;
 
-varying vec2 tex;//allows this variable to be sent to the fragment shader
+
+
+
+out vec2 tex;//allows this variable to be sent to the fragment shader
+out vec3 toLight;
+out vec3 surfaceNoraml;
 
 void main(){
 tex=textureCoords;
+vec3 worldPosition=(rts*vec4(vertices,1.0)).xyz;//this is the actaul world position after placed in world
+vec4 finalPosition=projection*vec4(worldPosition,1.0);//this is the position as shown on the screen after the projectionmatrix is used
+gl_Position=finalPosition;
 
-  gl_Position=projection*rts*vec4(vertices,1.0);
+
+surfaceNoraml=(rts*vec4(normals,0.0)).xyz;
+toLight=LightPosition-worldPosition;
+
 
 } 
 
