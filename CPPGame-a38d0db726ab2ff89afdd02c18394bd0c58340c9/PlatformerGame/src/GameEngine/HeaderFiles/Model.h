@@ -1,4 +1,8 @@
 #pragma once
+#include <iostream>
+
+#include "HeaderFiles/Vendor/glm/gtc/matrix_transform.hpp"
+#include <vector>
 class Model
 {
 	//vars
@@ -7,19 +11,19 @@ public:
 
 private:
 	unsigned int VertI,UVI,INDI,NORMALSI,drawCount,VAO_ID;
-	float* Verts;
+
 
 //functions
 
 	public:
 	//	Model(float verts[],float uv[],float ind[]);
 		
-		Model(float Verts[], float uv[],float normals[], int ind[], int size1, int size2, int size3,int size4);
+		Model(std::vector<glm::vec3> verts, std::vector<glm::vec2> uvs, std::vector<glm::vec3> normals, std::vector<glm::uvec3> inds);
 		
 		void Draw();
-		float * getvert();
+	
 
-		Model();
+	
 	     ~Model();
 private:
 	  

@@ -162,12 +162,12 @@ int main(int argc, char* argv[])
 	
 	ShaderProgram* a=new ShaderProgram(programName);//allocates the ShaderProgram to the heap for use later
 
-	Texture tex("texDragon");
-	objLoader f("dragon");
-	objLoader l("box");
+	//Texture tex("texDragon");	Texture white("white");
+	//objLoader f("dragon");
 
-	//Texture tex("stallTexture");
-	//objLoader f("stall");
+
+	Texture tex("stallTexture");
+	objLoader f("dragon");
 
 	//gets all the shader locations ids so that we can load values into the GPU's uniforms 
 	const int pLocation =a->makeLocation("projection");
@@ -176,14 +176,14 @@ int main(int argc, char* argv[])
 	const int LightPosLocation = a->makeLocation("LightPosition");
     const int LightCOlORLocation = a->makeLocation("lightColor");
 	const int hasLocation = a->makeLocation("haslight");
-	Model model(f.getverts(),f.getUVS(),f.getNormals(),f.getInds(),f.getVertSize(),f.getUvSize(),f.getNormSize(),f.getindSize());//put in the data and the size of the arrays
-	Model lightM(l.getverts(), l.getUVS(), l.getNormals(), l.getInds(), l.getVertSize(), l.getUvSize(), l.getNormSize(), l.getindSize());
+
+	Model model(f.getverts(),f.getUVS(),f.getNormals(),f.getInds());//put in the data and the size of the arrays
+  
 	//Texture tex("stallTexture");
    Entity en(&model, glm::vec3(0,0,-2), glm::vec3(0),1);
 
    Light light(glm::vec3(0,0,-20),glm::vec3(1,1,1));
-   Entity lightE(&lightM,light.getPosition(), glm::vec3(0), .24f);
-
+  
 	a->Bind();//tells the GPU to use the specified shader program for rendering 
 
 	//cam.setPosition(glm::vec2(100, 0));
@@ -207,7 +207,7 @@ int main(int argc, char* argv[])
 			if (canRender) {
 				a->loadBool(hasLocation, true);
 				Input();
-				lightE.setPosition(lightPosition);
+			
 				light.setPosition(lightPosition);
 				cam.setPosition(CamPosition);
 
@@ -218,7 +218,7 @@ int main(int argc, char* argv[])
 
 				en.setPosition(Position);
 				en.setRotation(glm::vec3(0,rotx+=1,0));
-
+				
 
 				glm::vec3 lightposition=light.getPosition();
 				glm::vec3 lightColor=light.getColor();
@@ -232,9 +232,7 @@ int main(int argc, char* argv[])
 				//m.printTest();
 
 				en.Draw();//actually draws the model to the screen
-				a->loadBool(hasLocation,false);
-				a->loadMat4(rtsLocation, lightE.getTRS());
-				lightE.Draw();
+				
 				
 				window.Render();
 				window.clear();

@@ -300,6 +300,7 @@
     <Image Include="src\res\Textures\stallTexture.png" />
     <Image Include="src\res\Textures\testBackground.png" />
     <Image Include="src\res\Textures\texDragon.png" />
+    <Image Include="src\res\Textures\white.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\GameEngine\HeaderFiles\Vendor\glm\detail\func_common.inl" />

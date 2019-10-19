@@ -845,6 +845,9 @@
     <Image Include="src\res\Textures\texDragon.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="src\res\Textures\white.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\GameEngine\HeaderFiles\Vendor\glm\detail\func_common.inl">
