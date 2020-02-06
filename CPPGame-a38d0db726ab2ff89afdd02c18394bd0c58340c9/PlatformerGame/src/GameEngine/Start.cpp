@@ -166,7 +166,7 @@ int main(int argc, char* argv[])
 	//objLoader f("dragon");
 
 
-	Texture tex("stallTexture");
+	Texture tex("texDragon");
 	objLoader f("dragon");
 
 	//gets all the shader locations ids so that we can load values into the GPU's uniforms 
@@ -241,11 +241,12 @@ int main(int argc, char* argv[])
 			
 		}
 //_______________________________________________________________________________________________________|
-		//glFlush();
+		printf("Closing---------------------------------------------------------");
+        //glFlush();
 		delete a;//deletes the shaderprogram from the heap 
 
 		window.Destroy();
-		
+	
 		std::exit;
 
 	

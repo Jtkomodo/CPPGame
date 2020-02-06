@@ -29,12 +29,14 @@ Texture::Texture(std::string name) {
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,width,height,0,GL_RGBA,GL_UNSIGNED_BYTE,cpuBuffer);//loads in the texture to the GPU for use later
 	glBindTexture(GL_TEXTURE_2D, 0);//unbinds
+	
 }
 
 Texture::~Texture()
 {
 	glDeleteTextures(1, &Id);
 	stbi_image_free(cpuBuffer);
+	
 
 }
 

@@ -3,15 +3,17 @@
 #include <iostream>
 #include <MatrixMath.h>
 
-
 	Entity::Entity(Model* model, glm::vec3 position, glm::vec3 rotation, float scale) {
 
-		Entity::m =model;
-		Entity::position = position;
-		Entity::rotation = rotation;
-		Entity::scale = scale;
-		Entity::trs = getmatrix(position,rotation,scale);
+	this->m =model;
+		this->position = position;
+		this->rotation = rotation;
+		this->scale = scale;
+		this->trs = getmatrix(position,rotation,scale);
+		
 }
+
+
 
 	void Entity::Draw() {
 		

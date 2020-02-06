@@ -44,6 +44,20 @@ Model::Model(std::vector<glm::vec3> verts, std::vector<glm::vec2> uvs, std::vect
 	glBindVertexArray(0);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void Model::Draw()
 {
 	glBindVertexArray(VAO_ID);

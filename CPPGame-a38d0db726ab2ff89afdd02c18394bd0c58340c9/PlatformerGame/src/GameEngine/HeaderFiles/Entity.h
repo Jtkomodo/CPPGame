@@ -27,6 +27,7 @@ private:
 
 public:
 	Entity(Model *model,glm::vec3 position,glm::vec3 rotation,float scale );
+	
 	void Draw();
 	void setPosition(glm::vec3 position);
 	void setRotation(glm::vec3 Rotation);

@@ -19,7 +19,7 @@ private:
 	//	Model(float verts[],float uv[],float ind[]);
 		
 		Model(std::vector<glm::vec3> verts, std::vector<glm::vec2> uvs, std::vector<glm::vec3> normals, std::vector<glm::uvec3> inds);
-		
+	
 		void Draw();
 	
 
@@ -28,7 +28,6 @@ private:
 private:
 	  
 	void enableAtrib();
-
 
 
 

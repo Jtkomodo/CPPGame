@@ -7,6 +7,7 @@
 
 #include <cassert>
 #include <chrono>
+#include <sstream>
 
 /*
 to do change this to use std::vector instead of arrays
@@ -32,6 +33,7 @@ objLoader::objLoader(std::string name) {
 	std::cout << "Took " <<timepassed << " seconds to load " << name << " Model\n";
 
 }
+
 
 
 void objLoader::readFile(std::string path) {
@@ -227,29 +229,36 @@ void objLoader::readFile(std::string path) {
 
 }
 
-std::vector<glm::vec3> objLoader::proccessVerts(std::queue<std::string> strings,int size)
+std::vector<glm::vec3> objLoader::proccessVerts(std::queue<std::string> &strings,const int size)
 {
 	auto Time1 = std::chrono::high_resolution_clock::now();
-	std::vector<glm::vec3> VertValues;
+	std::vector<glm::vec3> VertValues(strings.size()+1);
 	std::string::size_type n;
 	std::string line;
+
 
 	
 	for (int i = 0; i < size;i++) {
 	
-	 line = strings.front();
-		
-	n = line.find(" ");//n returns a position of wwhere the space is at 
-	line = line.substr(n + 1);//i delete everything in the strig before the space including the space
-
-	float x = stof(line, &n);
-	line = line.substr(n);
-	float y = stof(line, &n);
-	line = line.substr(n);
-	float z = stof(line, &n);
+		std::stringstream stream(strings.front());
 
 
-	VertValues.push_back(glm::vec3(x, y, z));
+
+	
+   float x, y,z;
+
+   std::string v0,v1, v2, v3;
+   std::getline(stream, v0, ' ');
+  std::getline(stream,v1,' ');
+ 
+  std::getline(stream, v2, ' ');
+  std::getline(stream, v3, ' ');
+
+  x = stof(v1);
+  y = stof(v2);
+  z= stof(v3);
+
+	VertValues[i]=(glm::vec3(x, y, z));
 	strings.pop();
 	
 
@@ -262,28 +271,37 @@ std::vector<glm::vec3> objLoader::proccessVerts(std::queue<std::string> strings,
 return VertValues;
 }
 
-std::vector<glm::vec2> objLoader::proccessUVS(std::queue<std::string> strings,int size)
+std::vector<glm::vec2> objLoader::proccessUVS(std::queue<std::string> &strings,int size)
 {
 	auto Time1 = std::chrono::high_resolution_clock::now();
-	std::vector<glm::vec2> UVValues;
-	std::string::size_type n;
+	std::vector<glm::vec2> UVValues(strings.size()+1);
 	
-	std::string line;
+	
+	
 
 	for(int i=0;i<size;i++) {
 		
 		
-    line = strings.front();
-	n = line.find(" ");//n returns a position of wwhere the space is at 
-	line = line.substr(n + 1);//i delete everything in the strig before the space including the space
+		std::stringstream stream(strings.front());
 
 
-	float u = stof(line, &n);
-	line = line.substr(n);
-	float v = stof(line, &n);
 
 
-	UVValues.push_back(glm::vec2(u, 1 - v));
+		float u,v;
+
+		std::string v0, v1, v2, v3;
+		std::getline(stream, v0, ' ');
+		std::getline(stream, v1, ' ');
+
+		std::getline(stream, v2, ' ');
+		std::getline(stream, v3, ' ');
+
+		u = stof(v1);
+		v = stof(v2);
+	
+
+
+	UVValues[i]=(glm::vec2(u, 1 - v));
 	strings.pop();
 }
 	auto Time2 = std::chrono::high_resolution_clock::now();
@@ -294,28 +312,32 @@ std::vector<glm::vec2> objLoader::proccessUVS(std::queue<std::string> strings,in
 	return UVValues;
 }
 
-std::vector<glm::vec3> objLoader::proccessNormals(std::queue<std::string> strings,int size)
+std::vector<glm::vec3> objLoader::proccessNormals(std::queue<std::string> &strings,int size)
 {
 	auto Time1 = std::chrono::high_resolution_clock::now();
-	std::vector<glm::vec3> NormalValues;
-	std::string::size_type n;
-	std::string line;
-
+	std::vector<glm::vec3> NormalValues(strings.size()+1);
+	std::string v0, v1, v2, v3;
 	for (int i = 0; i < size;i++) {
-
-		line = strings.front();
-		n = line.find(" ");//n returns a position of wwhere the space is at 
-		line = line.substr(n + 1);//i delete everything in the strig before the space including the space
-
-		float x = stof(line, &n);
-		line = line.substr(n);
-		float y = stof(line, &n);
-		line = line.substr(n);
-		float z = stof(line, &n);
+		std::stringstream stream(strings.front());
 
 
 
-		NormalValues.push_back(glm::vec3(x, y, z));
+
+		float x, y, z;
+
+		
+		std::getline(stream, v0, ' ');
+		std::getline(stream, v1, ' ');
+
+		std::getline(stream, v2, ' ');
+		std::getline(stream, v3, ' ');
+
+		x = stof(v1);
+		y = stof(v2);
+		z = stof(v3);
+
+
+		NormalValues[i]=(glm::vec3(x, y, z));
 		strings.pop();
 	}
 	auto Time2 = std::chrono::high_resolution_clock::now();
@@ -326,35 +348,37 @@ std::vector<glm::vec3> objLoader::proccessNormals(std::queue<std::string> string
 	return NormalValues;
 }
 
-void objLoader::proccessInds(std::queue<std::string> strings, int& Aind, std::unordered_map<int, std::string>& fstring2)
+void objLoader::proccessInds(std::queue<std::string> &strings, int& Aind, std::unordered_map<int, std::string>& fstring2)
 {
 	auto Time1 = std::chrono::high_resolution_clock::now();
-	std::vector<glm::vec3> NormalValues;
-	std::string::size_type n;
-	std::string line;
+	
 
 
 	std::unordered_map<std::string, int>  fstring;
 	std::unordered_map<std::string, int>::const_iterator f;
+	inds =std::vector<glm::uvec3>(strings.size()+1);
 
 	std::string string1;
 	std::string string2;
 	std::string string3;
-	std::string string4;
+	std::string string0;
+	std::stringstream stream;
+	int i = 0;
 	while(strings.size()!=0 ){
 	
-		line = strings.front();
-		
-		n = line.find(" ");//n returns a position of wwhere the space is at 
-	line = line.substr(n + 1);//i delete everything in the strig before the space including the space
+	stream.str(strings.front());
+		std:getline(stream, string0, ' ');
+		std::getline(stream, string1, ' ');
+        std::getline(stream, string2, ' ');
+		std::getline(stream, string3, ' ');
+		int value1,value2,value3;
 
 
 	//valu1
-	n = line.find(" ");
-	string1 = line.substr(0, n);
-	f = fstring.find(string1);
-	int value1;
 
+	
+
+	f = fstring.find(string1);
 	if (f == fstring.end()) {
 		value1 = Aind;
 		fstring[string1] = Aind;
@@ -364,14 +388,9 @@ void objLoader::proccessInds(std::queue<std::string> strings, int& Aind, std::un
 	else {
 		value1 = fstring[string1];
 	}
-	//value 2
-
-
-	string4 = line.substr(n + 1);
-	n = string4.find(" ");
-	string2 = string4.substr(0, n);
+	
 	f = fstring.find(string2);
-	int value2;
+
 	if (f == fstring.end()) {
 		value2 = Aind;
 		fstring[string2] = Aind;
@@ -384,11 +403,9 @@ void objLoader::proccessInds(std::queue<std::string> strings, int& Aind, std::un
 	//value3
 
 
-	string3 = string4.substr(n + 1);
-	n = string3.find(" ");
-	string3 = string3.substr(0, n);
+	
 	f = fstring.find(string3);
-	int value3;
+	
 	if (f == fstring.end()) {
 		value3 = Aind;
 		fstring[string3] = Aind;
@@ -402,8 +419,10 @@ void objLoader::proccessInds(std::queue<std::string> strings, int& Aind, std::un
 
 
 
-	inds.push_back(glm::uvec3(value1, value2, value3));
+	(inds)[i]=(glm::uvec3(value1, value2, value3));
 	strings.pop();
+	stream.clear();
+	i++;
 }
 	auto Time2 = std::chrono::high_resolution_clock::now();
 	auto  time = std::chrono::duration_cast<std::chrono::duration<double>>(Time2 - Time1);
