@@ -28,6 +28,7 @@ private:
 
 public:
 	objLoader(std::string name);
+	
 	std::vector<glm::vec3> getverts();
 	std::vector<glm::vec3> getNormals();
 	std::vector<glm::vec2> getUVS();
@@ -37,8 +38,8 @@ public:
 private:
 
 	void readFile(std::string path);
-	std::vector < glm::vec3> proccessVerts(std::queue<std::string> &,int);
-	std::vector < glm::vec2> proccessUVS(std::queue<std::string>&,int);
-	std::vector < glm::vec3> proccessNormals(std::queue<std::string> &,int);
-	void proccessInds(std::queue<std::string>&,int&, std::unordered_map<int, std::string> &);
+	std::vector < glm::vec3> proccessVerts(std::queue<std::string>,int);
+	std::vector < glm::vec2> proccessUVS(std::queue<std::string>,int);
+	std::vector < glm::vec3> proccessNormals(std::queue<std::string>,int);
+	void proccessInds(std::queue<std::string>,int&, std::unordered_map<int, std::string> &);
 };

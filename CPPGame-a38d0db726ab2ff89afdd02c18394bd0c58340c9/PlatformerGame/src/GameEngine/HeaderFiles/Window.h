@@ -20,7 +20,7 @@ private:
 public:
 	Window(int width, int height,const char name[]);
 
-	GLFWwindow& getWindow();
+	GLFWwindow* getWindow();
 	int getWidth();
 	int getHeight();
 	void Update();

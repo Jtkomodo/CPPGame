@@ -66,9 +66,9 @@ Window::Window(int width, int height, const char name[]) {
 	glfwSwapInterval(0);
 }
 
-GLFWwindow& Window::getWindow()
+GLFWwindow* Window::getWindow()
 {
-	return *window;
+	return window;
 }
 
 int Window::getWidth()
@@ -102,7 +102,6 @@ boolean Window::SHouldExit() {
 }
 void Window::Destroy() {
 	glfwDestroyWindow(window);
-	
 }
 
 
