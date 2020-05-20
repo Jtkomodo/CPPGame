@@ -4,13 +4,17 @@
 
 
 
+
+
+
+
 Model::Model(std::vector<glm::vec3> verts, std::vector<glm::vec2> uvs, std::vector<glm::vec3> normals, std::vector<glm::uvec3> inds) {
 
 	//defing buffers to load values in
 	glGenVertexArrays(1, &VAO_ID);
 	glBindVertexArray(VAO_ID);
 
-	Model::drawCount =inds.size()*3;
+	this->drawCount =inds.size()*3;
 	//std::cout <<ind[6]<< std::endl;
 	glGenBuffers(1, &VertI);
 	glGenBuffers(1, &UVI);
@@ -54,6 +58,8 @@ void Model::Draw()
 
 
 }
+
+
 
 void Model::enableAtrib() {
 	glEnableVertexAttribArray(0);//enabling vertex attrib

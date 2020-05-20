@@ -4,13 +4,16 @@
 #include <MatrixMath.h>
 
 
-	Entity::Entity(Model* model, glm::vec3 position, glm::vec3 rotation, float scale) {
+     Entity::Entity(Model *model, glm::vec3 position, glm::vec3 rotation, float scale,float damping,float reflectivity) {
 
-		Entity::m =model;
-		Entity::position = position;
-		Entity::rotation = rotation;
-		Entity::scale = scale;
-		Entity::trs = getmatrix(position,rotation,scale);
+		this->m = model;
+		this->position = position;
+		this->rotation = rotation;
+		this->scale = scale;
+		this->trs = getmatrix(position,rotation,scale);
+		this->damping = damping;
+		this->reflictivity = reflectivity;
+
 }
 
 	void Entity::Draw() {
@@ -22,27 +25,37 @@
 
 	void Entity::setModel(Model* model) {
 
-		Entity::m = model;
+		this->m = model;
 
+	}
+
+	void Entity::setDamping(float damping)
+	{
+		this->damping = damping;
+	}
+
+	void Entity::setReflect(float reflect)
+	{
+		this->reflictivity = reflect;
 	}
 
 
 	void Entity::setPosition(glm::vec3 position) {
-		Entity::position = position;
-		Entity::trs = getmatrix(position, rotation, scale);
+		this->position = position;
+		this->trs = getmatrix(position, rotation, scale);
 	
 	}
 	
 	
 	void Entity::setRotation(glm::vec3 Rotation) {
-		Entity::rotation =Rotation;
-		Entity::trs = getmatrix(position, rotation, scale);
+		this->rotation =Rotation;
+		this->trs = getmatrix(position, rotation, scale);
 	}
 
 
 	void Entity::setscale(float scale) {
-		Entity::scale = scale;
-		Entity::trs = getmatrix(position, rotation, scale);
+		this->scale = scale;
+		this->trs = getmatrix(position, rotation, scale);
 	}
 
 
@@ -56,23 +69,34 @@
 
 
 	glm::vec3 Entity::getPosition() {
-		return Entity::position;
+		return this->position;
 	}
 
 
 	glm::vec3 Entity::getRotation() {
-		return Entity::rotation;
+		return this->rotation;
 	}
 
 
 	float Entity::getscale() {
-		return Entity::scale;
+		return this->scale;
 	}
 
 
+	
+	float Entity::getDamping()
+	{
+		return this->damping;
+	}
+
+	float Entity::getReflect()
+	{
+		return this->reflictivity;
+	}
+
 	glm::mat4 Entity::getTRS() {
 
-		return Entity::trs;
+		return this->trs;
 
 
 	}

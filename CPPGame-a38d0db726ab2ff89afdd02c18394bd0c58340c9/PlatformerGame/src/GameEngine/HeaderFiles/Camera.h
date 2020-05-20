@@ -23,6 +23,7 @@ public:
 	float getHeight();
 	glm::vec3 getPosition();
 	glm::mat4 getProjection();
+	glm::mat4 getView();
 
 	float getFOV();
 	void setFOV(float fov);

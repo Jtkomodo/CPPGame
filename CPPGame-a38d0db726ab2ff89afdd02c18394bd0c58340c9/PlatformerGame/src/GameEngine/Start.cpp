@@ -166,9 +166,11 @@ int main(int argc, char* argv[])
 	//objLoader f("dragon");
 
 
-	Texture tex("stallTexture");
+	Texture tex("texDragon");
 	objLoader f("dragon");
 
+	Texture tex2("stallTexture");
+	objLoader stall("stall");
 	//gets all the shader locations ids so that we can load values into the GPU's uniforms 
 	const int pLocation =a->makeLocation("projection");
 	const int rtsLocation= a->makeLocation("rts");
@@ -176,12 +178,14 @@ int main(int argc, char* argv[])
 	const int LightPosLocation = a->makeLocation("LightPosition");
     const int LightCOlORLocation = a->makeLocation("lightColor");
 	const int hasLocation = a->makeLocation("haslight");
-
+	const int viewMatrixLocation = a->makeLocation("view");
+	const int DampLocation = a->makeLocation("damper");
+	const int ReflectLocation = a->makeLocation("reflectivity");
 	Model model(f.getverts(),f.getUVS(),f.getNormals(),f.getInds());//put in the data and the size of the arrays
-  
+	Model model2(stall.getverts(), stall.getUVS(), stall.getNormals(), stall.getInds());//put in the data and the size of the arrays  
 	//Texture tex("stallTexture");
-   Entity en(&model, glm::vec3(0,0,-2), glm::vec3(0),1);
-
+   Entity en(&model, glm::vec3(0,0,-2), glm::vec3(0),1,10,1);
+   Entity en2(&model2, glm::vec3(0, 0, -2), glm::vec3(0), 1, 10, 1);
    Light light(glm::vec3(0,0,-20),glm::vec3(1,1,1));
   
 	a->Bind();//tells the GPU to use the specified shader program for rendering 
@@ -213,7 +217,7 @@ int main(int argc, char* argv[])
 
 				tex.Bind(1);//this binds the texture data to the specified slot in texture2d
 
-
+				glm::mat4 view = cam.getView();
 				glm::mat4 target = en.getTRS();
 
 				en.setPosition(Position);
@@ -229,10 +233,37 @@ int main(int argc, char* argv[])
 				a->loadvec3(LightCOlORLocation, lightColor.x, lightColor.y, lightColor.z);
 				a->loadMat4(rtsLocation, target);//this loads in the rotation translation and scale(RTS) matix to the GPU 
 				a->loadInt(samplerLocation, 1);//this loads in the id for the texture2d sampler to pick the correct texture
+				a->loadMat4(viewMatrixLocation, view);
+				a->loadFloat(DampLocation,en.getDamping());
+				a->loadFloat(ReflectLocation, en.getReflect());
 				//m.printTest();
 
 				en.Draw();//actually draws the model to the screen
 				
+
+				tex2.Bind(1);//this binds the texture data to the specified slot in texture2d
+
+
+			    target = en2.getTRS();
+
+				en2.setPosition(Position + glm::vec3(0,20,0));
+				en2.setRotation(glm::vec3(0, rotx += 1, 0));
+
+
+				 lightposition = light.getPosition();
+				 lightColor = light.getColor();
+
+				 projection = cam.getProjection();//this is the projection matrix 
+				a->loadMat4(pLocation, projection);//this loads in the projection matrix to the GPU for the world 
+				a->loadvec3(LightPosLocation, lightposition.x, lightposition.y, lightposition.z);
+				a->loadvec3(LightCOlORLocation, lightColor.x, lightColor.y, lightColor.z);
+				a->loadMat4(rtsLocation, target);//this loads in the rotation translation and scale(RTS) matix to the GPU 
+				a->loadInt(samplerLocation, 1);//this loads in the id for the texture2d sampler to pick the correct texture
+				a->loadFloat(DampLocation, en2.getDamping());
+				a->loadFloat(ReflectLocation, en.getReflect());
+				//m.printTest();
+
+				en2.Draw();//actually draws the model to the screen
 				
 				window.Render();
 				window.clear();

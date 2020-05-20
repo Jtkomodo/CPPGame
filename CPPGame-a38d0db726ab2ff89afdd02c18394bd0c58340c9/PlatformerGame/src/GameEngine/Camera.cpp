@@ -47,15 +47,22 @@ glm::vec3 Camera::getPosition()
 glm::mat4 Camera::getProjection()
 {
 	
-	glm::mat4 id(1);
-	id=getViewMatrix(position,rotation);
-	glm::mat4 target = projection* id;
-	return target;
+	
+	return projection;
 
 
 
 
 }
+
+glm::mat4 Camera::getView() {
+
+	glm::mat4 id=getViewMatrix(position, rotation);
+	return id;
+}
+
+
+
 
 float Camera::getFOV() {
 	return Camera::fov;

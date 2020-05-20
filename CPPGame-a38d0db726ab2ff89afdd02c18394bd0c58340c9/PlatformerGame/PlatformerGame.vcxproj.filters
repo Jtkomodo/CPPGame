@@ -48,6 +48,9 @@
     <ClCompile Include="src\GameEngine\Light.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameEngine\Terrain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GameEngine\Model.h">
@@ -825,6 +828,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\GameEngine\HeaderFiles\Light.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameEngine\HeaderFiles\Terrain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

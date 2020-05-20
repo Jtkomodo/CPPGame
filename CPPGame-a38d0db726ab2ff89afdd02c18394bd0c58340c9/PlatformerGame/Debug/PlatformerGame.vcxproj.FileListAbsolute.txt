@@ -1,0 +1,2 @@
+D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\Debug\PlatformerGame.exe
+D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\Debug\PlatformerGame.pdb

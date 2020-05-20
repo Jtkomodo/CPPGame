@@ -27,6 +27,7 @@
     <ClCompile Include="src\GameEngine\objLoader.cpp" />
     <ClCompile Include="src\GameEngine\ShaderProgram.cpp" />
     <ClCompile Include="src\GameEngine\Model.cpp" />
+    <ClCompile Include="src\GameEngine\Terrain.cpp" />
     <ClCompile Include="src\GameEngine\WIndow.cpp" />
     <ClCompile Include="src\GameEngine\Start.cpp" />
     <ClCompile Include="src\GameEngine\Texture.cpp" />
@@ -37,6 +38,7 @@
     <ClInclude Include="src\GameEngine\HeaderFiles\Entity.h" />
     <ClInclude Include="src\GameEngine\HeaderFiles\Light.h" />
     <ClInclude Include="src\GameEngine\HeaderFiles\objLoader.h" />
+    <ClInclude Include="src\GameEngine\HeaderFiles\Terrain.h" />
     <ClInclude Include="src\GameEngine\HeaderFiles\Window.h" />
     <ClInclude Include="src\GameEngine\HeaderFiles\MatrixMath.h" />
     <ClInclude Include="src\GameEngine\HeaderFiles\Model.h" />
@@ -525,8 +527,9 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)depend\GLFW\include;$(SolutionDir)depend\GLEW\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/src/GameEngine/HeaderFiles;$(SolutionDir)/src/GameEngine/HeaderFiles/Vendor;$(SolutionDir)depend\GLFW\include;$(SolutionDir)depend\GLEW\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerOutput>AssemblyCode</AssemblerOutput>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
