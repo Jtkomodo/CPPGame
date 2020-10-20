@@ -11,7 +11,9 @@ INCLUDELIB OLDNAMES
 PUBLIC	??_C@_08CEDOAIBO@Engine3d@			; `string'
 PUBLIC	??_C@_04CBHBHCPO@FPS?$DN@			; `string'
 PUBLIC	??_C@_06NHAKHCIK@Shader@			; `string'
+PUBLIC	??_C@_0O@NDBNOHJJ@TerrainShader@		; `string'
 PUBLIC	??_C@_09MGGOFKHG@texDragon@			; `string'
+PUBLIC	??_C@_05JOBLOEL@grass@				; `string'
 PUBLIC	??_C@_06OBNGLPMO@dragon@			; `string'
 PUBLIC	??_C@_0N@MAPAOIKF@stallTexture@			; `string'
 PUBLIC	??_C@_05MEMGOBLF@stall@				; `string'
@@ -109,9 +111,17 @@ CONST	ENDS
 CONST	SEGMENT
 ??_C@_06OBNGLPMO@dragon@ DB 'dragon', 00H		; `string'
 CONST	ENDS
+;	COMDAT ??_C@_05JOBLOEL@grass@
+CONST	SEGMENT
+??_C@_05JOBLOEL@grass@ DB 'grass', 00H			; `string'
+CONST	ENDS
 ;	COMDAT ??_C@_09MGGOFKHG@texDragon@
 CONST	SEGMENT
 ??_C@_09MGGOFKHG@texDragon@ DB 'texDragon', 00H		; `string'
+CONST	ENDS
+;	COMDAT ??_C@_0O@NDBNOHJJ@TerrainShader@
+CONST	SEGMENT
+??_C@_0O@NDBNOHJJ@TerrainShader@ DB 'TerrainShader', 00H ; `string'
 CONST	ENDS
 ;	COMDAT ??_C@_06NHAKHCIK@Shader@
 CONST	SEGMENT
@@ -127,8 +137,11 @@ CONST	SEGMENT
 ?framecap@@3NA DQ 03f91111111111111r		; 0.0166667 ; framecap
 PUBLIC	??$?HM$0A@@glm@@YA?AU?$vec@$02M$0A@@0@ABU10@0@Z	; glm::operator+<float,0>
 PUBLIC	??$?0HMH@?$vec@$02M$0A@@glm@@QAE@HMH@Z		; glm::vec<3,float,0>::vec<3,float,0><int,float,int>
+PUBLIC	??$?0MHM@?$vec@$02M$0A@@glm@@QAE@MHM@Z		; glm::vec<3,float,0>::vec<3,float,0><float,int,float>
 PUBLIC	??$?0M$0A@@?$vec@$02I$0A@@glm@@QAE@ABU?$vec@$02M$0A@@1@@Z ; glm::vec<3,unsigned int,0>::vec<3,unsigned int,0><float,0>
-PUBLIC	?__autoclassinit2@Entity@@QAEXI@Z		; Entity::__autoclassinit2
+PUBLIC	?__autoclassinit2@Terrain@@QAEXI@Z		; Terrain::__autoclassinit2
+PUBLIC	??1Terrain@@QAE@XZ				; Terrain::~Terrain
+PUBLIC	??1Entity@@QAE@XZ				; Entity::~Entity
 PUBLIC	?__autoclassinit2@objLoader@@QAEXI@Z		; objLoader::__autoclassinit2
 PUBLIC	??1objLoader@@QAE@XZ				; objLoader::~objLoader
 PUBLIC	?__autoclassinit2@Texture@@QAEXI@Z		; Texture::__autoclassinit2
@@ -143,1079 +156,192 @@ PUBLIC	?window@@3VWindow@@A				; window
 _BSS	ENDS
 ;	COMDAT xdata$x
 xdata$x	SEGMENT
-__ehfuncinfo$_main DD 019930522H
-	DD	010H
+__ehfuncinfo$_main DQ 00000001f19930522r	; 6.59939e-313
 	DD	FLAT:__unwindtable$_main
-	DD	2 DUP(00H)
-	DD	2 DUP(00H)
-	DD	00H
-	DD	01H
+	DQ	00000000000000000r		; 0
+	DQ	00000000000000000r		; 0
+	DQ	00000000100000000r		; 2.122e-314
 	ORG $+4
 __unwindtable$_main DD 0ffffffffH
 	DD	FLAT:__unwindfunclet$_main$0
 	DD	00H
 	DD	FLAT:__unwindfunclet$_main$1
-	DD	00H
+	DD	01H
+	DD	FLAT:__unwindfunclet$_main$2
+	DD	01H
 	DD	FLAT:__unwindfunclet$_main$3
-	DD	02H
+	DD	01H
 	DD	FLAT:__unwindfunclet$_main$5
-	DD	03H
-	DD	FLAT:__unwindfunclet$_main$7
 	DD	04H
-	DD	FLAT:__unwindfunclet$_main$9
+	DD	FLAT:__unwindfunclet$_main$7
 	DD	05H
-	DD	FLAT:__unwindfunclet$_main$10
+	DD	FLAT:__unwindfunclet$_main$9
 	DD	06H
 	DD	FLAT:__unwindfunclet$_main$11
 	DD	07H
-	DD	FLAT:__unwindfunclet$_main$12
-	DD	05H
+	DD	FLAT:__unwindfunclet$_main$13
+	DD	08H
 	DD	FLAT:__unwindfunclet$_main$14
 	DD	09H
 	DD	FLAT:__unwindfunclet$_main$15
 	DD	0aH
 	DD	FLAT:__unwindfunclet$_main$16
-	DD	0bH
-	DD	FLAT:__unwindfunclet$_main$17
-	DD	09H
+	DD	08H
+	DD	FLAT:__unwindfunclet$_main$18
+	DD	0cH
 	DD	FLAT:__unwindfunclet$_main$19
-	DD	09H
+	DD	0dH
+	DD	FLAT:__unwindfunclet$_main$20
+	DD	0eH
+	DD	FLAT:__unwindfunclet$_main$21
+	DD	0cH
+	DD	FLAT:__unwindfunclet$_main$23
+	DD	010H
+	DD	FLAT:__unwindfunclet$_main$24
+	DD	011H
+	DD	FLAT:__unwindfunclet$_main$25
+	DD	012H
+	DD	FLAT:__unwindfunclet$_main$41
+	DD	013H
+	DD	FLAT:__unwindfunclet$_main$42
+	DD	012H
+	DD	FLAT:__unwindfunclet$_main$27
+	DD	015H
+	DD	FLAT:__unwindfunclet$_main$28
+	DD	016H
+	DD	FLAT:__unwindfunclet$_main$29
+	DD	016H
 	DD	FLAT:___std_terminate
-	DD	05H
+	DD	015H
+	DD	FLAT:___std_terminate
+	DD	012H
+	DD	FLAT:___std_terminate
+	DD	011H
+	DD	FLAT:___std_terminate
+	DD	010H
+	DD	FLAT:___std_terminate
+	DD	0cH
+	DD	FLAT:___std_terminate
+	DD	08H
+	DD	FLAT:___std_terminate
+xdata$x	ENDS
+;	COMDAT xdata$x
+xdata$x	SEGMENT
+__ehfuncinfo$??1Entity@@QAE@XZ DQ 00000000119930522r ; 2.33398e-314
+	DD	FLAT:__unwindtable$??1Entity@@QAE@XZ
+	DQ	00000000000000000r		; 0
+	DQ	00000000000000000r		; 0
+	DQ	00000000500000000r		; 1.061e-313
+__unwindtable$??1Entity@@QAE@XZ DD 0ffffffffH
+	DD	FLAT:___std_terminate
+xdata$x	ENDS
+;	COMDAT xdata$x
+xdata$x	SEGMENT
+__ehfuncinfo$??1Terrain@@QAE@XZ DQ 00000000119930522r ; 2.33398e-314
+	DD	FLAT:__unwindtable$??1Terrain@@QAE@XZ
+	DQ	00000000000000000r		; 0
+	DQ	00000000000000000r		; 0
+	DQ	00000000500000000r		; 1.061e-313
+__unwindtable$??1Terrain@@QAE@XZ DD 0ffffffffH
 	DD	FLAT:___std_terminate
 ?window$initializer$@@3P6AXXZA DD FLAT:??__Ewindow@@YAXXZ ; window$initializer$
 ; Function compile flags: /Ogtp
-;	COMDAT _main
-_TEXT	SEGMENT
-_cam$ = -1172						; size = 100
-$T40 = -1072						; size = 12
-$T41 = -1060						; size = 12
-_target$5$ = -1048					; size = 16
-_target$4$ = -1048					; size = 16
-_target$6$ = -1032					; size = 16
-_target$3$ = -1032					; size = 16
-_target$7$ = -1016					; size = 16
-_target$2$ = -1016					; size = 16
-_light$ = -1000						; size = 24
-_viewMatrixLocation$1$ = -976				; size = 4
-$T34 = -972						; size = 12
-$T29 = -972						; size = 12
-$T28 = -972						; size = 12
-_rtsLocation$1$ = -960					; size = 4
-_samplerLocation$1$ = -956				; size = 4
-_DampLocation$1$ = -952					; size = 4
-_ReflectLocation$1$ = -948				; size = 4
-$T50 = -944						; size = 4
-$T5 = -944						; size = 4
-___$ReturnUdt$ = -940					; size = 4
-$T25 = -940						; size = 4
-$T20 = -940						; size = 4
-___$ReturnUdt$ = -936					; size = 4
-$T24 = -936						; size = 4
-$T21 = -936						; size = 4
-_LightCOlORLocation$1$ = -932				; size = 4
-_LightPosLocation$1$ = -928				; size = 4
-_pLocation$1$ = -924					; size = 4
-_target$8$ = -920					; size = 16
-_target$1$ = -920					; size = 16
-$T30 = -916						; size = 12
-$T27 = -916						; size = 12
-$T4 = -916						; size = 12
-_cam$1$ = -912						; size = 8
-___$ReturnUdt$ = -908					; size = 4
-$T23 = -908						; size = 4
-_hasLocation$1$ = -904					; size = 4
-$T51 = -900						; size = 4
-___$ReturnUdt$ = -900					; size = 4
-$T19 = -900						; size = 4
-_matrix$ = -896						; size = 64
-_matrix$ = -832						; size = 64
-_view$52 = -768						; size = 64
-_matrix$ = -704						; size = 64
-_matrix$ = -640						; size = 64
-_matrix$ = -576						; size = 64
-_tex2$ = -512						; size = 44
-_tex$ = -468						; size = 44
-_en2$ = -424						; size = 104
-_stall$ = -320						; size = 64
-_f$ = -256						; size = 64
-_en$ = -192						; size = 104
-_model2$ = -88						; size = 24
-_model$ = -64						; size = 24
-_programName$ = -40					; size = 24
-__$ArrayPad$ = -16					; size = 4
-__$EHRec$ = -12						; size = 12
-_argc$ = 8						; size = 4
-_argv$ = 12						; size = 4
-_main	PROC						; COMDAT
+;	COMDAT ??__Ewindow@@YAXXZ
+text$di	SEGMENT
+??__Ewindow@@YAXXZ PROC					; `dynamic initializer for 'window'', COMDAT
 ; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 157
-	push	ebp
-	mov	ebp, esp
+; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\WIndow.cpp
+; Line 139
+	call	_glfwInit
+	test	eax, eax
+	jne	SHORT $LN6@dynamic
+; Line 140
 	push	-1
-	push	__ehhandler$_main
-	mov	eax, DWORD PTR fs:0
+	call	DWORD PTR __imp__exit
+$LN6@dynamic:
+; Line 144
+	push	1
+	push	131077					; 00020005H
+	call	_glfwWindowHint
+; Line 146
+	push	0
+	push	0
+	push	OFFSET ??_C@_08CEDOAIBO@Engine3d@
+	push	480					; 000001e0H
+	push	640					; 00000280H
+	call	_glfwCreateWindow
+	add	esp, 28					; 0000001cH
+	mov	DWORD PTR ?window@@3VWindow@@A, eax
+; Line 147
+	test	eax, eax
+	jne	SHORT $LN7@dynamic
+; Line 149
+	call	_glfwTerminate
+; Line 150
+	push	1
+	call	DWORD PTR __imp__exit
+$LN7@dynamic:
+; Line 154
 	push	eax
-	sub	esp, 1160				; 00000488H
-	mov	eax, DWORD PTR ___security_cookie
-	xor	eax, ebp
-	mov	DWORD PTR __$ArrayPad$[ebp], eax
-	push	esi
-	push	edi
-	push	eax
-	lea	eax, DWORD PTR __$EHRec$[ebp]
-	mov	DWORD PTR fs:0, eax
-; File C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include\xstring
-; Line 2892
-	push	6
-	push	OFFSET ??_C@_06NHAKHCIK@Shader@
-	lea	ecx, DWORD PTR _programName$[ebp]
-; Line 4201
-	mov	DWORD PTR _programName$[ebp+16], 0
-; Line 4202
-	mov	DWORD PTR _programName$[ebp+20], 15	; 0000000fH
-; Line 4205
-	mov	BYTE PTR _programName$[ebp], 0
-; Line 2892
-	call	?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@QBDI@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::assign
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 160
-	mov	DWORD PTR __$EHRec$[ebp+8], 0
-; Line 161
-	sub	esp, 12					; 0000000cH
-	movss	xmm3, DWORD PTR __real@428c0000
-	mov	ecx, esp
-	movss	xmm2, DWORD PTR __real@43f00000
-	xorps	xmm1, xmm1
-	xorps	xmm0, xmm0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\HeaderFiles\Vendor\glm\detail\type_vec3.inl
-; Line 33
-	mov	DWORD PTR $T4[ebp+8], 0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 161
-	mov	eax, DWORD PTR $T4[ebp+8]
-	unpcklps xmm0, xmm1
-	movss	xmm1, DWORD PTR __real@44200000
-	movq	QWORD PTR [ecx], xmm0
-	mov	DWORD PTR [ecx+8], eax
-	lea	ecx, DWORD PTR _cam$[ebp]
-	call	??0Camera@@QAE@MMMU?$vec@$02M$0A@@glm@@@Z ; Camera::Camera
-; Line 163
-	push	20					; 00000014H
-	call	??2@YAPAXI@Z				; operator new
+	call	_glfwMakeContextCurrent
 	add	esp, 4
-	mov	DWORD PTR $T5[ebp], eax
-	lea	ecx, DWORD PTR _programName$[ebp]
-	mov	BYTE PTR __$EHRec$[ebp+8], 1
-	push	ecx
+; Line 157
+	call	_glewInit@0
+	test	eax, eax
+	je	SHORT $LN8@dynamic
+; Line 158
+	mov	ecx, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	mov	edx, OFFSET ??_C@_07LIJFLNDM@problem@
+	push	OFFSET ??$endl@DU?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@@Z ; std::endl<char,std::char_traits<char> >
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
 	mov	ecx, eax
-	call	??0ShaderProgram@@QAE@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z ; ShaderProgram::ShaderProgram
-	mov	edi, eax
-	mov	BYTE PTR __$EHRec$[ebp+8], 0
-	push	44					; 0000002cH
-	lea	eax, DWORD PTR _tex$[ebp]
-	mov	DWORD PTR $T50[ebp], edi
-	push	0
-	push	eax
-	call	_memset
-; Line 169
-	sub	esp, 12					; 0000000cH
-	mov	ecx, esp
-; File C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include\xstring
-; Line 2892
-	push	9
-	push	OFFSET ??_C@_09MGGOFKHG@texDragon@
-; Line 4201
-	mov	DWORD PTR [ecx+16], 0
-; Line 4202
-	mov	DWORD PTR [ecx+20], 15			; 0000000fH
-; Line 4205
-	mov	BYTE PTR [ecx], 0
-; Line 2892
-	call	?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@QBDI@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::assign
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 169
-	lea	ecx, DWORD PTR _tex$[ebp]
-	call	??0Texture@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z ; Texture::Texture
-	push	64					; 00000040H
-	lea	eax, DWORD PTR _f$[ebp]
-	mov	BYTE PTR __$EHRec$[ebp+8], 2
-	push	0
-	push	eax
-	call	_memset
-; Line 170
-	sub	esp, 12					; 0000000cH
-	mov	ecx, esp
-; File C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include\xstring
-; Line 2892
-	push	6
-	push	OFFSET ??_C@_06OBNGLPMO@dragon@
-; Line 4201
-	mov	DWORD PTR [ecx+16], 0
-; Line 4202
-	mov	DWORD PTR [ecx+20], 15			; 0000000fH
-; Line 4205
-	mov	BYTE PTR [ecx], 0
-; Line 2892
-	call	?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@QBDI@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::assign
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 170
-	lea	ecx, DWORD PTR _f$[ebp]
-	call	??0objLoader@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z ; objLoader::objLoader
-	push	44					; 0000002cH
-	lea	eax, DWORD PTR _tex2$[ebp]
-	mov	BYTE PTR __$EHRec$[ebp+8], 3
-	push	0
-	push	eax
-	call	_memset
-; Line 172
-	sub	esp, 12					; 0000000cH
-	mov	ecx, esp
-; File C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include\xstring
-; Line 2892
-	push	12					; 0000000cH
-; Line 4201
-	mov	DWORD PTR [ecx+16], 0
-; Line 4202
-	mov	DWORD PTR [ecx+20], 15			; 0000000fH
-; Line 4205
-	mov	BYTE PTR [ecx], 0
-; Line 2892
-	push	OFFSET ??_C@_0N@MAPAOIKF@stallTexture@
-	call	?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@QBDI@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::assign
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 172
-	lea	ecx, DWORD PTR _tex2$[ebp]
-	call	??0Texture@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z ; Texture::Texture
-	push	64					; 00000040H
-	lea	eax, DWORD PTR _stall$[ebp]
-	mov	BYTE PTR __$EHRec$[ebp+8], 4
-	push	0
-	push	eax
-	call	_memset
-; Line 173
-	sub	esp, 12					; 0000000cH
-	mov	ecx, esp
-; File C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include\xstring
-; Line 2892
-	push	5
-	push	OFFSET ??_C@_05MEMGOBLF@stall@
-; Line 4201
-	mov	DWORD PTR [ecx+16], 0
-; Line 4202
-	mov	DWORD PTR [ecx+20], 15			; 0000000fH
-; Line 4205
-	mov	BYTE PTR [ecx], 0
-; Line 2892
-	call	?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@QBDI@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::assign
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 173
-	lea	ecx, DWORD PTR _stall$[ebp]
-	call	??0objLoader@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z ; objLoader::objLoader
-; Line 175
-	push	OFFSET ??_C@_0L@PPHAJBEH@projection@
-	mov	ecx, edi
-	mov	BYTE PTR __$EHRec$[ebp+8], 5
-	call	?makeLocation@ShaderProgram@@QAEHQBD@Z	; ShaderProgram::makeLocation
-; Line 176
-	push	OFFSET ??_C@_03EIGHKCEN@rts@
-	mov	ecx, edi
-	mov	DWORD PTR _pLocation$1$[ebp], eax
-	call	?makeLocation@ShaderProgram@@QAEHQBD@Z	; ShaderProgram::makeLocation
-; Line 177
-	push	OFFSET ??_C@_07PKJOFHPL@sampler@
-	mov	ecx, edi
-	mov	DWORD PTR _rtsLocation$1$[ebp], eax
-	call	?makeLocation@ShaderProgram@@QAEHQBD@Z	; ShaderProgram::makeLocation
-; Line 178
-	push	OFFSET ??_C@_0O@POHKLELN@LightPosition@
-	mov	ecx, edi
-	mov	DWORD PTR _samplerLocation$1$[ebp], eax
-	call	?makeLocation@ShaderProgram@@QAEHQBD@Z	; ShaderProgram::makeLocation
-; Line 179
-	push	OFFSET ??_C@_0L@HNLDIBIB@lightColor@
-	mov	ecx, edi
-	mov	DWORD PTR _LightPosLocation$1$[ebp], eax
-	call	?makeLocation@ShaderProgram@@QAEHQBD@Z	; ShaderProgram::makeLocation
-; Line 180
-	push	OFFSET ??_C@_08HPPOJBLD@haslight@
-	mov	ecx, edi
-	mov	DWORD PTR _LightCOlORLocation$1$[ebp], eax
-	call	?makeLocation@ShaderProgram@@QAEHQBD@Z	; ShaderProgram::makeLocation
-	mov	esi, eax
-; Line 181
-	mov	ecx, edi
-	push	OFFSET ??_C@_04CHADEDPO@view@
-	mov	DWORD PTR _hasLocation$1$[ebp], esi
-	call	?makeLocation@ShaderProgram@@QAEHQBD@Z	; ShaderProgram::makeLocation
-; Line 182
-	push	OFFSET ??_C@_06IHEKJFFH@damper@
-	mov	ecx, edi
-	mov	DWORD PTR _viewMatrixLocation$1$[ebp], eax
-	call	?makeLocation@ShaderProgram@@QAEHQBD@Z	; ShaderProgram::makeLocation
-; Line 183
-	push	OFFSET ??_C@_0N@LJNLFOD@reflectivity@
-	mov	ecx, edi
-	mov	DWORD PTR _DampLocation$1$[ebp], eax
-	call	?makeLocation@ShaderProgram@@QAEHQBD@Z	; ShaderProgram::makeLocation
-; Line 184
-	sub	esp, 12					; 0000000cH
-	mov	DWORD PTR _ReflectLocation$1$[ebp], eax
-	mov	ecx, esp
-	mov	DWORD PTR $T19[ebp], esp
-	push	ecx
-	lea	ecx, DWORD PTR _f$[ebp]
-	call	?getInds@objLoader@@QAE?AV?$vector@U?$vec@$02I$0A@@glm@@V?$allocator@U?$vec@$02I$0A@@glm@@@std@@@std@@XZ ; objLoader::getInds
-	sub	esp, 12					; 0000000cH
-	mov	BYTE PTR __$EHRec$[ebp+8], 6
-	mov	ecx, esp
-	mov	DWORD PTR $T20[ebp], esp
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\objLoader.cpp
-; Line 422
-	lea	eax, DWORD PTR _f$[ebp+40]
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 184
-	mov	DWORD PTR ___$ReturnUdt$[ebp], ecx
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\objLoader.cpp
-; Line 422
-	push	eax
-	call	??0?$vector@U?$vec@$02M$0A@@glm@@V?$allocator@U?$vec@$02M$0A@@glm@@@std@@@std@@QAE@ABV01@@Z ; std::vector<glm::vec<3,float,0>,std::allocator<glm::vec<3,float,0> > >::vector<glm::vec<3,float,0>,std::allocator<glm::vec<3,float,0> > >
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 184
-	sub	esp, 12					; 0000000cH
-	mov	BYTE PTR __$EHRec$[ebp+8], 7
-	mov	eax, esp
-	mov	DWORD PTR $T21[ebp], esp
-	push	eax
-	lea	ecx, DWORD PTR _f$[ebp]
-	call	?getUVS@objLoader@@QAE?AV?$vector@U?$vec@$01M$0A@@glm@@V?$allocator@U?$vec@$01M$0A@@glm@@@std@@@std@@XZ ; objLoader::getUVS
-	sub	esp, 12					; 0000000cH
-	mov	BYTE PTR __$EHRec$[ebp+8], 8
-	mov	ecx, esp
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\objLoader.cpp
-; Line 417
-	lea	eax, DWORD PTR _f$[ebp+16]
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 184
-	mov	DWORD PTR ___$ReturnUdt$[ebp], ecx
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\objLoader.cpp
-; Line 417
-	push	eax
-	call	??0?$vector@U?$vec@$02M$0A@@glm@@V?$allocator@U?$vec@$02M$0A@@glm@@@std@@@std@@QAE@ABV01@@Z ; std::vector<glm::vec<3,float,0>,std::allocator<glm::vec<3,float,0> > >::vector<glm::vec<3,float,0>,std::allocator<glm::vec<3,float,0> > >
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 184
-	lea	ecx, DWORD PTR _model$[ebp]
-	mov	BYTE PTR __$EHRec$[ebp+8], 5
-	call	??0Model@@QAE@V?$vector@U?$vec@$02M$0A@@glm@@V?$allocator@U?$vec@$02M$0A@@glm@@@std@@@std@@V?$vector@U?$vec@$01M$0A@@glm@@V?$allocator@U?$vec@$01M$0A@@glm@@@std@@@2@0V?$vector@U?$vec@$02I$0A@@glm@@V?$allocator@U?$vec@$02I$0A@@glm@@@std@@@2@@Z ; Model::Model
-; Line 185
-	sub	esp, 12					; 0000000cH
-	mov	BYTE PTR __$EHRec$[ebp+8], 9
-	mov	eax, esp
-	mov	DWORD PTR $T23[ebp], esp
-	lea	ecx, DWORD PTR _stall$[ebp]
-	push	eax
-	call	?getInds@objLoader@@QAE?AV?$vector@U?$vec@$02I$0A@@glm@@V?$allocator@U?$vec@$02I$0A@@glm@@@std@@@std@@XZ ; objLoader::getInds
-	sub	esp, 12					; 0000000cH
-	mov	BYTE PTR __$EHRec$[ebp+8], 10		; 0000000aH
-	mov	ecx, esp
-	mov	DWORD PTR $T24[ebp], esp
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\objLoader.cpp
-; Line 422
-	lea	eax, DWORD PTR _stall$[ebp+40]
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 185
-	mov	DWORD PTR ___$ReturnUdt$[ebp], ecx
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\objLoader.cpp
-; Line 422
-	push	eax
-	call	??0?$vector@U?$vec@$02M$0A@@glm@@V?$allocator@U?$vec@$02M$0A@@glm@@@std@@@std@@QAE@ABV01@@Z ; std::vector<glm::vec<3,float,0>,std::allocator<glm::vec<3,float,0> > >::vector<glm::vec<3,float,0>,std::allocator<glm::vec<3,float,0> > >
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 185
-	sub	esp, 12					; 0000000cH
-	mov	BYTE PTR __$EHRec$[ebp+8], 11		; 0000000bH
-	mov	eax, esp
-	mov	DWORD PTR $T25[ebp], esp
-	lea	ecx, DWORD PTR _stall$[ebp]
-	push	eax
-	call	?getUVS@objLoader@@QAE?AV?$vector@U?$vec@$01M$0A@@glm@@V?$allocator@U?$vec@$01M$0A@@glm@@@std@@@std@@XZ ; objLoader::getUVS
-	sub	esp, 12					; 0000000cH
-	mov	BYTE PTR __$EHRec$[ebp+8], 12		; 0000000cH
-	mov	ecx, esp
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\objLoader.cpp
-; Line 417
-	lea	eax, DWORD PTR _stall$[ebp+16]
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 185
-	mov	DWORD PTR ___$ReturnUdt$[ebp], ecx
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\objLoader.cpp
-; Line 417
-	push	eax
-	call	??0?$vector@U?$vec@$02M$0A@@glm@@V?$allocator@U?$vec@$02M$0A@@glm@@@std@@@std@@QAE@ABV01@@Z ; std::vector<glm::vec<3,float,0>,std::allocator<glm::vec<3,float,0> > >::vector<glm::vec<3,float,0>,std::allocator<glm::vec<3,float,0> > >
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 185
-	lea	ecx, DWORD PTR _model2$[ebp]
-	mov	BYTE PTR __$EHRec$[ebp+8], 9
-	call	??0Model@@QAE@V?$vector@U?$vec@$02M$0A@@glm@@V?$allocator@U?$vec@$02M$0A@@glm@@@std@@@std@@V?$vector@U?$vec@$01M$0A@@glm@@V?$allocator@U?$vec@$01M$0A@@glm@@@std@@@2@0V?$vector@U?$vec@$02I$0A@@glm@@V?$allocator@U?$vec@$02I$0A@@glm@@@std@@@2@@Z ; Model::Model
-	push	104					; 00000068H
-	lea	eax, DWORD PTR _en$[ebp]
-	mov	BYTE PTR __$EHRec$[ebp+8], 13		; 0000000dH
-	push	0
-	push	eax
-	call	_memset
-; Line 187
-	mov	DWORD PTR [esp+8], 1065353216		; 3f800000H
-	xorps	xmm0, xmm0
-	mov	DWORD PTR [esp+4], 1092616192		; 41200000H
-	xorps	xmm1, xmm1
-	mov	DWORD PTR [esp], 1065353216		; 3f800000H
-	sub	esp, 12					; 0000000cH
-	mov	ecx, esp
-	unpcklps xmm0, xmm1
-	sub	esp, 12					; 0000000cH
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\HeaderFiles\Vendor\glm\detail\type_vec3.inl
-; Line 33
-	mov	DWORD PTR $T27[ebp+8], 0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 187
-	mov	eax, DWORD PTR $T27[ebp+8]
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\HeaderFiles\Vendor\glm\detail\type_vec3.inl
-; Line 56
-	mov	DWORD PTR $T28[ebp+8], -1073741824	; c0000000H
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 187
-	movq	QWORD PTR [ecx], xmm0
-	xorps	xmm0, xmm0
-	mov	DWORD PTR [ecx+8], eax
-	mov	ecx, esp
-	mov	eax, DWORD PTR $T28[ebp+8]
-	unpcklps xmm0, xmm1
-	movq	QWORD PTR [ecx], xmm0
-	mov	DWORD PTR [ecx+8], eax
-	lea	eax, DWORD PTR _model$[ebp]
-	push	eax
-	lea	ecx, DWORD PTR _en$[ebp]
-	call	??0Entity@@QAE@PAVModel@@U?$vec@$02M$0A@@glm@@1MMM@Z ; Entity::Entity
-	push	104					; 00000068H
-; Line 188
-	lea	eax, DWORD PTR _en2$[ebp]
-	push	0
-	push	eax
-	call	_memset
-	mov	DWORD PTR [esp+8], 1065353216		; 3f800000H
-	xorps	xmm0, xmm0
-	mov	DWORD PTR [esp+4], 1092616192		; 41200000H
-	xorps	xmm1, xmm1
-	mov	DWORD PTR [esp], 1065353216		; 3f800000H
-	sub	esp, 12					; 0000000cH
-	mov	ecx, esp
-	unpcklps xmm0, xmm1
-	sub	esp, 12					; 0000000cH
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\HeaderFiles\Vendor\glm\detail\type_vec3.inl
-; Line 33
-	mov	DWORD PTR $T29[ebp+8], 0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 188
-	mov	eax, DWORD PTR $T29[ebp+8]
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\HeaderFiles\Vendor\glm\detail\type_vec3.inl
-; Line 56
-	mov	DWORD PTR $T30[ebp+8], -1073741824	; c0000000H
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 188
-	movq	QWORD PTR [ecx], xmm0
-	xorps	xmm0, xmm0
-	mov	DWORD PTR [ecx+8], eax
-	mov	ecx, esp
-	mov	eax, DWORD PTR $T30[ebp+8]
-	unpcklps xmm0, xmm1
-	movq	QWORD PTR [ecx], xmm0
-	mov	DWORD PTR [ecx+8], eax
-	lea	eax, DWORD PTR _model2$[ebp]
-	push	eax
-	lea	ecx, DWORD PTR _en2$[ebp]
-	call	??0Entity@@QAE@PAVModel@@U?$vec@$02M$0A@@glm@@1MMM@Z ; Entity::Entity
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\ShaderProgram.cpp
-; Line 134
-	push	DWORD PTR [edi]
-	call	DWORD PTR ___glewUseProgram
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 199
-	call	?intFPS@@YAXXZ				; intFPS
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\WIndow.cpp
-; Line 101
-	push	DWORD PTR ?window@@3VWindow@@A
-	xorps	xmm1, xmm1
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 200
-	movss	DWORD PTR $T51[ebp], xmm1
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\WIndow.cpp
-; Line 101
-	call	_glfwWindowShouldClose
-	add	esp, 4
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 205
-	test	al, al
-	jne	$LN3@main
-	mov	edi, DWORD PTR _cam$[ebp+92]
-	npad	6
-$LL2@main:
-	mov	ecx, 256				; 00000100H
-	call	?checkState@Window@@SAEH@Z		; Window::checkState
-	test	al, al
-	jne	$LN520@main
-; Line 209
-	call	?fps@@YAXXZ				; fps
-; Line 211
-	cmp	BYTE PTR ?canRender@@3EA, 0		; canRender
-	je	$LN4@main
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\ShaderProgram.cpp
-; Line 162
-	push	1
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@P6AAAV01@AAV01@@Z@Z
+; Line 159
+	push	7
+	call	DWORD PTR __imp__exit
+$LN8@dynamic:
 	push	esi
-	call	DWORD PTR ___glewUniform1i
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 213
-	call	?Input@@YAXXZ				; Input
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Light.cpp
-; Line 12
-	movq	xmm0, QWORD PTR ?lightPosition@@3U?$vec@$02M$0A@@glm@@A
-	mov	eax, DWORD PTR ?lightPosition@@3U?$vec@$02M$0A@@glm@@A+8
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Camera.cpp
-; Line 28
-	mov	esi, DWORD PTR ?CamPosition@@3U?$vec@$02M$0A@@glm@@A+8
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Light.cpp
-; Line 12
-	movq	QWORD PTR _light$[ebp], xmm0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Camera.cpp
-; Line 28
-	movq	xmm0, QWORD PTR ?CamPosition@@3U?$vec@$02M$0A@@glm@@A
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Texture.cpp
-; Line 43
-	push	33985					; 000084c1H
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Light.cpp
-; Line 12
-	mov	DWORD PTR _light$[ebp+8], eax
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Camera.cpp
-; Line 28
-	movq	QWORD PTR _cam$1$[ebp], xmm0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Texture.cpp
-; Line 43
-	call	DWORD PTR ___glewActiveTexture
-; Line 44
-	push	DWORD PTR _tex$[ebp]
+; Line 162
+	mov	esi, DWORD PTR __imp__glEnable@4
 	push	3553					; 00000de1H
-	call	DWORD PTR __imp__glBindTexture@8
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Camera.cpp
-; Line 60
-	movq	xmm0, QWORD PTR _cam$[ebp+84]
-	lea	ecx, DWORD PTR _view$52[ebp]
-	sub	esp, 12					; 0000000cH
-	mov	eax, esp
-	sub	esp, 12					; 0000000cH
-	movq	QWORD PTR [eax], xmm0
-	movq	xmm0, QWORD PTR _cam$1$[ebp]
-	mov	DWORD PTR [eax+8], edi
-	mov	eax, esp
-	movq	QWORD PTR [eax], xmm0
-	mov	DWORD PTR [eax+8], esi
-	call	?getViewMatrix@@YA?AU?$mat@$03$03M$0A@@glm@@U?$vec@$02M$0A@@2@0@Z ; getViewMatrix
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Entity.cpp
-; Line 99
-	movups	xmm0, XMMWORD PTR _en$[ebp+40]
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 223
-	mov	eax, DWORD PTR ?Position@@3U?$vec@$02M$0A@@glm@@A+8
-	add	esp, 12					; 0000000cH
-	mov	ecx, esp
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Entity.cpp
-; Line 99
-	movups	XMMWORD PTR _target$1$[ebp], xmm0
-	movups	xmm0, XMMWORD PTR _en$[ebp+56]
-	movups	XMMWORD PTR _target$3$[ebp], xmm0
-	movups	xmm0, XMMWORD PTR _en$[ebp+72]
-	movups	XMMWORD PTR _target$5$[ebp], xmm0
-	movups	xmm0, XMMWORD PTR _en$[ebp+88]
-	movups	XMMWORD PTR _target$7$[ebp], xmm0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 223
-	movq	xmm0, QWORD PTR ?Position@@3U?$vec@$02M$0A@@glm@@A
-	movq	QWORD PTR [ecx], xmm0
-	mov	DWORD PTR [ecx+8], eax
-	lea	ecx, DWORD PTR _en$[ebp]
-	call	?setPosition@Entity@@QAEXU?$vec@$02M$0A@@glm@@@Z ; Entity::setPosition
-; Line 224
-	movss	xmm1, DWORD PTR $T51[ebp]
-	sub	esp, 12					; 0000000cH
-	addss	xmm1, DWORD PTR __real@3f800000
-	mov	ecx, esp
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\HeaderFiles\Vendor\glm\detail\type_vec3.inl
-; Line 56
-	mov	DWORD PTR $T34[ebp+8], 0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 224
-	mov	eax, DWORD PTR $T34[ebp+8]
-	xorps	xmm0, xmm0
-	unpcklps xmm0, xmm1
-	movq	QWORD PTR [ecx], xmm0
-	mov	DWORD PTR [ecx+8], eax
-	lea	ecx, DWORD PTR _en$[ebp]
-	movss	DWORD PTR $T51[ebp], xmm1
-	call	?setRotation@Entity@@QAEXU?$vec@$02M$0A@@glm@@@Z ; Entity::setRotation
-; Line 231
-	movups	xmm0, XMMWORD PTR _cam$[ebp+20]
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\ShaderProgram.cpp
-; Line 187
-	lea	eax, DWORD PTR _matrix$[ebp]
-	push	eax
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 231
-	movups	XMMWORD PTR _matrix$[ebp], xmm0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\ShaderProgram.cpp
-; Line 187
-	push	0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 231
-	movups	xmm0, XMMWORD PTR _cam$[ebp+36]
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\ShaderProgram.cpp
-; Line 187
-	push	1
-	push	DWORD PTR _pLocation$1$[ebp]
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 231
-	movups	XMMWORD PTR _matrix$[ebp+16], xmm0
-	movups	xmm0, XMMWORD PTR _cam$[ebp+52]
-	movups	XMMWORD PTR _matrix$[ebp+32], xmm0
-	movups	xmm0, XMMWORD PTR _cam$[ebp+68]
-	movups	XMMWORD PTR _matrix$[ebp+48], xmm0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\ShaderProgram.cpp
-; Line 187
-	call	DWORD PTR ___glewUniformMatrix4fv
-; Line 193
-	movss	xmm0, DWORD PTR _light$[ebp+8]
-	sub	esp, 12					; 0000000cH
-	movss	DWORD PTR [esp+8], xmm0
-	movss	xmm0, DWORD PTR _light$[ebp+4]
-	movss	DWORD PTR [esp+4], xmm0
-	movss	xmm0, DWORD PTR _light$[ebp]
-	movss	DWORD PTR [esp], xmm0
-	push	DWORD PTR _LightPosLocation$1$[ebp]
-	call	DWORD PTR ___glewUniform3f
-	sub	esp, 12					; 0000000cH
-	mov	DWORD PTR [esp+8], 1065353216		; 3f800000H
-	mov	DWORD PTR [esp+4], 1065353216		; 3f800000H
-	mov	DWORD PTR [esp], 1065353216		; 3f800000H
-	push	DWORD PTR _LightCOlORLocation$1$[ebp]
-	call	DWORD PTR ___glewUniform3f
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 234
-	movups	xmm0, XMMWORD PTR _target$1$[ebp]
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\ShaderProgram.cpp
-; Line 187
-	lea	eax, DWORD PTR _matrix$[ebp]
-	push	eax
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 234
-	movups	XMMWORD PTR _matrix$[ebp], xmm0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\ShaderProgram.cpp
-; Line 187
-	push	0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 234
-	movups	xmm0, XMMWORD PTR _target$3$[ebp]
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\ShaderProgram.cpp
-; Line 187
-	push	1
-	push	DWORD PTR _rtsLocation$1$[ebp]
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 234
-	movups	XMMWORD PTR _matrix$[ebp+16], xmm0
-	movups	xmm0, XMMWORD PTR _target$5$[ebp]
-	movups	XMMWORD PTR _matrix$[ebp+32], xmm0
-	movups	xmm0, XMMWORD PTR _target$7$[ebp]
-	movups	XMMWORD PTR _matrix$[ebp+48], xmm0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\ShaderProgram.cpp
-; Line 187
-	call	DWORD PTR ___glewUniformMatrix4fv
+	call	esi
+; Line 163
+	push	2929					; 00000b71H
+	call	esi
+; Line 167
+	push	3042					; 00000be2H
+	call	esi
 ; Line 168
-	push	1
-	push	DWORD PTR _samplerLocation$1$[ebp]
-	call	DWORD PTR ___glewUniform1i
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 236
-	movups	xmm0, XMMWORD PTR _view$52[ebp]
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\ShaderProgram.cpp
-; Line 187
-	lea	eax, DWORD PTR _matrix$[ebp]
-	push	eax
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 236
-	movups	XMMWORD PTR _matrix$[ebp], xmm0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\ShaderProgram.cpp
-; Line 187
-	push	0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 236
-	movups	xmm0, XMMWORD PTR _view$52[ebp+16]
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\ShaderProgram.cpp
-; Line 187
-	push	1
-	push	DWORD PTR _viewMatrixLocation$1$[ebp]
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 236
-	movups	XMMWORD PTR _matrix$[ebp+16], xmm0
-	movups	xmm0, XMMWORD PTR _view$52[ebp+32]
-	movups	XMMWORD PTR _matrix$[ebp+32], xmm0
-	movups	xmm0, XMMWORD PTR _view$52[ebp+48]
-	movups	XMMWORD PTR _matrix$[ebp+48], xmm0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\ShaderProgram.cpp
-; Line 187
-	call	DWORD PTR ___glewUniformMatrix4fv
-; Line 173
-	movss	xmm0, DWORD PTR _en$[ebp+8]
-	push	ecx
-	movss	DWORD PTR [esp], xmm0
-	push	DWORD PTR _DampLocation$1$[ebp]
-	call	DWORD PTR ___glewUniform1f
-	movss	xmm0, DWORD PTR _en$[ebp+4]
-	push	ecx
-	movss	DWORD PTR [esp], xmm0
-	push	DWORD PTR _ReflectLocation$1$[ebp]
-	call	DWORD PTR ___glewUniform1f
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Model.cpp
-; Line 53
-	mov	esi, DWORD PTR _en$[ebp]
-	push	DWORD PTR [esi+20]
-	call	DWORD PTR ___glewBindVertexArray
-; Line 54
-	push	0
-	push	5125					; 00001405H
-	push	DWORD PTR [esi+16]
-	push	4
-	call	DWORD PTR __imp__glDrawElements@16
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Texture.cpp
-; Line 43
-	push	33985					; 000084c1H
-	call	DWORD PTR ___glewActiveTexture
-; Line 44
-	push	DWORD PTR _tex2$[ebp]
-	push	3553					; 00000de1H
-	call	DWORD PTR __imp__glBindTexture@8
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 247
-	movups	xmm0, XMMWORD PTR _en2$[ebp+40]
-; Line 249
-	sub	esp, 12					; 0000000cH
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\HeaderFiles\Vendor\glm\detail\type_vec3.inl
-; Line 618
-	movss	xmm2, DWORD PTR ?Position@@3U?$vec@$02M$0A@@glm@@A
-	xorps	xmm3, xmm3
-	movss	xmm1, DWORD PTR ?Position@@3U?$vec@$02M$0A@@glm@@A+4
-	addss	xmm2, xmm3
-	addss	xmm1, DWORD PTR __real@41a00000
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 247
-	movups	XMMWORD PTR _target$2$[ebp], xmm0
-; Line 249
-	mov	ecx, esp
-	movups	xmm0, XMMWORD PTR _en2$[ebp+56]
-	unpcklps xmm2, xmm1
-	movups	XMMWORD PTR _target$4$[ebp], xmm0
-	movups	xmm0, XMMWORD PTR _en2$[ebp+72]
-	movq	QWORD PTR [ecx], xmm2
-	movups	XMMWORD PTR _target$6$[ebp], xmm0
-	movups	xmm0, XMMWORD PTR _en2$[ebp+88]
-	movups	XMMWORD PTR _target$8$[ebp], xmm0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\HeaderFiles\Vendor\glm\detail\type_vec3.inl
-; Line 618
-	movss	xmm0, DWORD PTR ?Position@@3U?$vec@$02M$0A@@glm@@A+8
-	addss	xmm0, xmm3
-; Line 38
-	movss	DWORD PTR $T40[ebp+8], xmm0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 249
-	mov	eax, DWORD PTR $T40[ebp+8]
-	mov	DWORD PTR [ecx+8], eax
-	lea	ecx, DWORD PTR _en2$[ebp]
-	call	?setPosition@Entity@@QAEXU?$vec@$02M$0A@@glm@@@Z ; Entity::setPosition
-; Line 250
-	movss	xmm1, DWORD PTR $T51[ebp]
-	sub	esp, 12					; 0000000cH
-	addss	xmm1, DWORD PTR __real@3f800000
-	mov	ecx, esp
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\HeaderFiles\Vendor\glm\detail\type_vec3.inl
-; Line 56
-	mov	DWORD PTR $T41[ebp+8], 0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 250
-	mov	eax, DWORD PTR $T41[ebp+8]
-	xorps	xmm0, xmm0
-	unpcklps xmm0, xmm1
-	movq	QWORD PTR [ecx], xmm0
-	mov	DWORD PTR [ecx+8], eax
-	lea	ecx, DWORD PTR _en2$[ebp]
-	movss	DWORD PTR $T51[ebp], xmm1
-	call	?setRotation@Entity@@QAEXU?$vec@$02M$0A@@glm@@@Z ; Entity::setRotation
-; Line 257
-	movups	xmm0, XMMWORD PTR _cam$[ebp+20]
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\ShaderProgram.cpp
-; Line 187
-	lea	eax, DWORD PTR _matrix$[ebp]
-	push	eax
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 257
-	movups	XMMWORD PTR _matrix$[ebp], xmm0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\ShaderProgram.cpp
-; Line 187
-	push	0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 257
-	movups	xmm0, XMMWORD PTR _cam$[ebp+36]
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\ShaderProgram.cpp
-; Line 187
-	push	1
-	push	DWORD PTR _pLocation$1$[ebp]
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 257
-	movups	XMMWORD PTR _matrix$[ebp+16], xmm0
-	movups	xmm0, XMMWORD PTR _cam$[ebp+52]
-	movups	XMMWORD PTR _matrix$[ebp+32], xmm0
-	movups	xmm0, XMMWORD PTR _cam$[ebp+68]
-	movups	XMMWORD PTR _matrix$[ebp+48], xmm0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\ShaderProgram.cpp
-; Line 187
-	call	DWORD PTR ___glewUniformMatrix4fv
-; Line 193
-	movss	xmm0, DWORD PTR _light$[ebp+8]
-	sub	esp, 12					; 0000000cH
-	movss	DWORD PTR [esp+8], xmm0
-	movss	xmm0, DWORD PTR _light$[ebp+4]
-	movss	DWORD PTR [esp+4], xmm0
-	movss	xmm0, DWORD PTR _light$[ebp]
-	movss	DWORD PTR [esp], xmm0
-	push	DWORD PTR _LightPosLocation$1$[ebp]
-	call	DWORD PTR ___glewUniform3f
-	sub	esp, 12					; 0000000cH
-	mov	DWORD PTR [esp+8], 1065353216		; 3f800000H
-	mov	DWORD PTR [esp+4], 1065353216		; 3f800000H
+	push	771					; 00000303H
+	push	770					; 00000302H
+	call	DWORD PTR __imp__glBlendFunc@8
+; Line 169
+	sub	esp, 16					; 00000010H
+	mov	DWORD PTR [esp+12], 0
+	mov	DWORD PTR [esp+8], 0
+	mov	DWORD PTR [esp+4], 0
 	mov	DWORD PTR [esp], 1065353216		; 3f800000H
-	push	DWORD PTR _LightCOlORLocation$1$[ebp]
-	call	DWORD PTR ___glewUniform3f
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 260
-	movups	xmm0, XMMWORD PTR _target$2$[ebp]
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\ShaderProgram.cpp
-; Line 187
-	lea	eax, DWORD PTR _matrix$[ebp]
-	push	eax
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 260
-	movups	XMMWORD PTR _matrix$[ebp], xmm0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\ShaderProgram.cpp
-; Line 187
+	call	DWORD PTR __imp__glClearColor@16
+; Line 170
+	push	OFFSET ?key_callback@@YAXPAUGLFWwindow@@HHHH@Z ; key_callback
+	push	DWORD PTR ?window@@3VWindow@@A
+	call	_glfwSetKeyCallback
+; Line 171
 	push	0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 260
-	movups	xmm0, XMMWORD PTR _target$4$[ebp]
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\ShaderProgram.cpp
-; Line 187
-	push	1
-	push	DWORD PTR _rtsLocation$1$[ebp]
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 260
-	movups	XMMWORD PTR _matrix$[ebp+16], xmm0
-	movups	xmm0, XMMWORD PTR _target$6$[ebp]
-	movups	XMMWORD PTR _matrix$[ebp+32], xmm0
-	movups	xmm0, XMMWORD PTR _target$8$[ebp]
-	movups	XMMWORD PTR _matrix$[ebp+48], xmm0
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\ShaderProgram.cpp
-; Line 187
-	call	DWORD PTR ___glewUniformMatrix4fv
-; Line 168
-	push	1
-	push	DWORD PTR _samplerLocation$1$[ebp]
-	call	DWORD PTR ___glewUniform1i
-; Line 173
-	movss	xmm0, DWORD PTR _en2$[ebp+8]
-	push	ecx
-	movss	DWORD PTR [esp], xmm0
-	push	DWORD PTR _DampLocation$1$[ebp]
-	call	DWORD PTR ___glewUniform1f
-	movss	xmm0, DWORD PTR _en$[ebp+4]
-	push	ecx
-	movss	DWORD PTR [esp], xmm0
-	push	DWORD PTR _ReflectLocation$1$[ebp]
-	call	DWORD PTR ___glewUniform1f
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Model.cpp
-; Line 53
-	mov	esi, DWORD PTR _en2$[ebp]
-	push	DWORD PTR [esi+20]
-	call	DWORD PTR ___glewBindVertexArray
-; Line 54
-	push	0
-	push	5125					; 00001405H
-	push	DWORD PTR [esi+16]
-	push	4
-	call	DWORD PTR __imp__glDrawElements@16
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\WIndow.cpp
-; Line 90
-	push	DWORD PTR ?window@@3VWindow@@A
-	call	_glfwSwapBuffers
-	add	esp, 4
-; Line 97
-	push	16640					; 00004100H
-	call	DWORD PTR __imp__glClear@4
-	mov	esi, DWORD PTR _hasLocation$1$[ebp]
-$LN4@main:
-; Line 101
-	push	DWORD PTR ?window@@3VWindow@@A
-	call	_glfwWindowShouldClose
-	add	esp, 4
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 205
-	test	al, al
-	je	$LL2@main
-$LN520@main:
-	mov	edi, DWORD PTR $T50[ebp]
-$LN3@main:
-; Line 276
-	push	20					; 00000014H
-	push	edi
-	call	??3@YAXPAXI@Z				; operator delete
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\WIndow.cpp
-; Line 104
-	push	DWORD PTR ?window@@3VWindow@@A
-	call	_glfwDestroyWindow
+	call	_glfwSwapInterval
 	add	esp, 12					; 0000000cH
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Model.cpp
-; Line 77
-	lea	eax, DWORD PTR _model2$[ebp+20]
-	mov	BYTE PTR __$EHRec$[ebp+8], 14		; 0000000eH
-	push	eax
-	push	1
-	call	DWORD PTR ___glewDeleteVertexArrays
-	lea	eax, DWORD PTR _model$[ebp+20]
-	mov	BYTE PTR __$EHRec$[ebp+8], 15		; 0000000fH
-	push	eax
-	push	1
-	call	DWORD PTR ___glewDeleteVertexArrays
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 284
-	lea	ecx, DWORD PTR _stall$[ebp]
-	call	??1objLoader@@QAE@XZ
-	lea	ecx, DWORD PTR _tex2$[ebp]
-	call	??1Texture@@QAE@XZ			; Texture::~Texture
-	lea	ecx, DWORD PTR _f$[ebp]
-	call	??1objLoader@@QAE@XZ
-	lea	ecx, DWORD PTR _tex$[ebp]
-	call	??1Texture@@QAE@XZ			; Texture::~Texture
-; File C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include\xstring
-; Line 2161
-	mov	edx, DWORD PTR _programName$[ebp+20]
-	cmp	edx, 16					; 00000010H
-; Line 4210
-	jb	SHORT $LN499@main
-; File C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include\xmemory
-; Line 780
-	mov	ecx, DWORD PTR _programName$[ebp]
-; File C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include\xstring
-; Line 4214
-	inc	edx
-; File C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include\xmemory
-; Line 780
-	mov	eax, ecx
-; Line 190
-	cmp	edx, 4096				; 00001000H
-	jb	SHORT $LN509@main
-; Line 111
-	mov	ecx, DWORD PTR [ecx-4]
-	add	edx, 35					; 00000023H
-	sub	eax, ecx
-; Line 125
-	add	eax, -4					; fffffffcH
-	cmp	eax, 31					; 0000001fH
-	jbe	SHORT $LN509@main
-	call	DWORD PTR __imp___invalid_parameter_noinfo_noreturn
-$LN509@main:
-; Line 195
-	push	edx
-	push	ecx
-	call	??3@YAXPAXI@Z				; operator delete
-	add	esp, 8
-$LN499@main:
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 284
-	xor	eax, eax
-	mov	ecx, DWORD PTR __$EHRec$[ebp]
-	mov	DWORD PTR fs:0, ecx
-	pop	ecx
-	pop	edi
+; Line 173
+	push	37600					; 000092e0H
+	call	esi
+; Line 174
+	push	0
+	push	OFFSET ?GLDebugMessageCallback@@YGXIIIIHPBDPBX@Z ; GLDebugMessageCallback
+	call	DWORD PTR ___glewDebugMessageCallback
 	pop	esi
-	mov	ecx, DWORD PTR __$ArrayPad$[ebp]
-	xor	ecx, ebp
-	call	@__security_check_cookie@4
-	mov	esp, ebp
-	pop	ebp
+; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
+; Line 26
 	ret	0
-$LN522@main:
-_TEXT	ENDS
-;	COMDAT text$x
-text$x	SEGMENT
-__unwindfunclet$_main$0:
-	lea	ecx, DWORD PTR _programName$[ebp]
-	jmp	??1?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@XZ ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::~basic_string<char,std::char_traits<char>,std::allocator<char> >
-__unwindfunclet$_main$1:
-	push	20					; 00000014H
-	mov	eax, DWORD PTR $T5[ebp]
-	push	eax
-	call	??3@YAXPAXI@Z				; operator delete
-	add	esp, 8
-	ret	0
-__unwindfunclet$_main$3:
-	lea	ecx, DWORD PTR _tex$[ebp]
-	jmp	??1Texture@@QAE@XZ			; Texture::~Texture
-__unwindfunclet$_main$5:
-	lea	ecx, DWORD PTR _f$[ebp]
-	jmp	??1objLoader@@QAE@XZ
-__unwindfunclet$_main$7:
-	lea	ecx, DWORD PTR _tex2$[ebp]
-	jmp	??1Texture@@QAE@XZ			; Texture::~Texture
-__unwindfunclet$_main$9:
-	lea	ecx, DWORD PTR _stall$[ebp]
-	jmp	??1objLoader@@QAE@XZ
-__unwindfunclet$_main$10:
-	mov	ecx, DWORD PTR $T19[ebp]
-	jmp	??1?$vector@U?$vec@$02I$0A@@glm@@V?$allocator@U?$vec@$02I$0A@@glm@@@std@@@std@@QAE@XZ ; std::vector<glm::vec<3,unsigned int,0>,std::allocator<glm::vec<3,unsigned int,0> > >::~vector<glm::vec<3,unsigned int,0>,std::allocator<glm::vec<3,unsigned int,0> > >
-__unwindfunclet$_main$11:
-	mov	ecx, DWORD PTR $T20[ebp]
-	jmp	??1?$vector@U?$vec@$02M$0A@@glm@@V?$allocator@U?$vec@$02M$0A@@glm@@@std@@@std@@QAE@XZ ; std::vector<glm::vec<3,float,0>,std::allocator<glm::vec<3,float,0> > >::~vector<glm::vec<3,float,0>,std::allocator<glm::vec<3,float,0> > >
-__unwindfunclet$_main$12:
-	mov	ecx, DWORD PTR $T21[ebp]
-	jmp	??1?$vector@U?$vec@$01M$0A@@glm@@V?$allocator@U?$vec@$01M$0A@@glm@@@std@@@std@@QAE@XZ ; std::vector<glm::vec<2,float,0>,std::allocator<glm::vec<2,float,0> > >::~vector<glm::vec<2,float,0>,std::allocator<glm::vec<2,float,0> > >
-__unwindfunclet$_main$14:
-	lea	ecx, DWORD PTR _model$[ebp]
-	jmp	??1Model@@QAE@XZ			; Model::~Model
-__unwindfunclet$_main$15:
-	mov	ecx, DWORD PTR $T23[ebp]
-	jmp	??1?$vector@U?$vec@$02I$0A@@glm@@V?$allocator@U?$vec@$02I$0A@@glm@@@std@@@std@@QAE@XZ ; std::vector<glm::vec<3,unsigned int,0>,std::allocator<glm::vec<3,unsigned int,0> > >::~vector<glm::vec<3,unsigned int,0>,std::allocator<glm::vec<3,unsigned int,0> > >
-__unwindfunclet$_main$16:
-	mov	ecx, DWORD PTR $T24[ebp]
-	jmp	??1?$vector@U?$vec@$02M$0A@@glm@@V?$allocator@U?$vec@$02M$0A@@glm@@@std@@@std@@QAE@XZ ; std::vector<glm::vec<3,float,0>,std::allocator<glm::vec<3,float,0> > >::~vector<glm::vec<3,float,0>,std::allocator<glm::vec<3,float,0> > >
-__unwindfunclet$_main$17:
-	mov	ecx, DWORD PTR $T25[ebp]
-	jmp	??1?$vector@U?$vec@$01M$0A@@glm@@V?$allocator@U?$vec@$01M$0A@@glm@@@std@@@std@@QAE@XZ ; std::vector<glm::vec<2,float,0>,std::allocator<glm::vec<2,float,0> > >::~vector<glm::vec<2,float,0>,std::allocator<glm::vec<2,float,0> > >
-__unwindfunclet$_main$19:
-	lea	ecx, DWORD PTR _model2$[ebp]
-	jmp	??1Model@@QAE@XZ			; Model::~Model
-__ehhandler$_main:
-	mov	edx, DWORD PTR [esp+8]
-	lea	eax, DWORD PTR [edx+12]
-	mov	ecx, DWORD PTR [edx-1172]
-	xor	ecx, eax
-	call	@__security_check_cookie@4
-	mov	ecx, DWORD PTR [edx-4]
-	xor	ecx, eax
-	call	@__security_check_cookie@4
-	mov	eax, OFFSET __ehfuncinfo$_main
-	jmp	___CxxFrameHandler3
-text$x	ENDS
-_main	ENDP
+$LN11@dynamic:
+??__Ewindow@@YAXXZ ENDP					; `dynamic initializer for 'window''
+text$di	ENDS
 END

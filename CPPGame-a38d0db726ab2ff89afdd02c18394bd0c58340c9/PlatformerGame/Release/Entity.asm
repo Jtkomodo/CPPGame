@@ -9,13 +9,14 @@
 INCLUDELIB OLDNAMES
 
 EXTRN	@__security_check_cookie@4:PROC
+EXTRN	__imp____CxxFrameHandler3:PROC
 PUBLIC	?getTRS@Entity@@QAE?AU?$mat@$03$03M$0A@@glm@@XZ	; Entity::getTRS
 PUBLIC	?getReflect@Entity@@QAEMXZ			; Entity::getReflect
 PUBLIC	?getDamping@Entity@@QAEMXZ			; Entity::getDamping
 PUBLIC	?setRotation@Entity@@QAEXU?$vec@$02M$0A@@glm@@@Z ; Entity::setRotation
 PUBLIC	?setPosition@Entity@@QAEXU?$vec@$02M$0A@@glm@@@Z ; Entity::setPosition
 PUBLIC	?Draw@Entity@@QAEXXZ				; Entity::Draw
-PUBLIC	??0Entity@@QAE@PAVModel@@U?$vec@$02M$0A@@glm@@1MMM@Z ; Entity::Entity
+PUBLIC	??0Entity@@QAE@AAVModel@@U?$vec@$02M$0A@@glm@@1MMM@Z ; Entity::Entity
 PUBLIC	___isa_available_default
 PUBLIC	__real@34000000
 PUBLIC	__real@3c8efa35
@@ -30,9 +31,12 @@ PUBLIC	__real@40400000
 PUBLIC	__real@41a00000
 PUBLIC	__real@41cdcd6500000000
 PUBLIC	__real@428c0000
+PUBLIC	__real@42fe0000
+PUBLIC	__real@43000000
 PUBLIC	__real@437f0000
 PUBLIC	__real@43f00000
 PUBLIC	__real@44200000
+PUBLIC	__real@44480000
 PUBLIC	__real@477fff00
 PUBLIC	__real@bc8efa35
 PUBLIC	__xmm@00000000000000040000000000000000
@@ -224,6 +228,10 @@ CONST	ENDS
 CONST	SEGMENT
 __real@477fff00 DD 0477fff00r			; 65535
 CONST	ENDS
+;	COMDAT __real@44480000
+CONST	SEGMENT
+__real@44480000 DD 044480000r			; 800
+CONST	ENDS
 ;	COMDAT __real@44200000
 CONST	SEGMENT
 __real@44200000 DD 044200000r			; 640
@@ -235,6 +243,14 @@ CONST	ENDS
 ;	COMDAT __real@437f0000
 CONST	SEGMENT
 __real@437f0000 DD 0437f0000r			; 255
+CONST	ENDS
+;	COMDAT __real@43000000
+CONST	SEGMENT
+__real@43000000 DD 043000000r			; 128
+CONST	ENDS
+;	COMDAT __real@42fe0000
+CONST	SEGMENT
+__real@42fe0000 DD 042fe0000r			; 127
 CONST	ENDS
 ;	COMDAT __real@428c0000
 CONST	SEGMENT

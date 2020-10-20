@@ -9,6 +9,7 @@
 
 
 Model::Model(std::vector<glm::vec3> verts, std::vector<glm::vec2> uvs, std::vector<glm::vec3> normals, std::vector<glm::uvec3> inds) {
+	std::cout << "model created" << std::endl;
 
 	//defing buffers to load values in
 	glGenVertexArrays(1, &VAO_ID);
@@ -50,7 +51,7 @@ Model::Model(std::vector<glm::vec3> verts, std::vector<glm::vec2> uvs, std::vect
 
 void Model::Draw()
 {
-	glBindVertexArray(VAO_ID);
+	glBindVertexArray(this->VAO_ID);
 	glDrawElements(GL_TRIANGLES,Model::drawCount,GL_UNSIGNED_INT,0);
 
 
@@ -75,5 +76,5 @@ void Model::enableAtrib() {
 
 Model::~Model() {
 	glDeleteVertexArrays(1, &VAO_ID);
-	
+	std::cout << "model deleted" << std::endl;
 }

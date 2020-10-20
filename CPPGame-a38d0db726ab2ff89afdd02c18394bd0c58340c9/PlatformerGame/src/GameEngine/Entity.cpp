@@ -4,26 +4,23 @@
 #include <MatrixMath.h>
 
 
-     Entity::Entity(Model *model, glm::vec3 position, glm::vec3 rotation, float scale,float damping,float reflectivity) {
+     Entity::Entity(Model &model, glm::vec3 position, glm::vec3 rotation, float scale,float damping,float reflectivity) 
+		 :m(model),position(position),rotation(rotation),
+	     scale(scale),damping(damping),reflictivity(reflectivity)
+	 
+	 {
 
-		this->m = model;
-		this->position = position;
-		this->rotation = rotation;
-		this->scale = scale;
-		this->trs = getmatrix(position,rotation,scale);
-		this->damping = damping;
-		this->reflictivity = reflectivity;
-
+	
 }
 
 	void Entity::Draw() {
 		
-		(*m).Draw();
+		m.Draw();
 	
 	}
 
 
-	void Entity::setModel(Model* model) {
+	void Entity::setModel(Model model) {
 
 		this->m = model;
 
@@ -61,9 +58,9 @@
 
 
 
-	Model* Entity::getModel() {
+	Model Entity::getModel() {
 
-		return m;
+		return this->m;
 
 	}
 

@@ -13,8 +13,8 @@ ShaderProgram::ShaderProgram(std::string& Name) {
 	//cout << "file " << location << endl;
 	std::string FILE = "src/Shaders/";
 	program = glCreateProgram();
-	std::string  vertexShader= ShaderProgram::LoadShader(FILE+Name+".vert");//string contaning sourcce code
-	std::string  FragmentShader = ShaderProgram::LoadShader(FILE + Name + ".frag");//string contaning source code
+	std::string  vertexShader= LoadShader(FILE+Name+".vert");//string contaning sourcce code
+	std::string  FragmentShader =LoadShader(FILE + Name + ".frag");//string contaning source code
 	vs = glCreateShader(GL_VERTEX_SHADER);
 	fs= glCreateShader(GL_FRAGMENT_SHADER);
 	const char* Vssrc= vertexShader.c_str();//this is a pionter to where the source code is in memory

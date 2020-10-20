@@ -16,7 +16,6 @@ PUBLIC	??_C@_1BHI@BJHAPLJJ@?$AAD?$AA?3?$AA?2?$AAP?$AAl?$AAa?$AAt?$AAf?$AAo?$AAr?
 PUBLIC	??_C@_1CG@KOFHLCJL@?$AAi?$AA?5?$AA?$DM?$AA?5?$AAt?$AAh?$AAi?$AAs?$AA?9?$AA?$DO?$AAl?$AAe?$AAn?$AAg?$AAt@ ; `string'
 EXTRN	__imp___wassert:PROC
 EXTRN	__imp____std_terminate:PROC
-EXTRN	__imp____CxxFrameHandler3:PROC
 ;	COMDAT ??_C@_1CG@KOFHLCJL@?$AAi?$AA?5?$AA?$DM?$AA?5?$AAt?$AAh?$AAi?$AAs?$AA?9?$AA?$DO?$AAl?$AAe?$AAn?$AAg?$AAt@
 CONST	SEGMENT
 ??_C@_1CG@KOFHLCJL@?$AAi?$AA?5?$AA?$DM?$AA?5?$AAt?$AAh?$AAi?$AAs?$AA?9?$AA?$DO?$AAl?$AAe?$AAn?$AAg?$AAt@ DB 'i'
@@ -174,48 +173,4 @@ PUBLIC	?tan@@YAMM@Z					; tan
 PUBLIC	?epsilon@?$numeric_limits@M@std@@SAMXZ		; std::numeric_limits<float>::epsilon
 PUBLIC	_tanf
 EXTRN	___std_terminate:PROC
-; Function compile flags: /Ogtp
-;	COMDAT ?getView@Camera@@QAE?AU?$mat@$03$03M$0A@@glm@@XZ
-_TEXT	SEGMENT
-__$ArrayPad$ = -4					; size = 4
-___$ReturnUdt$ = 8					; size = 4
-?getView@Camera@@QAE?AU?$mat@$03$03M$0A@@glm@@XZ PROC	; Camera::getView, COMDAT
-; _this$ = ecx
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Camera.cpp
-; Line 58
-	push	ebp
-	mov	ebp, esp
-	push	ecx
-	mov	eax, DWORD PTR ___security_cookie
-	xor	eax, ebp
-	mov	DWORD PTR __$ArrayPad$[ebp], eax
-	push	esi
-	mov	esi, ecx
-; Line 60
-	sub	esp, 12					; 0000000cH
-	mov	edx, esp
-	sub	esp, 12					; 0000000cH
-	mov	ecx, esp
-	movq	xmm0, QWORD PTR [esi+84]
-	mov	eax, DWORD PTR [esi+92]
-	movq	QWORD PTR [edx], xmm0
-	movq	xmm0, QWORD PTR [esi]
-	mov	DWORD PTR [edx+8], eax
-	mov	eax, DWORD PTR [esi+8]
-	movq	QWORD PTR [ecx], xmm0
-	mov	DWORD PTR [ecx+8], eax
-	mov	ecx, DWORD PTR ___$ReturnUdt$[ebp]
-	call	?getViewMatrix@@YA?AU?$mat@$03$03M$0A@@glm@@U?$vec@$02M$0A@@2@0@Z ; getViewMatrix
-; Line 62
-	mov	ecx, DWORD PTR __$ArrayPad$[ebp]
-	add	esp, 24					; 00000018H
-	mov	eax, DWORD PTR ___$ReturnUdt$[ebp]
-	xor	ecx, ebp
-	pop	esi
-	call	@__security_check_cookie@4
-	mov	esp, ebp
-	pop	ebp
-	ret	4
-?getView@Camera@@QAE?AU?$mat@$03$03M$0A@@glm@@XZ ENDP	; Camera::getView
-_TEXT	ENDS
 END

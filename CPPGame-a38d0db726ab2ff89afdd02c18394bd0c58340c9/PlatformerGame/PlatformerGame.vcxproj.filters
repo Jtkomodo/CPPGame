@@ -854,6 +854,9 @@
     <Image Include="src\res\Textures\white.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="src\res\Textures\grass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\GameEngine\HeaderFiles\Vendor\glm\detail\func_common.inl">
@@ -1258,5 +1261,7 @@
     <None Include="src\GameEngine\HeaderFiles\Vendor\glm\gtx\wrap.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="src\Shaders\TerrainShader.frag" />
+    <None Include="src\Shaders\TerrainShader.vert" />
   </ItemGroup>
 </Project>

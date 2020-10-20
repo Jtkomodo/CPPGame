@@ -13,7 +13,7 @@ private:
 
 
 
-	Model *m;
+	Model m;
 	float reflictivity;
 	float damping;
 	glm::vec3 position;
@@ -27,12 +27,12 @@ private:
 
 
 public:
-	Entity(Model *model,glm::vec3 position,glm::vec3 rotation,float scale,float damping,float reflectivity );
+	Entity(Model &model,glm::vec3 position,glm::vec3 rotation,float scale,float damping,float reflectivity );
 	void Draw();
 	void setPosition(glm::vec3 position);
 	void setRotation(glm::vec3 Rotation);
 	void setscale(float scale);
-	void setModel(Model *model);
+	void setModel(Model model);
 	void setDamping(float damping);
 	void setReflect(float reflect);
 
@@ -45,7 +45,7 @@ public:
     glm::vec3 getPosition();
 	glm::vec3 getRotation();
 	float getscale();
-	Model* getModel();
+	Model getModel();
 
 
 

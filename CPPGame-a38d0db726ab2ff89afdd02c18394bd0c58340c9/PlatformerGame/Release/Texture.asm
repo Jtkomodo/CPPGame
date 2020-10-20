@@ -145,6 +145,7 @@ EXTRN	__imp__fopen_s:PROC
 EXTRN	__imp__strncmp:PROC
 EXTRN	__imp__glDeleteTextures@8:PROC
 EXTRN	___glewActiveTexture:DWORD
+EXTRN	__imp__glTexParameteri@12:PROC
 EXTRN	__imp__fseek:PROC
 EXTRN	__imp__realloc:PROC
 EXTRN	__imp__glGenTextures@8:PROC

@@ -8,14 +8,35 @@
 
 INCLUDELIB OLDNAMES
 
+PUBLIC	??_C@_03LABEMFEH@API@				; `string'
+PUBLIC	??_C@_0O@FIELJJPJ@WINDOW?5SYSTEM@		; `string'
+PUBLIC	??_C@_0BA@NFGHGLCE@SHADER?5COMPILER@		; `string'
+PUBLIC	??_C@_0M@IDGIMOAO@THIRD?5PARTY@			; `string'
+PUBLIC	??_C@_0M@GPGGNAFB@APPLICATION@			; `string'
+PUBLIC	??_C@_07NFANNNEC@UNKNOWN@			; `string'
+PUBLIC	??_C@_05MBDEGLCK@ERROR@				; `string'
+PUBLIC	??_C@_0BE@GJGNALGE@DEPRECATED?5BEHAVIOR@	; `string'
+PUBLIC	??_C@_0BC@NDCNFKKK@UDEFINED?5BEHAVIOR@		; `string'
+PUBLIC	??_C@_0M@KJJPHLD@PORTABILITY@			; `string'
+PUBLIC	??_C@_0M@BJJMBNIK@PERFORMANCE@			; `string'
+PUBLIC	??_C@_05NNNMIPMB@OTHER@				; `string'
+PUBLIC	??_C@_06HDFBNOJL@MARKER@			; `string'
+PUBLIC	??_C@_04PKDHFCJF@HIGH@				; `string'
+PUBLIC	??_C@_06HMBFJLMK@MEDIUM@			; `string'
+PUBLIC	??_C@_03IBEFMGAI@LOW@				; `string'
+PUBLIC	??_C@_0N@ELNBENIH@NOTIFICATION@			; `string'
+PUBLIC	??_C@_0BD@BBBAJKBE@?$CFd?3?$CI?$CFs?0?5?$CFs?0?$CFs?$CJ?6?$CFs?6@ ; `string'
 PUBLIC	??_C@_07LIJFLNDM@problem@			; `string'
+PUBLIC	?_OptionsStorage@?1??__local_stdio_printf_options@@9@4_KA ; `__local_stdio_printf_options'::`2'::_OptionsStorage
 PUBLIC	?callback@@3P6AXPAUGLFWwindow@@HHHH@ZA		; callback
 PUBLIC	?_Min_buckets@?$_Hash@V?$_Umap_traits@HEV?$_Uhash_compare@HU?$hash@H@std@@U?$equal_to@H@2@@std@@V?$allocator@U?$pair@$$CBHE@std@@@2@$0A@@std@@@std@@2IB ; std::_Hash<std::_Umap_traits<int,unsigned char,std::_Uhash_compare<int,std::hash<int>,std::equal_to<int> >,std::allocator<std::pair<int const ,unsigned char> >,0> >::_Min_buckets
 EXTRN	_glewInit@0:PROC
 EXTRN	_glfwWindowShouldClose:PROC
+EXTRN	__imp__glClearColor@16:PROC
 EXTRN	_glfwDestroyWindow:PROC
 EXTRN	_glfwMakeContextCurrent:PROC
 EXTRN	_glfwWindowHint:PROC
+EXTRN	__imp____stdio_common_vfprintf:PROC
 EXTRN	__imp__glBlendFunc@8:PROC
 EXTRN	_glfwCreateWindow:PROC
 EXTRN	_atexit:PROC
@@ -24,9 +45,15 @@ EXTRN	_glfwInit:PROC
 EXTRN	_glfwPollEvents:PROC
 EXTRN	_glfwTerminate:PROC
 EXTRN	__imp__glEnable@4:PROC
+EXTRN	__imp____acrt_iob_func:PROC
+EXTRN	___glewDebugMessageCallback:DWORD
 EXTRN	__imp__glClear@4:PROC
 EXTRN	_glfwSwapInterval:PROC
 EXTRN	_glfwSwapBuffers:PROC
+;	COMDAT ?_OptionsStorage@?1??__local_stdio_printf_options@@9@4_KA
+_BSS	SEGMENT
+?_OptionsStorage@?1??__local_stdio_printf_options@@9@4_KA DQ 01H DUP (?) ; `__local_stdio_printf_options'::`2'::_OptionsStorage
+_BSS	ENDS
 ;	COMDAT ?_Min_buckets@?$_Hash@V?$_Umap_traits@HEV?$_Uhash_compare@HU?$hash@H@std@@U?$equal_to@H@2@@std@@V?$allocator@U?$pair@$$CBHE@std@@@2@$0A@@std@@@std@@2IB
 CONST	SEGMENT
 ?_Min_buckets@?$_Hash@V?$_Umap_traits@HEV?$_Uhash_compare@HU?$hash@H@std@@U?$equal_to@H@2@@std@@V?$allocator@U?$pair@$$CBHE@std@@@2@$0A@@std@@@std@@2IB DD 08H ; std::_Hash<std::_Umap_traits<int,unsigned char,std::_Uhash_compare<int,std::hash<int>,std::equal_to<int> >,std::allocator<std::pair<int const ,unsigned char> >,0> >::_Min_buckets
@@ -34,6 +61,79 @@ CONST	ENDS
 ;	COMDAT ??_C@_07LIJFLNDM@problem@
 CONST	SEGMENT
 ??_C@_07LIJFLNDM@problem@ DB 'problem', 00H		; `string'
+CONST	ENDS
+;	COMDAT ??_C@_0BD@BBBAJKBE@?$CFd?3?$CI?$CFs?0?5?$CFs?0?$CFs?$CJ?6?$CFs?6@
+CONST	SEGMENT
+??_C@_0BD@BBBAJKBE@?$CFd?3?$CI?$CFs?0?5?$CFs?0?$CFs?$CJ?6?$CFs?6@ DB '%d:'
+	DB	'(%s, %s,%s)', 0aH, '%s', 0aH, 00H		; `string'
+CONST	ENDS
+;	COMDAT ??_C@_0N@ELNBENIH@NOTIFICATION@
+CONST	SEGMENT
+??_C@_0N@ELNBENIH@NOTIFICATION@ DB 'NOTIFICATION', 00H	; `string'
+CONST	ENDS
+;	COMDAT ??_C@_03IBEFMGAI@LOW@
+CONST	SEGMENT
+??_C@_03IBEFMGAI@LOW@ DB 'LOW', 00H			; `string'
+CONST	ENDS
+;	COMDAT ??_C@_06HMBFJLMK@MEDIUM@
+CONST	SEGMENT
+??_C@_06HMBFJLMK@MEDIUM@ DB 'MEDIUM', 00H		; `string'
+CONST	ENDS
+;	COMDAT ??_C@_04PKDHFCJF@HIGH@
+CONST	SEGMENT
+??_C@_04PKDHFCJF@HIGH@ DB 'HIGH', 00H			; `string'
+CONST	ENDS
+;	COMDAT ??_C@_06HDFBNOJL@MARKER@
+CONST	SEGMENT
+??_C@_06HDFBNOJL@MARKER@ DB 'MARKER', 00H		; `string'
+CONST	ENDS
+;	COMDAT ??_C@_05NNNMIPMB@OTHER@
+CONST	SEGMENT
+??_C@_05NNNMIPMB@OTHER@ DB 'OTHER', 00H			; `string'
+CONST	ENDS
+;	COMDAT ??_C@_0M@BJJMBNIK@PERFORMANCE@
+CONST	SEGMENT
+??_C@_0M@BJJMBNIK@PERFORMANCE@ DB 'PERFORMANCE', 00H	; `string'
+CONST	ENDS
+;	COMDAT ??_C@_0M@KJJPHLD@PORTABILITY@
+CONST	SEGMENT
+??_C@_0M@KJJPHLD@PORTABILITY@ DB 'PORTABILITY', 00H	; `string'
+CONST	ENDS
+;	COMDAT ??_C@_0BC@NDCNFKKK@UDEFINED?5BEHAVIOR@
+CONST	SEGMENT
+??_C@_0BC@NDCNFKKK@UDEFINED?5BEHAVIOR@ DB 'UDEFINED BEHAVIOR', 00H ; `string'
+CONST	ENDS
+;	COMDAT ??_C@_0BE@GJGNALGE@DEPRECATED?5BEHAVIOR@
+CONST	SEGMENT
+??_C@_0BE@GJGNALGE@DEPRECATED?5BEHAVIOR@ DB 'DEPRECATED BEHAVIOR', 00H ; `string'
+CONST	ENDS
+;	COMDAT ??_C@_05MBDEGLCK@ERROR@
+CONST	SEGMENT
+??_C@_05MBDEGLCK@ERROR@ DB 'ERROR', 00H			; `string'
+CONST	ENDS
+;	COMDAT ??_C@_07NFANNNEC@UNKNOWN@
+CONST	SEGMENT
+??_C@_07NFANNNEC@UNKNOWN@ DB 'UNKNOWN', 00H		; `string'
+CONST	ENDS
+;	COMDAT ??_C@_0M@GPGGNAFB@APPLICATION@
+CONST	SEGMENT
+??_C@_0M@GPGGNAFB@APPLICATION@ DB 'APPLICATION', 00H	; `string'
+CONST	ENDS
+;	COMDAT ??_C@_0M@IDGIMOAO@THIRD?5PARTY@
+CONST	SEGMENT
+??_C@_0M@IDGIMOAO@THIRD?5PARTY@ DB 'THIRD PARTY', 00H	; `string'
+CONST	ENDS
+;	COMDAT ??_C@_0BA@NFGHGLCE@SHADER?5COMPILER@
+CONST	SEGMENT
+??_C@_0BA@NFGHGLCE@SHADER?5COMPILER@ DB 'SHADER COMPILER', 00H ; `string'
+CONST	ENDS
+;	COMDAT ??_C@_0O@FIELJJPJ@WINDOW?5SYSTEM@
+CONST	SEGMENT
+??_C@_0O@FIELJJPJ@WINDOW?5SYSTEM@ DB 'WINDOW SYSTEM', 00H ; `string'
+CONST	ENDS
+;	COMDAT ??_C@_03LABEMFEH@API@
+CONST	SEGMENT
+??_C@_03LABEMFEH@API@ DB 'API', 00H			; `string'
 ?piecewise_construct@std@@3Upiecewise_construct_t@1@B	ORG $+1 ; std::piecewise_construct
 	ORG $+2
 ?callback@@3P6AXPAUGLFWwindow@@HHHH@ZA DD FLAT:?key_callback@@YAXPAUGLFWwindow@@HHHH@Z ; callback
@@ -158,9 +258,13 @@ PUBLIC	?Update@Window@@QAEXXZ				; Window::Update
 PUBLIC	?Render@Window@@QAEXXZ				; Window::Render
 PUBLIC	??0Window@@QAE@HHQBD@Z				; Window::Window
 PUBLIC	?key_callback@@YAXPAUGLFWwindow@@HHHH@Z		; key_callback
+PUBLIC	?GLDebugMessageCallback@@YGXIIIIHPBDPBX@Z	; GLDebugMessageCallback
 PUBLIC	??1?$_Hash@V?$_Umap_traits@HEV?$_Uhash_compare@HU?$hash@H@std@@U?$equal_to@H@2@@std@@V?$allocator@U?$pair@$$CBHE@std@@@2@$0A@@std@@@std@@QAE@XZ ; std::_Hash<std::_Umap_traits<int,unsigned char,std::_Uhash_compare<int,std::hash<int>,std::equal_to<int> >,std::allocator<std::pair<int const ,unsigned char> >,0> >::~_Hash<std::_Umap_traits<int,unsigned char,std::_Uhash_compare<int,std::hash<int>,std::equal_to<int> >,std::allocator<std::pair<int const ,unsigned char> >,0> >
 PUBLIC	?__autoclassinit2@?$unordered_map@HEU?$hash@H@std@@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHE@std@@@2@@std@@QAEXI@Z ; std::unordered_map<int,unsigned char,std::hash<int>,std::equal_to<int>,std::allocator<std::pair<int const ,unsigned char> > >::__autoclassinit2
 PUBLIC	??1?$unordered_map@HEU?$hash@H@std@@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHE@std@@@2@@std@@QAE@XZ ; std::unordered_map<int,unsigned char,std::hash<int>,std::equal_to<int>,std::allocator<std::pair<int const ,unsigned char> > >::~unordered_map<int,unsigned char,std::hash<int>,std::equal_to<int>,std::allocator<std::pair<int const ,unsigned char> > >
+PUBLIC	_printf
+PUBLIC	__vfprintf_l
+PUBLIC	___local_stdio_printf_options
 ?keys@@3V?$unordered_map@HEU?$hash@H@std@@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHE@std@@@2@@std@@A DB 020H DUP (?) ; keys
 ?lastkeys@@3V?$unordered_map@HEU?$hash@H@std@@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHE@std@@@2@@std@@A DB 020H DUP (?) ; lastkeys
 _BSS	ENDS
@@ -215,4 +319,150 @@ CRT$XCU	SEGMENT
 ?lastkeys$initializer$@@3P6AXXZA DD FLAT:??__Elastkeys@@YAXXZ ; lastkeys$initializer$
 CRT$XCU	ENDS
 CRT$XCU	ENDS
+; Function compile flags: /Ogtp
+;	COMDAT ??__Ekeys@@YAXXZ
+text$di	SEGMENT
+??__Ekeys@@YAXXZ PROC					; `dynamic initializer for 'keys'', COMDAT
+; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\WIndow.cpp
+; Line 20
+	mov	ecx, OFFSET ?keys@@3V?$unordered_map@HEU?$hash@H@std@@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHE@std@@@2@@std@@A
+	call	??0?$unordered_map@HEU?$hash@H@std@@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHE@std@@@2@@std@@QAE@XZ ; std::unordered_map<int,unsigned char,std::hash<int>,std::equal_to<int>,std::allocator<std::pair<int const ,unsigned char> > >::unordered_map<int,unsigned char,std::hash<int>,std::equal_to<int>,std::allocator<std::pair<int const ,unsigned char> > >
+	push	OFFSET ??__Fkeys@@YAXXZ			; `dynamic atexit destructor for 'keys''
+	call	_atexit
+	pop	ecx
+	ret	0
+??__Ekeys@@YAXXZ ENDP					; `dynamic initializer for 'keys''
+text$di	ENDS
+; Function compile flags: /Ogtp
+;	COMDAT ??__Fkeys@@YAXXZ
+text$yd	SEGMENT
+??__Fkeys@@YAXXZ PROC					; `dynamic atexit destructor for 'keys'', COMDAT
+	mov	ecx, OFFSET ?keys@@3V?$unordered_map@HEU?$hash@H@std@@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHE@std@@@2@@std@@A
+	jmp	??1?$_Hash@V?$_Umap_traits@HEV?$_Uhash_compare@HU?$hash@H@std@@U?$equal_to@H@2@@std@@V?$allocator@U?$pair@$$CBHE@std@@@2@$0A@@std@@@std@@QAE@XZ
+??__Fkeys@@YAXXZ ENDP					; `dynamic atexit destructor for 'keys''
+text$yd	ENDS
+; Function compile flags: /Ogtp
+;	COMDAT ??__Elastkeys@@YAXXZ
+text$di	SEGMENT
+??__Elastkeys@@YAXXZ PROC				; `dynamic initializer for 'lastkeys'', COMDAT
+; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\WIndow.cpp
+; Line 21
+	mov	ecx, OFFSET ?lastkeys@@3V?$unordered_map@HEU?$hash@H@std@@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHE@std@@@2@@std@@A
+	call	??0?$unordered_map@HEU?$hash@H@std@@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHE@std@@@2@@std@@QAE@XZ ; std::unordered_map<int,unsigned char,std::hash<int>,std::equal_to<int>,std::allocator<std::pair<int const ,unsigned char> > >::unordered_map<int,unsigned char,std::hash<int>,std::equal_to<int>,std::allocator<std::pair<int const ,unsigned char> > >
+	push	OFFSET ??__Flastkeys@@YAXXZ		; `dynamic atexit destructor for 'lastkeys''
+	call	_atexit
+	pop	ecx
+	ret	0
+??__Elastkeys@@YAXXZ ENDP				; `dynamic initializer for 'lastkeys''
+text$di	ENDS
+; Function compile flags: /Ogtp
+;	COMDAT ??__Flastkeys@@YAXXZ
+text$yd	SEGMENT
+??__Flastkeys@@YAXXZ PROC				; `dynamic atexit destructor for 'lastkeys'', COMDAT
+	mov	ecx, OFFSET ?lastkeys@@3V?$unordered_map@HEU?$hash@H@std@@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHE@std@@@2@@std@@A
+	jmp	??1?$_Hash@V?$_Umap_traits@HEV?$_Uhash_compare@HU?$hash@H@std@@U?$equal_to@H@2@@std@@V?$allocator@U?$pair@$$CBHE@std@@@2@$0A@@std@@@std@@QAE@XZ
+??__Flastkeys@@YAXXZ ENDP				; `dynamic atexit destructor for 'lastkeys''
+text$yd	ENDS
+; Function compile flags: /Ogtp
+;	COMDAT ??0Window@@QAE@HHQBD@Z
+_TEXT	SEGMENT
+_width$dead$ = 8					; size = 4
+_height$dead$ = 12					; size = 4
+_name$dead$ = 16					; size = 4
+??0Window@@QAE@HHQBD@Z PROC				; Window::Window, COMDAT
+; _this$dead$ = ecx
+; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\WIndow.cpp
+; Line 139
+	call	_glfwInit
+	test	eax, eax
+	jne	SHORT $LN2@Window
+; Line 140
+	push	-1
+	call	DWORD PTR __imp__exit
+$LN2@Window:
+; Line 144
+	push	1
+	push	131077					; 00020005H
+	call	_glfwWindowHint
+; Line 146
+	push	0
+	push	0
+	push	OFFSET ??_C@_08CEDOAIBO@Engine3d@
+	push	480					; 000001e0H
+	push	640					; 00000280H
+	call	_glfwCreateWindow
+	add	esp, 28					; 0000001cH
+	mov	DWORD PTR ?window@@3VWindow@@A, eax
+; Line 147
+	test	eax, eax
+	jne	SHORT $LN3@Window
+; Line 149
+	call	_glfwTerminate
+; Line 150
+	push	1
+	call	DWORD PTR __imp__exit
+$LN3@Window:
+; Line 154
+	push	eax
+	call	_glfwMakeContextCurrent
+	add	esp, 4
+; Line 157
+	call	_glewInit@0
+	test	eax, eax
+	je	SHORT $LN4@Window
+; Line 158
+	mov	ecx, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	mov	edx, OFFSET ??_C@_07LIJFLNDM@problem@
+	push	OFFSET ??$endl@DU?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@@Z ; std::endl<char,std::char_traits<char> >
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	mov	ecx, eax
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@P6AAAV01@AAV01@@Z@Z
+; Line 159
+	push	7
+	call	DWORD PTR __imp__exit
+$LN4@Window:
+	push	esi
+; Line 162
+	mov	esi, DWORD PTR __imp__glEnable@4
+	push	3553					; 00000de1H
+	call	esi
+; Line 163
+	push	2929					; 00000b71H
+	call	esi
+; Line 167
+	push	3042					; 00000be2H
+	call	esi
+; Line 168
+	push	771					; 00000303H
+	push	770					; 00000302H
+	call	DWORD PTR __imp__glBlendFunc@8
+; Line 169
+	sub	esp, 16					; 00000010H
+	mov	DWORD PTR [esp+12], 0
+	mov	DWORD PTR [esp+8], 0
+	mov	DWORD PTR [esp+4], 0
+	mov	DWORD PTR [esp], 1065353216		; 3f800000H
+	call	DWORD PTR __imp__glClearColor@16
+; Line 170
+	push	OFFSET ?key_callback@@YAXPAUGLFWwindow@@HHHH@Z ; key_callback
+	push	DWORD PTR ?window@@3VWindow@@A
+	call	_glfwSetKeyCallback
+; Line 171
+	push	0
+	call	_glfwSwapInterval
+	add	esp, 12					; 0000000cH
+; Line 173
+	push	37600					; 000092e0H
+	call	esi
+; Line 174
+	push	0
+	push	OFFSET ?GLDebugMessageCallback@@YGXIIIIHPBDPBX@Z ; GLDebugMessageCallback
+	call	DWORD PTR ___glewDebugMessageCallback
+; Line 176
+	mov	eax, OFFSET ?window@@3VWindow@@A	; window
+	pop	esi
+	ret	12					; 0000000cH
+$LN6@Window:
+??0Window@@QAE@HHQBD@Z ENDP				; Window::Window
+_TEXT	ENDS
 END

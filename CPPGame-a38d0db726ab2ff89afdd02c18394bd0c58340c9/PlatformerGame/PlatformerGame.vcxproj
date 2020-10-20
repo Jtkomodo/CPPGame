@@ -298,6 +298,7 @@
     <Text Include="src\Shaders\Shader.frag" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="src\res\Textures\grass.png" />
     <Image Include="src\res\Textures\newsprite.png" />
     <Image Include="src\res\Textures\stallTexture.png" />
     <Image Include="src\res\Textures\testBackground.png" />
@@ -439,6 +440,8 @@
     <None Include="src\GameEngine\HeaderFiles\Vendor\glm\gtx\vector_angle.inl" />
     <None Include="src\GameEngine\HeaderFiles\Vendor\glm\gtx\vector_query.inl" />
     <None Include="src\GameEngine\HeaderFiles\Vendor\glm\gtx\wrap.inl" />
+    <None Include="src\Shaders\TerrainShader.frag" />
+    <None Include="src\Shaders\TerrainShader.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -20,6 +20,7 @@ private:
 		
 		Model(std::vector<glm::vec3> verts, std::vector<glm::vec2> uvs, std::vector<glm::vec3> normals, std::vector<glm::uvec3> inds);
 		
+		
 		void Draw();
 	
 

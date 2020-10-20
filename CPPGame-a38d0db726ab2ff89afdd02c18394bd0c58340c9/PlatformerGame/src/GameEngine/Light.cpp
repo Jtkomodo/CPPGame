@@ -2,27 +2,27 @@
 
 Light::Light(glm::uvec3 position, glm::vec3 color)
 {
-	Light::position = position;
-	Light::color = color;
+	this->position=position;
+	this->color=color;
 
 }
 
 void Light::setPosition(glm::vec3 position)
 {
-	Light::position = position;
+	this->position = position;
 }
 
 void Light::setColor(glm::vec3 color)
 {
-	Light::color = color;
+	this->color= color;
 }
 
 glm::vec3 Light::getPosition()
 {
-	return Light::position;
+	return this->position;
 }
 
 glm::vec3 Light::getColor()
 {
-	return Light::color;
+	return this->color;
 }
