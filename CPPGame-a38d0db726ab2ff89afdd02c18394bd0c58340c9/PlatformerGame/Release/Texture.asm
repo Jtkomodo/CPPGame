@@ -131,8 +131,6 @@ PUBLIC	??_C@_03FOKDFDHG@?$CLX?5@			; `string'
 PUBLIC	??_C@_0CA@JBEOCDFN@invalid?5decoded?5scanline?5length@ ; `string'
 PUBLIC	??_C@_0BA@OLLEAHAM@max?5value?5?$DO?5255@	; `string'
 PUBLIC	??_C@_0BC@MIBMIPKG@src?1res?1Textures?1@	; `string'
-PUBLIC	??_C@_04EEOGCCFB@?4png@				; `string'
-PUBLIC	??_C@_0BH@PIKNLKAJ@?5could?5not?5be?5found?$CB?$CB?$CB@ ; `string'
 PUBLIC	??_C@_09LDDNJKDN@the?5file?5@			; `string'
 EXTRN	__imp__malloc:PROC
 EXTRN	__imp__glPixelStorei@8:PROC
@@ -158,15 +156,6 @@ _BSS	ENDS
 ;	COMDAT ??_C@_09LDDNJKDN@the?5file?5@
 CONST	SEGMENT
 ??_C@_09LDDNJKDN@the?5file?5@ DB 'the file ', 00H	; `string'
-CONST	ENDS
-;	COMDAT ??_C@_0BH@PIKNLKAJ@?5could?5not?5be?5found?$CB?$CB?$CB@
-CONST	SEGMENT
-??_C@_0BH@PIKNLKAJ@?5could?5not?5be?5found?$CB?$CB?$CB@ DB ' could not be'
-	DB	' found!!!', 00H				; `string'
-CONST	ENDS
-;	COMDAT ??_C@_04EEOGCCFB@?4png@
-CONST	SEGMENT
-??_C@_04EEOGCCFB@?4png@ DB '.png', 00H			; `string'
 CONST	ENDS
 ;	COMDAT ??_C@_0BC@MIBMIPKG@src?1res?1Textures?1@
 CONST	SEGMENT
@@ -862,6 +851,15 @@ CONST	SEGMENT
 	DB	049H
 	DB	046H
 	DB	00H
+?stbi__depth_scale_table@@3QBEB DB 00H			; stbi__depth_scale_table
+	DB	0ffH
+	DB	055H
+	DB	00H
+	DB	011H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	01H
 ?stbi__jbias@@3QBHB DD 00H				; stbi__jbias
 	DD	0ffffffffH
 	DD	0fffffffdH
@@ -1277,16 +1275,7 @@ CONST	SEGMENT
 	DD	0102H
 	DD	00H
 	DD	00H
-?stbi__depth_scale_table@@3QBEB DB 00H			; stbi__depth_scale_table
-	DB	0ffH
-	DB	055H
-	DB	00H
-	DB	011H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	01H
-	ORG $+3
+?stbi__h2l_gamma_i@@3MA DD 03ee8ba2er		; 0.454545 ; stbi__h2l_gamma_i
 ?stbi__zdist_base@@3QBHB DD 01H				; stbi__zdist_base
 	DD	02H
 	DD	03H
@@ -1336,7 +1325,7 @@ CONST	SEGMENT
 	DD	03fffH
 	DD	07fffH
 	DD	0ffffH
-?stbi__h2l_gamma_i@@3MA DD 03ee8ba2er		; 0.454545 ; stbi__h2l_gamma_i
+?stbi__h2l_scale_i@@3MA DD 03f800000r		; 1	; stbi__h2l_scale_i
 ?stbi__zlength_extra@@3QBHB DD 00H			; stbi__zlength_extra
 	DD	00H
 	DD	00H
@@ -1406,7 +1395,7 @@ CONST	SEGMENT
 	DB	05H
 	DB	05H
 	DB	05H
-?stbi__h2l_scale_i@@3MA DD 03f800000r		; 1	; stbi__h2l_scale_i
+	ORG $+4
 ?stbi__zdist_extra@@3QBHB DD 00H			; stbi__zdist_extra
 	DD	00H
 	DD	00H
@@ -1438,14 +1427,12 @@ CONST	SEGMENT
 	DD	0dH
 	DD	0dH
 	ORG $+8
-PUBLIC	??Y?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV01@QBD@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::operator+=
-PUBLIC	??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@QBDABV10@@Z ; std::operator+<char,std::char_traits<char>,std::allocator<char> >
 PUBLIC	_stbi_zlib_decode_malloc_guesssize_headerflag
 PUBLIC	_stbi_load_from_file
-PUBLIC	_stbi_load
 PUBLIC	_stbi_image_free
 PUBLIC	?Bind@Texture@@QAEXI@Z				; Texture::Bind
 PUBLIC	??0Texture@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z ; Texture::Texture
+PUBLIC	_stbi_load
 PUBLIC	??1Texture@@QAE@XZ				; Texture::~Texture
 ?stbi__stdio_callbacks@@3Ustbi_io_callbacks@@A DD FLAT:?stbi__stdio_read@@YAHPAXPADH@Z ; stbi__stdio_callbacks
 	DD	FLAT:?stbi__stdio_skip@@YAXPAXH@Z
@@ -1474,17 +1461,7 @@ __unwindtable$??0Texture@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocato
 	DD	03H
 	DD	FLAT:__unwindfunclet$??0Texture@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$5
 	DD	06H
-	DD	FLAT:__unwindfunclet$??0Texture@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$10
+	DD	FLAT:__unwindfunclet$??0Texture@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$6
 	DD	07H
 	DD	FLAT:__unwindfunclet$??0Texture@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z$7
-xdata$x	ENDS
-;	COMDAT xdata$x
-xdata$x	SEGMENT
-__ehfuncinfo$??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@QBDABV10@@Z DQ 00000000119930522r ; 2.33398e-314
-	DD	FLAT:__unwindtable$??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@QBDABV10@@Z
-	DQ	00000000000000000r		; 0
-	DQ	00000000000000000r		; 0
-	DQ	00000000100000000r		; 2.122e-314
-__unwindtable$??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@QBDABV10@@Z DD 0ffffffffH
-	DD	FLAT:__unwindfunclet$??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@QBDABV10@@Z$0
 END

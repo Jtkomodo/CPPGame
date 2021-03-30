@@ -131,7 +131,7 @@ std::string ShaderProgram::LoadShader(std::string path) {
 
 void ShaderProgram::Bind() {
 
-	glUseProgram(program);
+	glUseProgram(this->program);
 
 
 }
@@ -148,7 +148,7 @@ int ShaderProgram::makeLocation(const char name[])
 	int location = glGetUniformLocation(program,name);
 	if (location ==-1) {
 
-		std::cout << "uniform location " << name << "not used or not found" << std::endl;
+		std::cout << "uniform location " << name << " not used or not found" << std::endl;
 		exit(0x75);
 	}
 	else {

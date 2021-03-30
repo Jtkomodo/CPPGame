@@ -14,7 +14,8 @@ public:
 
 private:
 	GLFWwindow* window;
-	int width, height; 
+	const GLFWvidmode* VidMode;
+	int width, height,dh,dw; 
 	
 
 public:
@@ -27,6 +28,7 @@ public:
 	void Render();
 	void clear();
 	void Destroy();
+	void setFullScreen(bool fullscreen,Camera &camera);
 	boolean SHouldExit();
     static byte checkState(int key);
 

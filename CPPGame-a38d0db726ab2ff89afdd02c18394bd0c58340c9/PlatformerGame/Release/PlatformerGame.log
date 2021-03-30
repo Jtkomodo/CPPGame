@@ -1,14 +1,9 @@
-﻿  WIndow.cpp
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
-D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\depend\GLFW\include\GLFW\glfw3.h(104): message : see previous definition of 'APIENTRY'
-D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\WIndow.cpp(223,16): warning C4805: '==': unsafe mix of type 'boolean' and type 'bool' in operation
-D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\WIndow.cpp(224,16): warning C4805: '==': unsafe mix of type 'boolean' and type 'bool' in operation
-D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\WIndow.cpp(235,16): warning C4805: '==': unsafe mix of type 'boolean' and type 'bool' in operation
+﻿  Model.cpp
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  6 of 1270 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
+  0 of 1277 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    8 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\Release\vc120.pdb'; linking object as if no debug info
-  PlatformerGame.vcxproj -> D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\Release\PlatformerGame.exe
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\BIN\Release\vc120.pdb'; linking object as if no debug info
+  PlatformerGame.vcxproj -> D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\\BIN\Release\PlatformerGame.exe

@@ -26,6 +26,7 @@ PUBLIC	??_C@_08HPPOJBLD@haslight@			; `string'
 PUBLIC	??_C@_04CHADEDPO@view@				; `string'
 PUBLIC	??_C@_06IHEKJFFH@damper@			; `string'
 PUBLIC	??_C@_0N@LJNLFOD@reflectivity@			; `string'
+PUBLIC	??_C@_09OJHOCBK@heightmap@			; `string'
 PUBLIC	?frames@@3HA					; frames
 PUBLIC	?lightPosition@@3U?$vec@$02M$0A@@glm@@A		; lightPosition
 PUBLIC	?Position@@3U?$vec@$02M$0A@@glm@@A		; Position
@@ -38,6 +39,7 @@ PUBLIC	?frameTime@@3NA					; frameTime
 PUBLIC	?canRender@@3EA					; canRender
 PUBLIC	?FPS@@3HA					; FPS
 PUBLIC	?timepassed@@3NA				; timepassed
+PUBLIC	?fullscreem@@3_NA				; fullscreem
 PUBLIC	?lastFrame@@3V?$time_point@Usteady_clock@chrono@std@@V?$duration@_JU?$ratio@$00$0DLJKMKAA@@std@@@23@@chrono@std@@A ; lastFrame
 PUBLIC	?framecap@@3NA					; framecap
 PUBLIC	?unproccesed@@3NA				; unproccesed
@@ -56,13 +58,16 @@ PUBLIC	?unproccesed@@3NA				; unproccesed
 
 ?FPS@@3HA DD	01H DUP (?)				; FPS
 ?timepassed@@3NA DQ 01H DUP (?)				; timepassed
+?fullscreem@@3_NA DB 01H DUP (?)			; fullscreem
+	ALIGN	8
+
 ?lastFrame@@3V?$time_point@Usteady_clock@chrono@std@@V?$duration@_JU?$ratio@$00$0DLJKMKAA@@std@@@23@@chrono@std@@A DQ 01H DUP (?) ; lastFrame
 ?unproccesed@@3NA DQ 01H DUP (?)			; unproccesed
 _BSS	ENDS
-?Position@@3U?$vec@$02M$0A@@glm@@A DD 000000000r ; 0	; Position
-	DD	000000000r			; 0
-	DD	0c1c80000r			; -25
-_DATA	ENDS
+;	COMDAT ??_C@_09OJHOCBK@heightmap@
+CONST	SEGMENT
+??_C@_09OJHOCBK@heightmap@ DB 'heightmap', 00H		; `string'
+CONST	ENDS
 ;	COMDAT ??_C@_0N@LJNLFOD@reflectivity@
 CONST	SEGMENT
 ??_C@_0N@LJNLFOD@reflectivity@ DB 'reflectivity', 00H	; `string'
@@ -134,8 +139,11 @@ CONST	ENDS
 ;	COMDAT ??_C@_08CEDOAIBO@Engine3d@
 CONST	SEGMENT
 ??_C@_08CEDOAIBO@Engine3d@ DB 'Engine3d', 00H		; `string'
+?Position@@3U?$vec@$02M$0A@@glm@@A DD 000000000r ; 0	; Position
+	DD	000000000r			; 0
+	DD	0c1c80000r			; -25
+	ORG $+3
 ?framecap@@3NA DQ 03f91111111111111r		; 0.0166667 ; framecap
-PUBLIC	??$?HM$0A@@glm@@YA?AU?$vec@$02M$0A@@0@ABU10@0@Z	; glm::operator+<float,0>
 PUBLIC	??$?0HMH@?$vec@$02M$0A@@glm@@QAE@HMH@Z		; glm::vec<3,float,0>::vec<3,float,0><int,float,int>
 PUBLIC	??$?0MHM@?$vec@$02M$0A@@glm@@QAE@MHM@Z		; glm::vec<3,float,0>::vec<3,float,0><float,int,float>
 PUBLIC	??$?0M$0A@@?$vec@$02I$0A@@glm@@QAE@ABU?$vec@$02M$0A@@1@@Z ; glm::vec<3,unsigned int,0>::vec<3,unsigned int,0><float,0>
@@ -148,15 +156,15 @@ PUBLIC	?__autoclassinit2@Texture@@QAEXI@Z		; Texture::__autoclassinit2
 PUBLIC	_main
 PUBLIC	?intFPS@@YAXXZ					; intFPS
 PUBLIC	?fps@@YAXXZ					; fps
-PUBLIC	?Input@@YAXXZ					; Input
+PUBLIC	?Input@@YAXVCamera@@@Z				; Input
 PUBLIC	?__autoclassinit2@Window@@QAEXI@Z		; Window::__autoclassinit2
 PUBLIC	??$?0_JU?$ratio@$00$0DLJKMKAA@@std@@$0A@@?$duration@NU?$ratio@$00$00@std@@@chrono@std@@QAE@ABV?$duration@_JU?$ratio@$00$0DLJKMKAA@@std@@@12@@Z ; std::chrono::duration<double,std::ratio<1,1> >::duration<double,std::ratio<1,1> ><__int64,std::ratio<1,1000000000>,0>
 PUBLIC	?window@@3VWindow@@A				; window
-?window@@3VWindow@@A DB 0cH DUP (?)			; window
+?window@@3VWindow@@A DB 018H DUP (?)			; window
 _BSS	ENDS
 ;	COMDAT xdata$x
 xdata$x	SEGMENT
-__ehfuncinfo$_main DQ 00000001f19930522r	; 6.59939e-313
+__ehfuncinfo$_main DQ 00000002219930522r	; 7.23598e-313
 	DD	FLAT:__unwindtable$_main
 	DQ	00000000000000000r		; 0
 	DQ	00000000000000000r		; 0
@@ -201,18 +209,24 @@ __unwindtable$_main DD 0ffffffffH
 	DD	011H
 	DD	FLAT:__unwindfunclet$_main$25
 	DD	012H
-	DD	FLAT:__unwindfunclet$_main$41
-	DD	013H
-	DD	FLAT:__unwindfunclet$_main$42
+	DD	FLAT:__unwindfunclet$_main$26
 	DD	012H
-	DD	FLAT:__unwindfunclet$_main$27
+	DD	FLAT:__unwindfunclet$_main$42
+	DD	014H
+	DD	FLAT:__unwindfunclet$_main$43
 	DD	015H
+	DD	FLAT:__unwindfunclet$_main$44
+	DD	016H
+	DD	FLAT:__unwindfunclet$_main$45
+	DD	012H
 	DD	FLAT:__unwindfunclet$_main$28
-	DD	016H
+	DD	018H
 	DD	FLAT:__unwindfunclet$_main$29
-	DD	016H
+	DD	019H
+	DD	FLAT:__unwindfunclet$_main$30
+	DD	019H
 	DD	FLAT:___std_terminate
-	DD	015H
+	DD	018H
 	DD	FLAT:___std_terminate
 	DD	012H
 	DD	FLAT:___std_terminate
@@ -245,103 +259,4 @@ __ehfuncinfo$??1Terrain@@QAE@XZ DQ 00000000119930522r ; 2.33398e-314
 __unwindtable$??1Terrain@@QAE@XZ DD 0ffffffffH
 	DD	FLAT:___std_terminate
 ?window$initializer$@@3P6AXXZA DD FLAT:??__Ewindow@@YAXXZ ; window$initializer$
-; Function compile flags: /Ogtp
-;	COMDAT ??__Ewindow@@YAXXZ
-text$di	SEGMENT
-??__Ewindow@@YAXXZ PROC					; `dynamic initializer for 'window'', COMDAT
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\WIndow.cpp
-; Line 139
-	call	_glfwInit
-	test	eax, eax
-	jne	SHORT $LN6@dynamic
-; Line 140
-	push	-1
-	call	DWORD PTR __imp__exit
-$LN6@dynamic:
-; Line 144
-	push	1
-	push	131077					; 00020005H
-	call	_glfwWindowHint
-; Line 146
-	push	0
-	push	0
-	push	OFFSET ??_C@_08CEDOAIBO@Engine3d@
-	push	480					; 000001e0H
-	push	640					; 00000280H
-	call	_glfwCreateWindow
-	add	esp, 28					; 0000001cH
-	mov	DWORD PTR ?window@@3VWindow@@A, eax
-; Line 147
-	test	eax, eax
-	jne	SHORT $LN7@dynamic
-; Line 149
-	call	_glfwTerminate
-; Line 150
-	push	1
-	call	DWORD PTR __imp__exit
-$LN7@dynamic:
-; Line 154
-	push	eax
-	call	_glfwMakeContextCurrent
-	add	esp, 4
-; Line 157
-	call	_glewInit@0
-	test	eax, eax
-	je	SHORT $LN8@dynamic
-; Line 158
-	mov	ecx, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
-	mov	edx, OFFSET ??_C@_07LIJFLNDM@problem@
-	push	OFFSET ??$endl@DU?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@@Z ; std::endl<char,std::char_traits<char> >
-	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
-	mov	ecx, eax
-	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@P6AAAV01@AAV01@@Z@Z
-; Line 159
-	push	7
-	call	DWORD PTR __imp__exit
-$LN8@dynamic:
-	push	esi
-; Line 162
-	mov	esi, DWORD PTR __imp__glEnable@4
-	push	3553					; 00000de1H
-	call	esi
-; Line 163
-	push	2929					; 00000b71H
-	call	esi
-; Line 167
-	push	3042					; 00000be2H
-	call	esi
-; Line 168
-	push	771					; 00000303H
-	push	770					; 00000302H
-	call	DWORD PTR __imp__glBlendFunc@8
-; Line 169
-	sub	esp, 16					; 00000010H
-	mov	DWORD PTR [esp+12], 0
-	mov	DWORD PTR [esp+8], 0
-	mov	DWORD PTR [esp+4], 0
-	mov	DWORD PTR [esp], 1065353216		; 3f800000H
-	call	DWORD PTR __imp__glClearColor@16
-; Line 170
-	push	OFFSET ?key_callback@@YAXPAUGLFWwindow@@HHHH@Z ; key_callback
-	push	DWORD PTR ?window@@3VWindow@@A
-	call	_glfwSetKeyCallback
-; Line 171
-	push	0
-	call	_glfwSwapInterval
-	add	esp, 12					; 0000000cH
-; Line 173
-	push	37600					; 000092e0H
-	call	esi
-; Line 174
-	push	0
-	push	OFFSET ?GLDebugMessageCallback@@YGXIIIIHPBDPBX@Z ; GLDebugMessageCallback
-	call	DWORD PTR ___glewDebugMessageCallback
-	pop	esi
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Start.cpp
-; Line 26
-	ret	0
-$LN11@dynamic:
-??__Ewindow@@YAXXZ ENDP					; `dynamic initializer for 'window''
-text$di	ENDS
 END

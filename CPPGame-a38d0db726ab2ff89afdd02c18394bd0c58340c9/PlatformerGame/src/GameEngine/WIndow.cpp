@@ -153,7 +153,7 @@ Window::Window(int width, int height, const char name[]) {
 	/* Make the window's context current */
 	glfwMakeContextCurrent(window);
 	
-	
+    this->VidMode=glfwGetVideoMode(glfwGetPrimaryMonitor());
 	if (glewInit() != GLEW_OK) {
 		std::cout << "problem" << std::endl;
 		exit(7);
@@ -161,9 +161,9 @@ Window::Window(int width, int height, const char name[]) {
 	
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_DEPTH_TEST);
-	//glEnable(GL_CULL_FACE);
+	glEnable(GL_CULL_FACE);
 	
-	//glCullFace(GL_BACK);
+    glCullFace(GL_BACK);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
@@ -172,7 +172,8 @@ Window::Window(int width, int height, const char name[]) {
 
 	glEnable(GL_DEBUG_OUTPUT);
 	glDebugMessageCallback(GLDebugMessageCallback, 0);
-
+    dw = width;
+    dh = height;
 }
 
 GLFWwindow* Window::getWindow()
@@ -211,6 +212,33 @@ boolean Window::SHouldExit() {
 }
 void Window::Destroy() {
 	glfwDestroyWindow(window);
+}
+
+void Window::setFullScreen(bool fullscreen,Camera &camera)
+{
+
+    if (fullscreen) {
+
+        glfwSetWindowMonitor(window, glfwGetPrimaryMonitor(), 0, 0, VidMode->width, VidMode->height, VidMode->refreshRate);// this allows fullscreen window .the value that actually changes if fullscreen is used is the second argument
+    //	glViewport(0,0,width,height);	
+        glViewport(0, 0,VidMode->width, VidMode->height); //this changes the view to the size of the monitor so that it won't be small
+            //System.out.println(fullscreen);
+        width = VidMode->width; height = VidMode->height;
+        camera.setSize(width / 2.5f, height / 2.5f);
+        glfwSwapInterval(1);
+    }
+    else {
+
+        glfwSetWindowMonitor(window, 0, (this->VidMode->width - dw) / 2, (this->VidMode->height - dh) / 2, dw, dh,this->VidMode->refreshRate);
+        glViewport(0, 0, dw, dh);
+        width = dw; height = dh;
+        camera.setSize(width, height);
+
+        glfwSwapInterval(1);
+
+    }
+
+
 }
 
 

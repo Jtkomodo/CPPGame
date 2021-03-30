@@ -19,6 +19,7 @@
 
 
 const int width = 640, height = 480;
+bool fullscreem = false;
 double framecap = 1.0/60.0;//controls the frame limit 
 glm::vec3 CamPosition,Position(0,0,-25),lightPosition(0);
 int frames,FPS;
@@ -31,7 +32,7 @@ double timepassed, unproccesed, frameTime,DeltaT;
 boolean canRender;
 
 
-void Input() {
+void Input(Camera cam) {
 	window.Update();
 
 	byte up = window.checkState(GLFW_KEY_UP);
@@ -44,8 +45,23 @@ void Input() {
 	byte L = window.checkState(GLFW_KEY_L);
 
 	float camspeed = 3;
-	if (window.checkState(GLFW_KEY_W) > 0) {
-		camspeed * 10;
+
+	if (window.checkState(GLFW_KEY_LEFT_CONTROL) > 1 & window.checkState(GLFW_KEY_F) == 1) {
+		fullscreem = !fullscreem;
+		window.setFullScreen(fullscreem,cam);
+	}
+	if (window.checkState(GLFW_KEY_T)==1)
+	{
+		Model::changeMode(GL_TRIANGLES);
+	}
+	if (L==1)
+	{
+		Model::changeMode(GL_LINES);
+	}
+
+
+	if (window.checkState(GLFW_KEY_SPACE) > 0) {
+		camspeed *= 10;
 	  }
 
 
@@ -144,11 +160,12 @@ int main(int argc, char* argv[])
 	
 	
 	std::string programName = "Shader";
-	std::string tprograeName = "TerrainShader";
+	std::string TerrainS = "TerrainShader";
 	Camera cam(width,height,70,glm::vec3(0));
 	
 	ShaderProgram* a=new ShaderProgram(programName);//allocates the ShaderProgram to the heap for use later
-	ShaderProgram* terrainShader = new ShaderProgram(tprograeName);
+	a->UnBind();
+	ShaderProgram* terrainShader = new ShaderProgram(TerrainS);
 	//Texture tex("texDragon");	Texture white("white");
 	//objLoader f("dragon");
 
@@ -170,25 +187,16 @@ int main(int argc, char* argv[])
 	const int viewMatrixLocation = a->makeLocation("view");
 	const int DampLocation = a->makeLocation("damper");
 	const int ReflectLocation = a->makeLocation("reflectivity");
-	terrainShader->Bind();
-	const int TpLocation = terrainShader->makeLocation("projection");
-	const int TrtsLocation = terrainShader->makeLocation("rts");
-	const int TsamplerLocation = terrainShader->makeLocation("sampler");
-	const int TLightPosLocation = terrainShader->makeLocation("LightPosition");
-	const int TLightCOlORLocation = terrainShader->makeLocation("lightColor");
-	const int ThasLocation = terrainShader->makeLocation("haslight");
-	const int TviewMatrixLocation = terrainShader->makeLocation("view");
-	const int TDampLocation = terrainShader->makeLocation("damper");
-	const int TReflectLocation = terrainShader->makeLocation("reflectivity");
 	
-
+	
+	
 	Model model(f.getverts(),f.getUVS(),f.getNormals(),f.getInds());//put in the data and the size of the arrays
 	Model model2(stall.getverts(), stall.getUVS(), stall.getNormals(), stall.getInds());//put in the data and the size of the arrays  
 	//Texture tex("stallTexture");
    Entity en(model, glm::vec3(0,0,-2), glm::vec3(0),1,0,0);
    Entity en2(model2, glm::vec3(0, 0, -2), glm::vec3(0), 1, 10, 1);
    Light light(glm::vec3(2000,2000,2000),glm::vec3(1,1,1));
-   Terrain t(0,0,tex);
+   Terrain t("heightmap",0,0,tex);
    Model m = t.getModel();
    Entity terrain(m,glm::vec3(t.getGridx(),0,t.getGridZ()),glm::vec3(0),1,0,0);
 
@@ -215,11 +223,16 @@ int main(int argc, char* argv[])
 			fps();
 			
 			if (canRender) {
+			
+	
+
+				
+
 				a->Bind();
 				a->loadBool(hasLocation, true);
-				
-				Input();
-			
+
+				Input(cam);
+
 				light.setPosition(lightPosition);
 				cam.setPosition(CamPosition);
 
@@ -229,54 +242,56 @@ int main(int argc, char* argv[])
 				glm::mat4 target = en.getTRS();
 
 				en.setPosition(Position);
-				en.setRotation(glm::vec3(0,rotx+=1,0));
-				
+				en.setRotation(glm::vec3(0, rotx += 1, 0));
 
-				glm::vec3 lightposition=light.getPosition();
-				glm::vec3 lightColor=light.getColor();
+
+				glm::vec3 lightposition = light.getPosition();
+				glm::vec3 lightColor = light.getColor();
 
 				glm::mat4 projection = cam.getProjection();//this is the projection matrix 
 				a->loadMat4(pLocation, projection);//this loads in the projection matrix to the GPU for the world 
-				a->loadvec3(LightPosLocation,lightposition.x,lightposition.y,lightposition.z);
+				a->loadvec3(LightPosLocation, lightposition.x, lightposition.y, lightposition.z);
 				a->loadvec3(LightCOlORLocation, lightColor.x, lightColor.y, lightColor.z);
 				a->loadMat4(rtsLocation, target);//this loads in the rotation translation and scale(RTS) matix to the GPU 
 				a->loadInt(samplerLocation, 1);//this loads in the id for the texture2d sampler to pick the correct texture
 				a->loadMat4(viewMatrixLocation, view);
-				a->loadFloat(DampLocation,en.getDamping());
+				a->loadFloat(DampLocation, en.getDamping());
 				a->loadFloat(ReflectLocation, en.getReflect());
 				//m.printTest();
 
 				en.Draw();//actually draws the model to the screen
-				
-				
+
 				terrainShader->Bind();
-				terrainShader->loadBool(ThasLocation, true);
-			    grass.Bind(1);//this binds the texture data to the specified slot in texture2d
+				terrainShader->loadBool(hasLocation, true);
 
+				light.setPosition(lightPosition);
+				cam.setPosition(CamPosition);
 
+				grass.Bind(1);//this binds the texture data to the specified slot in texture2d
+
+				view = cam.getView();
 			    target = terrain.getTRS();
-
-				terrain.setPosition(Position + glm::vec3(0,20,0));
+				
+				terrain.setPosition(Position);
 				terrain.setRotation(glm::vec3(0, 0, 0));
 
 
-				 lightposition = light.getPosition();
-				 lightColor = light.getColor();
+			    lightposition = light.getPosition();
+				lightColor = light.getColor();
 
-				 projection = cam.getProjection();//this is the projection matrix 
-				terrainShader->loadMat4(TpLocation, projection);//this loads in the projection matrix to the GPU for the world 
-				terrainShader->loadvec3(TLightPosLocation, lightposition.x, lightposition.y, lightposition.z);
-				terrainShader->loadvec3(TLightCOlORLocation, lightColor.x, lightColor.y, lightColor.z);
-				terrainShader->loadMat4(TrtsLocation, target);//this loads in the rotation translation and scale(RTS) matix to the GPU 
-				terrainShader->loadInt(TsamplerLocation, 1);//this loads in the id for the texture2d sampler to pick the correct texture
-				terrainShader->loadFloat(TDampLocation, terrain.getDamping());
-				terrainShader->loadFloat(TReflectLocation,terrain.getReflect());
+				projection = cam.getProjection();//this is the projection matrix 
+				terrainShader->loadMat4(pLocation, projection);//this loads in the projection matrix to the GPU for the world 
+				terrainShader->loadvec3(LightPosLocation, lightposition.x, lightposition.y, lightposition.z);
+				terrainShader->loadvec3(LightCOlORLocation, lightColor.x, lightColor.y, lightColor.z);
+				terrainShader->loadMat4(rtsLocation, target);//this loads in the rotation translation and scale(RTS) matix to the GPU 
+				terrainShader->loadInt(samplerLocation, 1);//this loads in the id for the texture2d sampler to pick the correct texture
+				terrainShader->loadMat4(viewMatrixLocation, view);
+				terrainShader->loadFloat(DampLocation, terrain.getDamping());
+				terrainShader->loadFloat(ReflectLocation, terrain.getReflect());
 				//m.printTest();
 
 				terrain.Draw();//actually draws the model to the screen
 
-
-				
 
 
 				

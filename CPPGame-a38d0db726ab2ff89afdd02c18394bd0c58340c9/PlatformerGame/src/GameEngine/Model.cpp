@@ -5,7 +5,7 @@
 
 
 
-
+int Model::renderMode=GL_TRIANGLES;
 
 
 Model::Model(std::vector<glm::vec3> verts, std::vector<glm::vec2> uvs, std::vector<glm::vec3> normals, std::vector<glm::uvec3> inds) {
@@ -47,12 +47,25 @@ Model::Model(std::vector<glm::vec3> verts, std::vector<glm::vec2> uvs, std::vect
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, INDI);//binding buffer
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, inds.size()* sizeof(glm::uvec3),&inds[0], GL_STATIC_DRAW);//loading data
 	glBindVertexArray(0);
+
+	verts.clear();
+	uvs.clear();
+	normals.clear();
+	inds.clear();
+	
+}
+
+void Model::changeMode(int mode)
+{ 
+	if (mode== GL_TRIANGLES || mode==GL_LINES||mode==GL_QUADS) {
+	    Model::renderMode = mode;
+	}
 }
 
 void Model::Draw()
-{
+{   
 	glBindVertexArray(this->VAO_ID);
-	glDrawElements(GL_TRIANGLES,Model::drawCount,GL_UNSIGNED_INT,0);
+	glDrawElements(renderMode,Model::drawCount,GL_UNSIGNED_INT,0);
 
 
 

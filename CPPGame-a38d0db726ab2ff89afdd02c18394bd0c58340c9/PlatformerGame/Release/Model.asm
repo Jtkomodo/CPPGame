@@ -8,6 +8,7 @@
 
 INCLUDELIB OLDNAMES
 
+PUBLIC	?renderMode@Model@@0HA				; Model::renderMode
 PUBLIC	??_C@_0O@NDFELJM@model?5created@		; `string'
 PUBLIC	??_C@_0O@HHAGBHMN@model?5deleted@		; `string'
 EXTRN	___glewGenVertexArrays:DWORD
@@ -20,8 +21,13 @@ CONST	ENDS
 ;	COMDAT ??_C@_0O@NDFELJM@model?5created@
 CONST	SEGMENT
 ??_C@_0O@NDFELJM@model?5created@ DB 'model created', 00H ; `string'
+?renderMode@Model@@0HA DD 04H				; Model::renderMode
+PUBLIC	?clear@?$vector@U?$vec@$02M$0A@@glm@@V?$allocator@U?$vec@$02M$0A@@glm@@@std@@@std@@QAEXXZ ; std::vector<glm::vec<3,float,0>,std::allocator<glm::vec<3,float,0> > >::clear
+PUBLIC	?clear@?$vector@U?$vec@$01M$0A@@glm@@V?$allocator@U?$vec@$01M$0A@@glm@@@std@@@std@@QAEXXZ ; std::vector<glm::vec<2,float,0>,std::allocator<glm::vec<2,float,0> > >::clear
+PUBLIC	?clear@?$vector@U?$vec@$02I$0A@@glm@@V?$allocator@U?$vec@$02I$0A@@glm@@@std@@@std@@QAEXXZ ; std::vector<glm::vec<3,unsigned int,0>,std::allocator<glm::vec<3,unsigned int,0> > >::clear
 PUBLIC	??A?$vector@U?$vec@$02I$0A@@glm@@V?$allocator@U?$vec@$02I$0A@@glm@@@std@@@std@@QAEAAU?$vec@$02I$0A@@glm@@I@Z ; std::vector<glm::vec<3,unsigned int,0>,std::allocator<glm::vec<3,unsigned int,0> > >::operator[]
 PUBLIC	?enableAtrib@Model@@AAEXXZ			; Model::enableAtrib
+PUBLIC	?changeMode@Model@@SAXH@Z			; Model::changeMode
 PUBLIC	??0Model@@QAE@V?$vector@U?$vec@$02M$0A@@glm@@V?$allocator@U?$vec@$02M$0A@@glm@@@std@@@std@@V?$vector@U?$vec@$01M$0A@@glm@@V?$allocator@U?$vec@$01M$0A@@glm@@@std@@@2@0V?$vector@U?$vec@$02I$0A@@glm@@V?$allocator@U?$vec@$02I$0A@@glm@@@std@@@2@@Z ; Model::Model
 PUBLIC	??1Model@@QAE@XZ				; Model::~Model
 PUBLIC	?Draw@Model@@QAEXXZ				; Model::Draw

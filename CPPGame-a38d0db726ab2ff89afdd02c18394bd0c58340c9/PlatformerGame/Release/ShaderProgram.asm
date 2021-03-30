@@ -19,7 +19,7 @@ PUBLIC	??_C@_07MDEPDJDC@normals@			; `string'
 PUBLIC	??_C@_0BI@OLMCOPEP@link?5of?5program?5failed?3@	; `string'
 PUBLIC	??_C@_0BO@HALMAMBA@Validation?5of?5program?5failed?3@ ; `string'
 PUBLIC	??_C@_07KANJFMFK@file?5?3?5@			; `string'
-PUBLIC	??_C@_0BG@BMGLJNBD@not?5used?5or?5not?5found@	; `string'
+PUBLIC	??_C@_0BH@MEAHAECP@?5not?5used?5or?5not?5found@	; `string'
 PUBLIC	??_C@_0BC@LIHEFNFI@uniform?5location?5@		; `string'
 PUBLIC	??_R3?$basic_iostream@DU?$char_traits@D@std@@@std@@8 ; std::basic_iostream<char,std::char_traits<char> >::`RTTI Class Hierarchy Descriptor'
 PUBLIC	??_R0?AV?$basic_stringstream@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@8 ; std::basic_stringstream<char,std::char_traits<char>,std::allocator<char> > `RTTI Type Descriptor'
@@ -82,6 +82,7 @@ EXTRN	___glewCompileShader:DWORD
 EXTRN	___glewGetShaderiv:DWORD
 EXTRN	___glewUseProgram:DWORD
 EXTRN	??_V@YAXPAX@Z:PROC				; operator delete[]
+_DATA	ENDS
 ;	COMDAT ??_R3?$basic_stringstream@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@8
 rdata$r	SEGMENT
 ??_R3?$basic_stringstream@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@8 DD 00H ; std::basic_stringstream<char,std::char_traits<char>,std::allocator<char> >::`RTTI Class Hierarchy Descriptor'
@@ -277,9 +278,10 @@ rdata$r	ENDS
 CONST	SEGMENT
 ??_C@_0BC@LIHEFNFI@uniform?5location?5@ DB 'uniform location ', 00H ; `string'
 CONST	ENDS
-;	COMDAT ??_C@_0BG@BMGLJNBD@not?5used?5or?5not?5found@
+;	COMDAT ??_C@_0BH@MEAHAECP@?5not?5used?5or?5not?5found@
 CONST	SEGMENT
-??_C@_0BG@BMGLJNBD@not?5used?5or?5not?5found@ DB 'not used or not found', 00H ; `string'
+??_C@_0BH@MEAHAECP@?5not?5used?5or?5not?5found@ DB ' not used or not foun'
+	DB	'd', 00H					; `string'
 CONST	ENDS
 ;	COMDAT ??_C@_07KANJFMFK@file?5?3?5@
 CONST	SEGMENT
@@ -361,6 +363,7 @@ PUBLIC	?loadFloat@ShaderProgram@@QAEXHM@Z		; ShaderProgram::loadFloat
 PUBLIC	?loadInt@ShaderProgram@@QAEXHH@Z		; ShaderProgram::loadInt
 PUBLIC	?loadBool@ShaderProgram@@QAEXH_N@Z		; ShaderProgram::loadBool
 PUBLIC	?makeLocation@ShaderProgram@@QAEHQBD@Z		; ShaderProgram::makeLocation
+PUBLIC	?UnBind@ShaderProgram@@QAEXXZ			; ShaderProgram::UnBind
 PUBLIC	?Bind@ShaderProgram@@QAEXXZ			; ShaderProgram::Bind
 PUBLIC	?__autoclassinit2@?$basic_stringstream@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEXI@Z ; std::basic_stringstream<char,std::char_traits<char>,std::allocator<char> >::__autoclassinit2
 PUBLIC	??_D?$basic_stringstream@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEXXZ ; std::basic_stringstream<char,std::char_traits<char>,std::allocator<char> >::`vbase destructor'

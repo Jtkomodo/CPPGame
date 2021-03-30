@@ -168,6 +168,7 @@ PUBLIC	??0?$vec@$02M$0A@@glm@@QAE@M@Z			; glm::vec<3,float,0>::vec<3,float,0>
 PUBLIC	?getView@Camera@@QAE?AU?$mat@$03$03M$0A@@glm@@XZ ; Camera::getView
 PUBLIC	?getProjection@Camera@@QAE?AU?$mat@$03$03M$0A@@glm@@XZ ; Camera::getProjection
 PUBLIC	?setPosition@Camera@@QAEXU?$vec@$02M$0A@@glm@@@Z ; Camera::setPosition
+PUBLIC	?setSize@Camera@@QAEXMM@Z			; Camera::setSize
 PUBLIC	??0Camera@@QAE@MMMU?$vec@$02M$0A@@glm@@@Z	; Camera::Camera
 PUBLIC	?tan@@YAMM@Z					; tan
 PUBLIC	?epsilon@?$numeric_limits@M@std@@SAMXZ		; std::numeric_limits<float>::epsilon

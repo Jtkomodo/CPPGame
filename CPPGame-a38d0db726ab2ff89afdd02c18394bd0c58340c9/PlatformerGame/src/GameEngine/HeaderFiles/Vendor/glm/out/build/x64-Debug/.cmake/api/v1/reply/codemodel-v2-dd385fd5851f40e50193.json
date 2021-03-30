@@ -1,0 +1,38 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"projectIndex" : 0,
+					"source" : "."
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Project"
+				}
+			],
+			"targets" : []
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/Platformer/CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9/CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9/PlatformerGame/src/GameEngine/HeaderFiles/Vendor/glm/out/build/x64-Debug",
+		"source" : "D:/Platformer/CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9/CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9/PlatformerGame/src/GameEngine/HeaderFiles/Vendor/glm"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}

@@ -8,6 +8,27 @@
 
 INCLUDELIB OLDNAMES
 
+PUBLIC	??_C@_0BE@GLCMABMM@src?1res?1heightMaps?1@	; `string'
+PUBLIC	??_C@_04EEOGCCFB@?4png@				; `string'
+PUBLIC	??_C@_0BH@PIKNLKAJ@?5could?5not?5be?5found?$CB?$CB?$CB@ ; `string'
+PUBLIC	??_C@_0BM@EBBIENAM@the?5terrain?5heightmap?5file?5@ ; `string'
+;	COMDAT ??_C@_0BM@EBBIENAM@the?5terrain?5heightmap?5file?5@
+CONST	SEGMENT
+??_C@_0BM@EBBIENAM@the?5terrain?5heightmap?5file?5@ DB 'the terrain heigh'
+	DB	'tmap file ', 00H				; `string'
+CONST	ENDS
+;	COMDAT ??_C@_0BH@PIKNLKAJ@?5could?5not?5be?5found?$CB?$CB?$CB@
+CONST	SEGMENT
+??_C@_0BH@PIKNLKAJ@?5could?5not?5be?5found?$CB?$CB?$CB@ DB ' could not be'
+	DB	' found!!!', 00H				; `string'
+CONST	ENDS
+;	COMDAT ??_C@_04EEOGCCFB@?4png@
+CONST	SEGMENT
+??_C@_04EEOGCCFB@?4png@ DB '.png', 00H			; `string'
+CONST	ENDS
+;	COMDAT ??_C@_0BE@GLCMABMM@src?1res?1heightMaps?1@
+CONST	SEGMENT
+??_C@_0BE@GLCMABMM@src?1res?1heightMaps?1@ DB 'src/res/heightMaps/', 00H ; `string'
 PUBLIC	??$construct@U?$vec@$02M$0A@@glm@@$$V@?$_Default_allocator_traits@V?$allocator@U?$vec@$02M$0A@@glm@@@std@@@std@@SAXAAV?$allocator@U?$vec@$02M$0A@@glm@@@1@QAU?$vec@$02M$0A@@glm@@@Z ; std::_Default_allocator_traits<std::allocator<glm::vec<3,float,0> > >::construct<glm::vec<3,float,0> >
 PUBLIC	??$construct@U?$vec@$01M$0A@@glm@@$$V@?$_Default_allocator_traits@V?$allocator@U?$vec@$01M$0A@@glm@@@std@@@std@@SAXAAV?$allocator@U?$vec@$01M$0A@@glm@@@1@QAU?$vec@$01M$0A@@glm@@@Z ; std::_Default_allocator_traits<std::allocator<glm::vec<2,float,0> > >::construct<glm::vec<2,float,0> >
 PUBLIC	??$construct@U?$vec@$02I$0A@@glm@@$$V@?$_Default_allocator_traits@V?$allocator@U?$vec@$02I$0A@@glm@@@std@@@std@@SAXAAV?$allocator@U?$vec@$02I$0A@@glm@@@1@QAU?$vec@$02I$0A@@glm@@@Z ; std::_Default_allocator_traits<std::allocator<glm::vec<3,unsigned int,0> > >::construct<glm::vec<3,unsigned int,0> >
@@ -32,6 +53,7 @@ PUBLIC	??$_Uninitialized_value_construct_n@V?$allocator@U?$vec@$02I$0A@@glm@@@st
 PUBLIC	??$forward@ABV?$allocator@U?$vec@$02M$0A@@glm@@@std@@@std@@YAABV?$allocator@U?$vec@$02M$0A@@glm@@@0@ABV10@@Z ; std::forward<std::allocator<glm::vec<3,float,0> > const &>
 PUBLIC	??$forward@ABV?$allocator@U?$vec@$01M$0A@@glm@@@std@@@std@@YAABV?$allocator@U?$vec@$01M$0A@@glm@@@0@ABV10@@Z ; std::forward<std::allocator<glm::vec<2,float,0> > const &>
 PUBLIC	??$forward@ABV?$allocator@U?$vec@$02I$0A@@glm@@@std@@@std@@YAABV?$allocator@U?$vec@$02I$0A@@glm@@@0@ABV10@@Z ; std::forward<std::allocator<glm::vec<3,unsigned int,0> > const &>
+PUBLIC	??Y?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV01@QBD@Z ; std::basic_string<char,std::char_traits<char>,std::allocator<char> >::operator+=
 PUBLIC	?_Ufill@?$vector@U?$vec@$02M$0A@@glm@@V?$allocator@U?$vec@$02M$0A@@glm@@@std@@@std@@AAEPAU?$vec@$02M$0A@@glm@@PAU34@IU_Value_init_tag@2@@Z ; std::vector<glm::vec<3,float,0>,std::allocator<glm::vec<3,float,0> > >::_Ufill
 PUBLIC	?_Buy_nonzero@?$vector@U?$vec@$02M$0A@@glm@@V?$allocator@U?$vec@$02M$0A@@glm@@@std@@@std@@AAEXI@Z ; std::vector<glm::vec<3,float,0>,std::allocator<glm::vec<3,float,0> > >::_Buy_nonzero
 PUBLIC	?_Ufill@?$vector@U?$vec@$01M$0A@@glm@@V?$allocator@U?$vec@$01M$0A@@glm@@@std@@@std@@AAEPAU?$vec@$01M$0A@@glm@@PAU34@IU_Value_init_tag@2@@Z ; std::vector<glm::vec<2,float,0>,std::allocator<glm::vec<2,float,0> > >::_Ufill
@@ -44,37 +66,44 @@ PUBLIC	??$_Construct_n_copies_of_ty@U_Value_init_tag@std@@@?$vector@U?$vec@$01M$
 PUBLIC	??$?0ABV?$allocator@U?$vec@$01M$0A@@glm@@@std@@$$V@?$_Compressed_pair@V?$allocator@U?$vec@$01M$0A@@glm@@@std@@V?$_Vector_val@U?$_Simple_types@U?$vec@$01M$0A@@glm@@@std@@@2@$00@std@@QAE@U_One_then_variadic_args_t@1@ABV?$allocator@U?$vec@$01M$0A@@glm@@@1@@Z ; std::_Compressed_pair<std::allocator<glm::vec<2,float,0> >,std::_Vector_val<std::_Simple_types<glm::vec<2,float,0> > >,1>::_Compressed_pair<std::allocator<glm::vec<2,float,0> >,std::_Vector_val<std::_Simple_types<glm::vec<2,float,0> > >,1><std::allocator<glm::vec<2,float,0> > const &>
 PUBLIC	??$_Construct_n_copies_of_ty@U_Value_init_tag@std@@@?$vector@U?$vec@$02I$0A@@glm@@V?$allocator@U?$vec@$02I$0A@@glm@@@std@@@std@@AAEXIABU_Value_init_tag@1@@Z ; std::vector<glm::vec<3,unsigned int,0>,std::allocator<glm::vec<3,unsigned int,0> > >::_Construct_n_copies_of_ty<std::_Value_init_tag>
 PUBLIC	??$?0ABV?$allocator@U?$vec@$02I$0A@@glm@@@std@@$$V@?$_Compressed_pair@V?$allocator@U?$vec@$02I$0A@@glm@@@std@@V?$_Vector_val@U?$_Simple_types@U?$vec@$02I$0A@@glm@@@std@@@2@$00@std@@QAE@U_One_then_variadic_args_t@1@ABV?$allocator@U?$vec@$02I$0A@@glm@@@1@@Z ; std::_Compressed_pair<std::allocator<glm::vec<3,unsigned int,0> >,std::_Vector_val<std::_Simple_types<glm::vec<3,unsigned int,0> > >,1>::_Compressed_pair<std::allocator<glm::vec<3,unsigned int,0> >,std::_Vector_val<std::_Simple_types<glm::vec<3,unsigned int,0> > >,1><std::allocator<glm::vec<3,unsigned int,0> > const &>
+PUBLIC	??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@QBDABV10@@Z ; std::operator+<char,std::char_traits<char>,std::allocator<char> >
 PUBLIC	??0?$vector@U?$vec@$02M$0A@@glm@@V?$allocator@U?$vec@$02M$0A@@glm@@@std@@@std@@QAE@IABV?$allocator@U?$vec@$02M$0A@@glm@@@1@@Z ; std::vector<glm::vec<3,float,0>,std::allocator<glm::vec<3,float,0> > >::vector<glm::vec<3,float,0>,std::allocator<glm::vec<3,float,0> > >
 PUBLIC	??0?$vector@U?$vec@$01M$0A@@glm@@V?$allocator@U?$vec@$01M$0A@@glm@@@std@@@std@@QAE@IABV?$allocator@U?$vec@$01M$0A@@glm@@@1@@Z ; std::vector<glm::vec<2,float,0>,std::allocator<glm::vec<2,float,0> > >::vector<glm::vec<2,float,0>,std::allocator<glm::vec<2,float,0> > >
 PUBLIC	??0?$vector@U?$vec@$02I$0A@@glm@@V?$allocator@U?$vec@$02I$0A@@glm@@@std@@@std@@QAE@IABV?$allocator@U?$vec@$02I$0A@@glm@@@1@@Z ; std::vector<glm::vec<3,unsigned int,0>,std::allocator<glm::vec<3,unsigned int,0> > >::vector<glm::vec<3,unsigned int,0>,std::allocator<glm::vec<3,unsigned int,0> > >
 PUBLIC	?getGridZ@Terrain@@QAEMXZ			; Terrain::getGridZ
 PUBLIC	?getGridx@Terrain@@QAEMXZ			; Terrain::getGridx
 PUBLIC	?getModel@Terrain@@QAE?AVModel@@XZ		; Terrain::getModel
-PUBLIC	?loadData@Terrain@@AAEXAAV?$vector@U?$vec@$02M$0A@@glm@@V?$allocator@U?$vec@$02M$0A@@glm@@@std@@@std@@0AAV?$vector@U?$vec@$01M$0A@@glm@@V?$allocator@U?$vec@$01M$0A@@glm@@@std@@@3@@Z ; Terrain::loadData
+PUBLIC	?getHeight@Terrain@@AAEMHHPAE@Z			; Terrain::getHeight
+PUBLIC	?loadData@Terrain@@AAEXPAEAAV?$vector@U?$vec@$02M$0A@@glm@@V?$allocator@U?$vec@$02M$0A@@glm@@@std@@@std@@1AAV?$vector@U?$vec@$01M$0A@@glm@@V?$allocator@U?$vec@$01M$0A@@glm@@@std@@@3@@Z ; Terrain::loadData
 PUBLIC	?GenIndeces@Terrain@@AAEXAAV?$vector@U?$vec@$02I$0A@@glm@@V?$allocator@U?$vec@$02I$0A@@glm@@@std@@@std@@@Z ; Terrain::GenIndeces
 PUBLIC	?__autoclassinit2@?$vector@U?$vec@$02I$0A@@glm@@V?$allocator@U?$vec@$02I$0A@@glm@@@std@@@std@@QAEXI@Z ; std::vector<glm::vec<3,unsigned int,0>,std::allocator<glm::vec<3,unsigned int,0> > >::__autoclassinit2
 PUBLIC	?GenTerrain@Terrain@@AAE?AVModel@@XZ		; Terrain::GenTerrain
 PUBLIC	??0Texture@@QAE@ABV0@@Z				; Texture::Texture
-PUBLIC	??0Terrain@@QAE@MMVTexture@@@Z			; Terrain::Terrain
+PUBLIC	??0Terrain@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@MMVTexture@@@Z ; Terrain::Terrain
 ;	COMDAT xdata$x
 xdata$x	SEGMENT
-__ehfuncinfo$??0Terrain@@QAE@MMVTexture@@@Z DQ 00000000219930522r ; 4.45598e-314
-	DD	FLAT:__unwindtable$??0Terrain@@QAE@MMVTexture@@@Z
+__ehfuncinfo$??0Terrain@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@MMVTexture@@@Z DQ 00000000419930522r ; 8.69997e-314
+	DD	FLAT:__unwindtable$??0Terrain@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@MMVTexture@@@Z
 	DQ	00000000000000000r		; 0
 	DQ	00000000000000000r		; 0
 	DQ	00000000100000000r		; 2.122e-314
-__unwindtable$??0Terrain@@QAE@MMVTexture@@@Z DD 0ffffffffH
-	DD	FLAT:__unwindfunclet$??0Terrain@@QAE@MMVTexture@@@Z$0
+__unwindtable$??0Terrain@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@MMVTexture@@@Z DD 0ffffffffH
+	DD	FLAT:__unwindfunclet$??0Terrain@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@MMVTexture@@@Z$0
 	DD	00H
-	DD	FLAT:__unwindfunclet$??0Terrain@@QAE@MMVTexture@@@Z$1
+	DD	FLAT:__unwindfunclet$??0Terrain@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@MMVTexture@@@Z$1
+	DD	01H
+	DD	FLAT:__unwindfunclet$??0Terrain@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@MMVTexture@@@Z$2
+	DD	02H
+	DD	FLAT:__unwindfunclet$??0Terrain@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@MMVTexture@@@Z$3
 xdata$x	ENDS
 ;	COMDAT xdata$x
 xdata$x	SEGMENT
-__ehfuncinfo$?GenTerrain@Terrain@@AAE?AVModel@@XZ DQ 00000000719930522r ; 1.5066e-313
+__ehfuncinfo$?GenTerrain@Terrain@@AAE?AVModel@@XZ DQ 00000000e19930522r ; 2.99199e-313
 	DD	FLAT:__unwindtable$?GenTerrain@Terrain@@AAE?AVModel@@XZ
 	DQ	00000000000000000r		; 0
 	DQ	00000000000000000r		; 0
 	DQ	00000000100000000r		; 2.122e-314
+	ORG $+4
 __unwindtable$?GenTerrain@Terrain@@AAE?AVModel@@XZ DD 0ffffffffH
 	DD	FLAT:__unwindfunclet$?GenTerrain@Terrain@@AAE?AVModel@@XZ$0
 	DD	00H
@@ -83,10 +112,34 @@ __unwindtable$?GenTerrain@Terrain@@AAE?AVModel@@XZ DD 0ffffffffH
 	DD	FLAT:__unwindfunclet$?GenTerrain@Terrain@@AAE?AVModel@@XZ$2
 	DD	02H
 	DD	FLAT:__unwindfunclet$?GenTerrain@Terrain@@AAE?AVModel@@XZ$3
-	DD	03H
-	DD	FLAT:__unwindfunclet$?GenTerrain@Terrain@@AAE?AVModel@@XZ$4
+	DD	01H
+	DD	FLAT:__unwindfunclet$?GenTerrain@Terrain@@AAE?AVModel@@XZ$3
 	DD	04H
-	DD	FLAT:__unwindfunclet$?GenTerrain@Terrain@@AAE?AVModel@@XZ$5
+	DD	FLAT:__unwindfunclet$?GenTerrain@Terrain@@AAE?AVModel@@XZ$4
 	DD	05H
+	DD	FLAT:__unwindfunclet$?GenTerrain@Terrain@@AAE?AVModel@@XZ$5
+	DD	04H
 	DD	FLAT:__unwindfunclet$?GenTerrain@Terrain@@AAE?AVModel@@XZ$6
+	DD	07H
+	DD	FLAT:__unwindfunclet$?GenTerrain@Terrain@@AAE?AVModel@@XZ$7
+	DD	08H
+	DD	FLAT:__unwindfunclet$?GenTerrain@Terrain@@AAE?AVModel@@XZ$8
+	DD	09H
+	DD	FLAT:__unwindfunclet$?GenTerrain@Terrain@@AAE?AVModel@@XZ$9
+	DD	0aH
+	DD	FLAT:__unwindfunclet$?GenTerrain@Terrain@@AAE?AVModel@@XZ$10
+	DD	0bH
+	DD	FLAT:__unwindfunclet$?GenTerrain@Terrain@@AAE?AVModel@@XZ$11
+	DD	0cH
+	DD	FLAT:__unwindfunclet$?GenTerrain@Terrain@@AAE?AVModel@@XZ$12
+xdata$x	ENDS
+;	COMDAT xdata$x
+xdata$x	SEGMENT
+__ehfuncinfo$??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@QBDABV10@@Z DQ 00000000119930522r ; 2.33398e-314
+	DD	FLAT:__unwindtable$??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@QBDABV10@@Z
+	DQ	00000000000000000r		; 0
+	DQ	00000000000000000r		; 0
+	DQ	00000000100000000r		; 2.122e-314
+__unwindtable$??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@QBDABV10@@Z DD 0ffffffffH
+	DD	FLAT:__unwindfunclet$??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@QBDABV10@@Z$0
 END
