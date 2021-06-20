@@ -33,6 +33,7 @@ private:
 	Model GenTerrain();
 	void GenIndeces(std::vector<glm::uvec3>& inds);
 	void loadData(unsigned char* imagebuffer, std::vector<glm::vec3>& vertList, std::vector<glm::vec3>& normalsList, std::vector<glm::vec2>& uvsList);
+	glm::vec3 getNormal(int x, int z, unsigned char* map);
 	float getHeight(int x,int z,unsigned char* map);
 };
 

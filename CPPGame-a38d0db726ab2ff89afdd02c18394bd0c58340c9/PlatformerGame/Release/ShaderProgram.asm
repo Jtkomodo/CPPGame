@@ -514,4 +514,48 @@ __tryblocktable$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_t
 __catchsym$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z$6 DQ 00000000000000040r ; 3.16202e-322
 	DD	00H
 	DD	FLAT:__catch$??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@D@Z$0
+; Function compile flags: /Ogtp
+;	COMDAT ?makeLocation@ShaderProgram@@QAEHQBD@Z
+_TEXT	SEGMENT
+_name$ = 8						; size = 4
+?makeLocation@ShaderProgram@@QAEHQBD@Z PROC		; ShaderProgram::makeLocation, COMDAT
+; _this$ = ecx
+; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\ShaderProgram.cpp
+; Line 147
+	push	ebp
+	mov	ebp, esp
+	and	esp, -8					; fffffff8H
+; Line 148
+	push	DWORD PTR _name$[ebp]
+	push	DWORD PTR [ecx]
+	call	DWORD PTR ___glewGetUniformLocation
+; Line 149
+	cmp	eax, -1
+	jne	SHORT $LN3@makeLocati
+; Line 151
+	mov	ecx, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	mov	edx, OFFSET ??_C@_0BC@LIHEFNFI@uniform?5location?5@
+	push	OFFSET ??$endl@DU?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@@Z ; std::endl<char,std::char_traits<char> >
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	mov	edx, DWORD PTR _name$[ebp]
+	mov	ecx, eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	push	ecx
+	mov	edx, OFFSET ??_C@_0BH@MEAHAECP@?5not?5used?5or?5not?5found@
+	mov	ecx, eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 4
+	mov	ecx, eax
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@P6AAAV01@AAV01@@Z@Z
+; Line 152
+	push	117					; 00000075H
+	call	DWORD PTR __imp__exit
+$LN3@makeLocati:
+; Line 158
+	mov	esp, ebp
+	pop	ebp
+	ret	4
+$LN5@makeLocati:
+?makeLocation@ShaderProgram@@QAEHQBD@Z ENDP		; ShaderProgram::makeLocation
+_TEXT	ENDS
 END

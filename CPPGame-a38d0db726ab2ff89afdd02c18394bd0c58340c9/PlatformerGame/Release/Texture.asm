@@ -851,15 +851,6 @@ CONST	SEGMENT
 	DB	049H
 	DB	046H
 	DB	00H
-?stbi__depth_scale_table@@3QBEB DB 00H			; stbi__depth_scale_table
-	DB	0ffH
-	DB	055H
-	DB	00H
-	DB	011H
-	DB	00H
-	DB	00H
-	DB	00H
-	DB	01H
 ?stbi__jbias@@3QBHB DD 00H				; stbi__jbias
 	DD	0ffffffffH
 	DD	0fffffffdH
@@ -1275,7 +1266,16 @@ CONST	SEGMENT
 	DD	0102H
 	DD	00H
 	DD	00H
-?stbi__h2l_gamma_i@@3MA DD 03ee8ba2er		; 0.454545 ; stbi__h2l_gamma_i
+?stbi__depth_scale_table@@3QBEB DB 00H			; stbi__depth_scale_table
+	DB	0ffH
+	DB	055H
+	DB	00H
+	DB	011H
+	DB	00H
+	DB	00H
+	DB	00H
+	DB	01H
+	ORG $+3
 ?stbi__zdist_base@@3QBHB DD 01H				; stbi__zdist_base
 	DD	02H
 	DD	03H
@@ -1325,7 +1325,7 @@ CONST	SEGMENT
 	DD	03fffH
 	DD	07fffH
 	DD	0ffffH
-?stbi__h2l_scale_i@@3MA DD 03f800000r		; 1	; stbi__h2l_scale_i
+?stbi__h2l_gamma_i@@3MA DD 03ee8ba2er		; 0.454545 ; stbi__h2l_gamma_i
 ?stbi__zlength_extra@@3QBHB DD 00H			; stbi__zlength_extra
 	DD	00H
 	DD	00H
@@ -1395,7 +1395,7 @@ CONST	SEGMENT
 	DB	05H
 	DB	05H
 	DB	05H
-	ORG $+4
+?stbi__h2l_scale_i@@3MA DD 03f800000r		; 1	; stbi__h2l_scale_i
 ?stbi__zdist_extra@@3QBHB DD 00H			; stbi__zdist_extra
 	DD	00H
 	DD	00H

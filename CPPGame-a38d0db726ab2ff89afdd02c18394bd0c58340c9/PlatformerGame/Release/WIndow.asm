@@ -46,7 +46,6 @@ EXTRN	_glfwInit:PROC
 EXTRN	_glfwPollEvents:PROC
 EXTRN	_glfwSetWindowMonitor:PROC
 EXTRN	_glfwTerminate:PROC
-EXTRN	__imp__glCullFace@4:PROC
 EXTRN	_glfwGetVideoMode:PROC
 EXTRN	__imp__glEnable@4:PROC
 EXTRN	__imp____acrt_iob_func:PROC

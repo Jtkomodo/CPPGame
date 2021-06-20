@@ -21,7 +21,7 @@
 const int width = 640, height = 480;
 bool fullscreem = false;
 double framecap = 1.0/60.0;//controls the frame limit 
-glm::vec3 CamPosition,Position(0,0,-25),lightPosition(0);
+glm::vec3 CamPosition,Position(0,0,-25),lightPosition(0,1000000,0);
 int frames,FPS;
 
 Window window(width, height, "Engine3d");
@@ -195,7 +195,7 @@ int main(int argc, char* argv[])
 	//Texture tex("stallTexture");
    Entity en(model, glm::vec3(0,0,-2), glm::vec3(0),1,0,0);
    Entity en2(model2, glm::vec3(0, 0, -2), glm::vec3(0), 1, 10, 1);
-   Light light(glm::vec3(2000,2000,2000),glm::vec3(1,1,1));
+   Light light(glm::vec3(0,2000000,0),glm::vec3(1,1,1));
    Terrain t("heightmap",0,0,tex);
    Model m = t.getModel();
    Entity terrain(m,glm::vec3(t.getGridx(),0,t.getGridZ()),glm::vec3(0),1,0,0);

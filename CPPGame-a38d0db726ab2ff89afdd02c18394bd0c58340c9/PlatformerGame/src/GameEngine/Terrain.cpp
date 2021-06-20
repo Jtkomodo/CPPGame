@@ -101,9 +101,9 @@ void Terrain::loadData(unsigned char* imagebuffer,std::vector<glm::vec3> &vertLi
 
             float x = (float)j / ((float)VERTEX_COUNT - 1) * SIZE;
             float z = (float)i / ((float)VERTEX_COUNT - 1) * SIZE;
-            float y = getHeight(j, i, imagebuffer)-max_height/2;
+            float y = getHeight(j, i, imagebuffer);
             vertList[currentLocation] = glm::vec3(x, y, z);
-            normalsList[currentLocation] = glm::vec3(0, 1, 0);
+            normalsList[currentLocation] = getNormal(j, i, imagebuffer);
             float ux = (float)j / ((float)VERTEX_COUNT - 1);
             float uy = (float)i / ((float)VERTEX_COUNT - 1);
             uvsList[currentLocation] = glm::vec2(ux, uy);
@@ -113,6 +113,19 @@ void Terrain::loadData(unsigned char* imagebuffer,std::vector<glm::vec3> &vertLi
       //  stbi_image_free(imagebuffer);
     }
 }
+glm::vec3 Terrain::getNormal(int x,int z,unsigned char* map) {
+    
+    float L = getHeight(x - 1, z, map);
+    float R = getHeight(x + 1, z, map);
+    float D = getHeight(x,z-1, map);
+    float U = getHeight(x,z+1, map);
+    glm::vec3 normal(L-R,2.0,D-U);
+    normal=glm::normalize(normal);
+    return normal;
+}
+
+
+
 
 float Terrain::getHeight(int x, int z, unsigned char* map)
 {
@@ -124,7 +137,7 @@ float Terrain::getHeight(int x, int z, unsigned char* map)
 
 
 
-    return y;
+    return y - max_height / 2;
 }
 Model Terrain::getModel()
 {

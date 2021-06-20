@@ -38,7 +38,7 @@ vec3 reflectitedLight=reflect(lightDir,unitNormal);
 float dot2=dot(unitNormal,unit_toCam);
 
 
-float specularFact=max(dot2,0);
+float specularFact=max(dot2,0.0001f);
 
 float dampFact=pow(specularFact,damper);
 vec3 finalSpecValue=reflectivity*dampFact*lightColor;
