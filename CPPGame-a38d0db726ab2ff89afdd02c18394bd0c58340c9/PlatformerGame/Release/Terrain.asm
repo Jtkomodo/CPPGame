@@ -12,6 +12,21 @@ PUBLIC	??_C@_0BE@GLCMABMM@src?1res?1heightMaps?1@	; `string'
 PUBLIC	??_C@_04EEOGCCFB@?4png@				; `string'
 PUBLIC	??_C@_0BH@PIKNLKAJ@?5could?5not?5be?5found?$CB?$CB?$CB@ ; `string'
 PUBLIC	??_C@_0BM@EBBIENAM@the?5terrain?5heightmap?5file?5@ ; `string'
+PUBLIC	??_C@_01PKGAHCOL@?$CJ@				; `string'
+PUBLIC	??_C@_01IHBHIGKO@?0@				; `string'
+PUBLIC	??_C@_01ODHLEDKK@?$CI@				; `string'
+;	COMDAT ??_C@_01ODHLEDKK@?$CI@
+CONST	SEGMENT
+??_C@_01ODHLEDKK@?$CI@ DB '(', 00H			; `string'
+CONST	ENDS
+;	COMDAT ??_C@_01IHBHIGKO@?0@
+CONST	SEGMENT
+??_C@_01IHBHIGKO@?0@ DB ',', 00H			; `string'
+CONST	ENDS
+;	COMDAT ??_C@_01PKGAHCOL@?$CJ@
+CONST	SEGMENT
+??_C@_01PKGAHCOL@?$CJ@ DB ')', 00H			; `string'
+CONST	ENDS
 ;	COMDAT ??_C@_0BM@EBBIENAM@the?5terrain?5heightmap?5file?5@
 CONST	SEGMENT
 ??_C@_0BM@EBBIENAM@the?5terrain?5heightmap?5file?5@ DB 'the terrain heigh'
@@ -71,6 +86,7 @@ PUBLIC	??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU
 PUBLIC	??0?$vector@U?$vec@$02M$0A@@glm@@V?$allocator@U?$vec@$02M$0A@@glm@@@std@@@std@@QAE@IABV?$allocator@U?$vec@$02M$0A@@glm@@@1@@Z ; std::vector<glm::vec<3,float,0>,std::allocator<glm::vec<3,float,0> > >::vector<glm::vec<3,float,0>,std::allocator<glm::vec<3,float,0> > >
 PUBLIC	??0?$vector@U?$vec@$01M$0A@@glm@@V?$allocator@U?$vec@$01M$0A@@glm@@@std@@@std@@QAE@IABV?$allocator@U?$vec@$01M$0A@@glm@@@1@@Z ; std::vector<glm::vec<2,float,0>,std::allocator<glm::vec<2,float,0> > >::vector<glm::vec<2,float,0>,std::allocator<glm::vec<2,float,0> > >
 PUBLIC	??0?$vector@U?$vec@$02I$0A@@glm@@V?$allocator@U?$vec@$02I$0A@@glm@@@std@@@std@@QAE@IABV?$allocator@U?$vec@$02I$0A@@glm@@@1@@Z ; std::vector<glm::vec<3,unsigned int,0>,std::allocator<glm::vec<3,unsigned int,0> > >::vector<glm::vec<3,unsigned int,0>,std::allocator<glm::vec<3,unsigned int,0> > >
+PUBLIC	?getHeight@Terrain@@QAEMHH@Z			; Terrain::getHeight
 PUBLIC	?getGridZ@Terrain@@QAEMXZ			; Terrain::getGridZ
 PUBLIC	?getGridx@Terrain@@QAEMXZ			; Terrain::getGridx
 PUBLIC	?getModel@Terrain@@QAE?AVModel@@XZ		; Terrain::getModel
@@ -144,4 +160,92 @@ __ehfuncinfo$??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_str
 	DQ	00000000100000000r		; 2.122e-314
 __unwindtable$??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@QBDABV10@@Z DD 0ffffffffH
 	DD	FLAT:__unwindfunclet$??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@QBDABV10@@Z$0
+; Function compile flags: /Ogtp
+;	COMDAT ?getHeight@Terrain@@QAEMHH@Z
+_TEXT	SEGMENT
+_x$ = 8							; size = 4
+_z$ = 12						; size = 4
+?getHeight@Terrain@@QAEMHH@Z PROC			; Terrain::getHeight, COMDAT
+; _this$ = ecx
+; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Terrain.cpp
+; Line 166
+	push	ebp
+	mov	ebp, esp
+	and	esp, -8					; fffffff8H
+	push	ecx
+	push	ebx
+	mov	ebx, ecx
+	movd	xmm0, DWORD PTR _x$[ebp]
+; Line 168
+	cvtdq2ps xmm0, xmm0
+	push	esi
+	push	edi
+; Line 170
+	mov	edx, OFFSET ??_C@_01ODHLEDKK@?$CI@
+	push	OFFSET ??$endl@DU?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@@Z ; std::endl<char,std::char_traits<char> >
+	movss	xmm1, DWORD PTR [ebx]
+	divss	xmm1, DWORD PTR __real@44480000
+	mulss	xmm0, xmm1
+	cvttss2si esi, xmm0
+	movd	xmm0, DWORD PTR _z$[ebp]
+	cvtdq2ps xmm0, xmm0
+	mulss	xmm0, xmm1
+	cvttss2si edi, xmm0
+	push	edi
+	push	esi
+	push	ecx
+	mov	ecx, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 4
+	mov	ecx, eax
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@H@Z
+	push	ecx
+	mov	edx, OFFSET ??_C@_01IHBHIGKO@?0@
+	mov	ecx, eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 4
+	mov	ecx, eax
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@H@Z
+	push	ecx
+	mov	edx, OFFSET ??_C@_01PKGAHCOL@?$CJ@
+	mov	ecx, eax
+	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
+	add	esp, 4
+	mov	ecx, eax
+	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@P6AAAV01@AAV01@@Z@Z
+; Line 171
+	test	edi, edi
+	js	SHORT $LN2@getHeight
+	movss	xmm2, DWORD PTR [ebx]
+	movd	xmm0, edi
+	cvtdq2ps xmm0, xmm0
+	comiss	xmm2, xmm0
+	jbe	SHORT $LN2@getHeight
+	test	esi, esi
+	js	SHORT $LN2@getHeight
+	movd	xmm1, esi
+	cvtdq2ps xmm1, xmm1
+	comiss	xmm2, xmm1
+	jbe	SHORT $LN2@getHeight
+; Line 172
+	mov	eax, DWORD PTR [ebx+28]
+	mov	eax, DWORD PTR [eax+esi*4]
+	movss	xmm0, DWORD PTR [eax+edi*4]
+; Line 178
+	pop	edi
+	pop	esi
+	pop	ebx
+	mov	esp, ebp
+	pop	ebp
+	ret	8
+$LN2@getHeight:
+	pop	edi
+	pop	esi
+	xorps	xmm0, xmm0
+	pop	ebx
+	mov	esp, ebp
+	pop	ebp
+	ret	8
+?getHeight@Terrain@@QAEMHH@Z ENDP			; Terrain::getHeight
+_TEXT	ENDS
 END

@@ -13,6 +13,7 @@ EXTRN	__imp____CxxFrameHandler3:PROC
 PUBLIC	?getTRS@Entity@@QAE?AU?$mat@$03$03M$0A@@glm@@XZ	; Entity::getTRS
 PUBLIC	?getReflect@Entity@@QAEMXZ			; Entity::getReflect
 PUBLIC	?getDamping@Entity@@QAEMXZ			; Entity::getDamping
+PUBLIC	?setscale@Entity@@QAEXM@Z			; Entity::setscale
 PUBLIC	?setRotation@Entity@@QAEXU?$vec@$02M$0A@@glm@@@Z ; Entity::setRotation
 PUBLIC	?setPosition@Entity@@QAEXU?$vec@$02M$0A@@glm@@@Z ; Entity::setPosition
 PUBLIC	?Draw@Entity@@QAEXXZ				; Entity::Draw
@@ -27,6 +28,7 @@ PUBLIC	__real@3f800000
 PUBLIC	__real@3f91111111111111
 PUBLIC	__real@3fdd1745c0000000
 PUBLIC	__real@3ff0000000000000
+PUBLIC	__real@3ff8000000000000
 PUBLIC	__real@40200000
 PUBLIC	__real@40400000
 PUBLIC	__real@40800000
@@ -282,6 +284,10 @@ CONST	ENDS
 ;	COMDAT __real@40200000
 CONST	SEGMENT
 __real@40200000 DD 040200000r			; 2.5
+CONST	ENDS
+;	COMDAT __real@3ff8000000000000
+CONST	SEGMENT
+__real@3ff8000000000000 DQ 03ff8000000000000r	; 1.5
 CONST	ENDS
 ;	COMDAT __real@3ff0000000000000
 CONST	SEGMENT

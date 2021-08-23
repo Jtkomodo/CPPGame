@@ -33,7 +33,12 @@ Model Terrain::GenTerrain() {
         std::cout << "the terrain heightmap file " + fullpath + " could not be found!!!" << std::endl;
     }
     VERTEX_COUNT = width;
-    int count = Terrain::VERTEX_COUNT * Terrain::VERTEX_COUNT;
+    int count = VERTEX_COUNT * VERTEX_COUNT;
+    
+    this->heights = new float*[VERTEX_COUNT];
+    for (int i = 0; i < VERTEX_COUNT;i++) {
+        heights[i] = new float[VERTEX_COUNT];
+    }
 
     std::vector<glm::vec3> verts(count);
     std::vector<glm::vec2> uvs(count);
@@ -102,8 +107,10 @@ void Terrain::loadData(unsigned char* imagebuffer,std::vector<glm::vec3> &vertLi
             float x = (float)j / ((float)VERTEX_COUNT - 1) * SIZE;
             float z = (float)i / ((float)VERTEX_COUNT - 1) * SIZE;
             float y = getHeight(j, i, imagebuffer);
-            vertList[currentLocation] = glm::vec3(x, y, z);
-            normalsList[currentLocation] = getNormal(j, i, imagebuffer);
+            heights[j][i] = y;
+
+            vertList[currentLocation] = glm::vec3(x, y, z)
+          ;  normalsList[currentLocation] = getNormal(j, i, imagebuffer);
             float ux = (float)j / ((float)VERTEX_COUNT - 1);
             float uy = (float)i / ((float)VERTEX_COUNT - 1);
             uvsList[currentLocation] = glm::vec2(ux, uy);
@@ -153,6 +160,21 @@ float Terrain::getGridx() {
 }
 float Terrain::getGridZ() {
     return this->gridZ;
+}
+
+float Terrain::getHeight(int x, int z)
+{
+
+    int j= x * (((float)VERTEX_COUNT) / SIZE);
+    int i= z * (((float)VERTEX_COUNT) / SIZE);
+    std::cout << "("<<j<<","<<i<<")" << std::endl;
+    if (i>=0 && i<this->VERTEX_COUNT && j >= 0 && j < this->VERTEX_COUNT) {
+        return this->heights[j][i];
+    }
+    else {
+    
+        return 0;
+    }
 }
 
 

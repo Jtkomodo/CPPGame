@@ -240,8 +240,12 @@ int main(int argc, char* argv[])
 
 				glm::mat4 view = cam.getView();
 				glm::mat4 target = en.getTRS();
+				
+				en.setscale(0.1);
+				float x = CamPosition.x;
+				float z = CamPosition.z - 1.5;
 
-				en.setPosition(Position);
+				en.setPosition(glm::vec3(x,t.getHeight(x,z),z));
 				en.setRotation(glm::vec3(0, rotx += 1, 0));
 
 
@@ -272,7 +276,7 @@ int main(int argc, char* argv[])
 				view = cam.getView();
 			    target = terrain.getTRS();
 				
-				terrain.setPosition(Position);
+				terrain.setPosition(glm::vec3(0,0,0));
 				terrain.setRotation(glm::vec3(0, 0, 0));
 
 
@@ -291,7 +295,7 @@ int main(int argc, char* argv[])
 				//m.printTest();
 
 				terrain.Draw();//actually draws the model to the screen
-
+				
 
 
 				

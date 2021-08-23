@@ -12,6 +12,7 @@ private:
 	const static float SIZE;//this is the size of each terrain tile
 	float VERTEX_COUNT;//this is the amount of verts that each terrain tile has
     std::string heightMap;
+	float** heights;
 	int width;
 	int height;
 	int BPP;
@@ -28,6 +29,7 @@ public:
 	Texture getTexture();
 	float getGridx();
 	float getGridZ();
+	float getHeight(int i,int j);
 
 private:
 	Model GenTerrain();
