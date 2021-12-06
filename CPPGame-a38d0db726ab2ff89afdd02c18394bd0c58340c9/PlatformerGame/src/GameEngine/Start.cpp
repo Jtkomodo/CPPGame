@@ -147,6 +147,12 @@ void intFPS() {
 
 }
 
+double get_degrees(float angle)
+{
+	double pi = 3.14159265359;
+	return angle * (pi / 180);
+
+}
 
 
 
@@ -172,7 +178,7 @@ int main(int argc, char* argv[])
 
 	Texture tex("texDragon");
 	Texture grass("grass");
-	objLoader f("dragon");
+	objLoader f("sphere");
 
 	Texture tex2("stallTexture");
 	objLoader stall("stall");
@@ -232,7 +238,12 @@ int main(int argc, char* argv[])
 				a->loadBool(hasLocation, true);
 
 				Input(cam);
-
+				float x = CamPosition.x;
+				float z = CamPosition.z - 10;
+				float y = (t.getHeight(x, z)) + 1;
+				en.setPosition(glm::vec3(x,y, z));
+				
+				CamPosition.y =y+(2*sinf(get_degrees(45)));
 				light.setPosition(lightPosition);
 				cam.setPosition(CamPosition);
 
@@ -241,13 +252,13 @@ int main(int argc, char* argv[])
 				glm::mat4 view = cam.getView();
 				glm::mat4 target = en.getTRS();
 				
-				en.setscale(0.1);
-				float x = CamPosition.x;
-				float z = CamPosition.z - 1.5;
+			
+				
 
-				en.setPosition(glm::vec3(x,t.getHeight(x,z),z));
-				en.setRotation(glm::vec3(0, rotx += 1, 0));
-
+				
+				
+			//	en.setRotation(glm::vec3(0, rotx += 1, 0));
+	      		en.setscale(1);
 
 				glm::vec3 lightposition = light.getPosition();
 				glm::vec3 lightColor = light.getColor();

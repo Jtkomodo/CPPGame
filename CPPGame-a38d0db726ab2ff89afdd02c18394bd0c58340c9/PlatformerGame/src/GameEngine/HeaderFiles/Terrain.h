@@ -29,9 +29,10 @@ public:
 	Texture getTexture();
 	float getGridx();
 	float getGridZ();
-	float getHeight(int i,int j);
+	float getHeight(float i,float j);
 
 private:
+	float barryCentric(glm::vec3 p1, glm::vec3 p2, glm::vec3  p3, glm::vec2  pos);
 	Model GenTerrain();
 	void GenIndeces(std::vector<glm::uvec3>& inds);
 	void loadData(unsigned char* imagebuffer, std::vector<glm::vec3>& vertList, std::vector<glm::vec3>& normalsList, std::vector<glm::vec2>& uvsList);

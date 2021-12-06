@@ -20,6 +20,15 @@ Terrain::Terrain(std::string heightMap,float gridX,float gridY,Texture texture) 
 
 
 
+float Terrain::barryCentric(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3, glm::vec2 pos)
+{
+    float det = (p2.z - p3.z) * (p1.x - p3.x) + (p3.x - p2.x) * (p1.z - p3.z);
+    float l1 = ((p2.z - p3.z) * (pos.x - p3.x) + (p3.x - p2.x) * (pos.y - p3.z)) / det;
+    float l2 = ((p3.z - p1.z) * (pos.x - p3.x) + (p1.x - p3.x) * (pos.y - p3.z)) / det;
+    float l3 = 1.0f - l1 - l2;
+    return l1 * p1.y + l2 * p2.y + l3 * p3.y;
+}
+
 Model Terrain::GenTerrain() {
     std::string FILE = "src/res/heightMaps/";
     std::string ending = ".png";
@@ -48,7 +57,7 @@ Model Terrain::GenTerrain() {
     
   
     GenIndeces(inds);
-
+    stbi_image_free(imagebuffer);
     return Model(verts,uvs,normals,inds);
 
 
@@ -162,14 +171,29 @@ float Terrain::getGridZ() {
     return this->gridZ;
 }
 
-float Terrain::getHeight(int x, int z)
+float Terrain::getHeight(float x, float z)
 {
+    float s=SIZE / (VERTEX_COUNT-1);
+    int j= floorf(x/s);
+    int i= floorf(z/s);
+    std::cout <<"("<<x<<","<<z<< ")("<<j<<","<<i<<")" << std::endl;
 
-    int j= x * (((float)VERTEX_COUNT) / SIZE);
-    int i= z * (((float)VERTEX_COUNT) / SIZE);
-    std::cout << "("<<j<<","<<i<<")" << std::endl;
-    if (i>=0 && i<this->VERTEX_COUNT && j >= 0 && j < this->VERTEX_COUNT) {
-        return this->heights[j][i];
+
+    if (i>=0 && i<this->VERTEX_COUNT-1 && j >= 0 && j < this->VERTEX_COUNT-1) {
+
+      float xCoord = (std::fmod(x,s)) / s;
+      float zCoord = (std::fmod(z,s)) / s;
+      float answer;
+     if (xCoord <= (1-zCoord)) {
+			answer = barryCentric(glm::vec3(0, heights[j][i], 0),glm::vec3(1,
+							heights[j + 1][i], 0),glm::vec3(0,
+							heights[j][i + 1], 1), glm::vec2(xCoord, zCoord));
+		} else {
+			answer = barryCentric(glm::vec3(1, heights[j + 1][i], 0),glm::vec3(1,
+							heights[j + 1][i + 1], 1),glm::vec3(0,
+							heights[j][i + 1], 1),glm::vec2(xCoord, zCoord));
+		}
+     return answer;
     }
     else {
     

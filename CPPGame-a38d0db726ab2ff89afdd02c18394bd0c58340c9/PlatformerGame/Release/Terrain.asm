@@ -14,10 +14,16 @@ PUBLIC	??_C@_0BH@PIKNLKAJ@?5could?5not?5be?5found?$CB?$CB?$CB@ ; `string'
 PUBLIC	??_C@_0BM@EBBIENAM@the?5terrain?5heightmap?5file?5@ ; `string'
 PUBLIC	??_C@_01PKGAHCOL@?$CJ@				; `string'
 PUBLIC	??_C@_01IHBHIGKO@?0@				; `string'
+PUBLIC	??_C@_02GKHPPFCI@?$CJ?$CI@			; `string'
 PUBLIC	??_C@_01ODHLEDKK@?$CI@				; `string'
+EXTRN	__imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@M@Z:PROC
 ;	COMDAT ??_C@_01ODHLEDKK@?$CI@
 CONST	SEGMENT
 ??_C@_01ODHLEDKK@?$CI@ DB '(', 00H			; `string'
+CONST	ENDS
+;	COMDAT ??_C@_02GKHPPFCI@?$CJ?$CI@
+CONST	SEGMENT
+??_C@_02GKHPPFCI@?$CJ?$CI@ DB ')(', 00H			; `string'
 CONST	ENDS
 ;	COMDAT ??_C@_01IHBHIGKO@?0@
 CONST	SEGMENT
@@ -81,12 +87,13 @@ PUBLIC	??$_Construct_n_copies_of_ty@U_Value_init_tag@std@@@?$vector@U?$vec@$01M$
 PUBLIC	??$?0ABV?$allocator@U?$vec@$01M$0A@@glm@@@std@@$$V@?$_Compressed_pair@V?$allocator@U?$vec@$01M$0A@@glm@@@std@@V?$_Vector_val@U?$_Simple_types@U?$vec@$01M$0A@@glm@@@std@@@2@$00@std@@QAE@U_One_then_variadic_args_t@1@ABV?$allocator@U?$vec@$01M$0A@@glm@@@1@@Z ; std::_Compressed_pair<std::allocator<glm::vec<2,float,0> >,std::_Vector_val<std::_Simple_types<glm::vec<2,float,0> > >,1>::_Compressed_pair<std::allocator<glm::vec<2,float,0> >,std::_Vector_val<std::_Simple_types<glm::vec<2,float,0> > >,1><std::allocator<glm::vec<2,float,0> > const &>
 PUBLIC	??$_Construct_n_copies_of_ty@U_Value_init_tag@std@@@?$vector@U?$vec@$02I$0A@@glm@@V?$allocator@U?$vec@$02I$0A@@glm@@@std@@@std@@AAEXIABU_Value_init_tag@1@@Z ; std::vector<glm::vec<3,unsigned int,0>,std::allocator<glm::vec<3,unsigned int,0> > >::_Construct_n_copies_of_ty<std::_Value_init_tag>
 PUBLIC	??$?0ABV?$allocator@U?$vec@$02I$0A@@glm@@@std@@$$V@?$_Compressed_pair@V?$allocator@U?$vec@$02I$0A@@glm@@@std@@V?$_Vector_val@U?$_Simple_types@U?$vec@$02I$0A@@glm@@@std@@@2@$00@std@@QAE@U_One_then_variadic_args_t@1@ABV?$allocator@U?$vec@$02I$0A@@glm@@@1@@Z ; std::_Compressed_pair<std::allocator<glm::vec<3,unsigned int,0> >,std::_Vector_val<std::_Simple_types<glm::vec<3,unsigned int,0> > >,1>::_Compressed_pair<std::allocator<glm::vec<3,unsigned int,0> >,std::_Vector_val<std::_Simple_types<glm::vec<3,unsigned int,0> > >,1><std::allocator<glm::vec<3,unsigned int,0> > const &>
+PUBLIC	??$?0HMH@?$vec@$02M$0A@@glm@@QAE@HMH@Z		; glm::vec<3,float,0>::vec<3,float,0><int,float,int>
 PUBLIC	??$?0MNM@?$vec@$02M$0A@@glm@@QAE@MNM@Z		; glm::vec<3,float,0>::vec<3,float,0><float,double,float>
 PUBLIC	??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@QBDABV10@@Z ; std::operator+<char,std::char_traits<char>,std::allocator<char> >
 PUBLIC	??0?$vector@U?$vec@$02M$0A@@glm@@V?$allocator@U?$vec@$02M$0A@@glm@@@std@@@std@@QAE@IABV?$allocator@U?$vec@$02M$0A@@glm@@@1@@Z ; std::vector<glm::vec<3,float,0>,std::allocator<glm::vec<3,float,0> > >::vector<glm::vec<3,float,0>,std::allocator<glm::vec<3,float,0> > >
 PUBLIC	??0?$vector@U?$vec@$01M$0A@@glm@@V?$allocator@U?$vec@$01M$0A@@glm@@@std@@@std@@QAE@IABV?$allocator@U?$vec@$01M$0A@@glm@@@1@@Z ; std::vector<glm::vec<2,float,0>,std::allocator<glm::vec<2,float,0> > >::vector<glm::vec<2,float,0>,std::allocator<glm::vec<2,float,0> > >
 PUBLIC	??0?$vector@U?$vec@$02I$0A@@glm@@V?$allocator@U?$vec@$02I$0A@@glm@@@std@@@std@@QAE@IABV?$allocator@U?$vec@$02I$0A@@glm@@@1@@Z ; std::vector<glm::vec<3,unsigned int,0>,std::allocator<glm::vec<3,unsigned int,0> > >::vector<glm::vec<3,unsigned int,0>,std::allocator<glm::vec<3,unsigned int,0> > >
-PUBLIC	?getHeight@Terrain@@QAEMHH@Z			; Terrain::getHeight
+PUBLIC	?getHeight@Terrain@@QAEMMM@Z			; Terrain::getHeight
 PUBLIC	?getGridZ@Terrain@@QAEMXZ			; Terrain::getGridZ
 PUBLIC	?getGridx@Terrain@@QAEMXZ			; Terrain::getGridx
 PUBLIC	?getModel@Terrain@@QAE?AVModel@@XZ		; Terrain::getModel
@@ -96,8 +103,12 @@ PUBLIC	?loadData@Terrain@@AAEXPAEAAV?$vector@U?$vec@$02M$0A@@glm@@V?$allocator@U
 PUBLIC	?GenIndeces@Terrain@@AAEXAAV?$vector@U?$vec@$02I$0A@@glm@@V?$allocator@U?$vec@$02I$0A@@glm@@@std@@@std@@@Z ; Terrain::GenIndeces
 PUBLIC	?__autoclassinit2@?$vector@U?$vec@$02I$0A@@glm@@V?$allocator@U?$vec@$02I$0A@@glm@@@std@@@std@@QAEXI@Z ; std::vector<glm::vec<3,unsigned int,0>,std::allocator<glm::vec<3,unsigned int,0> > >::__autoclassinit2
 PUBLIC	?GenTerrain@Terrain@@AAE?AVModel@@XZ		; Terrain::GenTerrain
+PUBLIC	?barryCentric@Terrain@@AAEMU?$vec@$02M$0A@@glm@@00U?$vec@$01M$0A@@3@@Z ; Terrain::barryCentric
 PUBLIC	??0Texture@@QAE@ABV0@@Z				; Texture::Texture
 PUBLIC	??0Terrain@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@MMVTexture@@@Z ; Terrain::Terrain
+PUBLIC	?fmod@@YAMMM@Z					; fmod
+PUBLIC	_fmodf
+PUBLIC	_floorf
 ;	COMDAT xdata$x
 xdata$x	SEGMENT
 __ehfuncinfo$??0Terrain@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@MMVTexture@@@Z DQ 00000000419930522r ; 8.69997e-314
@@ -161,91 +172,27 @@ __ehfuncinfo$??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_str
 __unwindtable$??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@QBDABV10@@Z DD 0ffffffffH
 	DD	FLAT:__unwindfunclet$??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@QBDABV10@@Z$0
 ; Function compile flags: /Ogtp
-;	COMDAT ?getHeight@Terrain@@QAEMHH@Z
+;	COMDAT ??$?0HMH@?$vec@$02M$0A@@glm@@QAE@HMH@Z
 _TEXT	SEGMENT
-_x$ = 8							; size = 4
-_z$ = 12						; size = 4
-?getHeight@Terrain@@QAEMHH@Z PROC			; Terrain::getHeight, COMDAT
+__x$ = 8						; size = 4
+__z$ = 12						; size = 4
+??$?0HMH@?$vec@$02M$0A@@glm@@QAE@HMH@Z PROC		; glm::vec<3,float,0>::vec<3,float,0><int,float,int>, COMDAT
 ; _this$ = ecx
-; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\Terrain.cpp
-; Line 166
+; __y$ = xmm2s
+; File D:\Platformer\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\CPPGame-a38d0db726ab2ff89afdd02c18394bd0c58340c9\PlatformerGame\src\GameEngine\HeaderFiles\Vendor\glm\detail\type_vec3.inl
+; Line 57
 	push	ebp
 	mov	ebp, esp
-	and	esp, -8					; fffffff8H
-	push	ecx
-	push	ebx
-	mov	ebx, ecx
-	movd	xmm0, DWORD PTR _x$[ebp]
-; Line 168
+	movd	xmm0, DWORD PTR __x$[ebp]
+	mov	eax, ecx
 	cvtdq2ps xmm0, xmm0
-	push	esi
-	push	edi
-; Line 170
-	mov	edx, OFFSET ??_C@_01ODHLEDKK@?$CI@
-	push	OFFSET ??$endl@DU?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@@Z ; std::endl<char,std::char_traits<char> >
-	movss	xmm1, DWORD PTR [ebx]
-	divss	xmm1, DWORD PTR __real@44480000
-	mulss	xmm0, xmm1
-	cvttss2si esi, xmm0
-	movd	xmm0, DWORD PTR _z$[ebp]
+	movss	DWORD PTR [ecx+4], xmm2
+	movss	DWORD PTR [ecx], xmm0
+	movd	xmm0, DWORD PTR __z$[ebp]
 	cvtdq2ps xmm0, xmm0
-	mulss	xmm0, xmm1
-	cvttss2si edi, xmm0
-	push	edi
-	push	esi
-	push	ecx
-	mov	ecx, DWORD PTR __imp_?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
-	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
-	add	esp, 4
-	mov	ecx, eax
-	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@H@Z
-	push	ecx
-	mov	edx, OFFSET ??_C@_01IHBHIGKO@?0@
-	mov	ecx, eax
-	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
-	add	esp, 4
-	mov	ecx, eax
-	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@H@Z
-	push	ecx
-	mov	edx, OFFSET ??_C@_01PKGAHCOL@?$CJ@
-	mov	ecx, eax
-	call	??$?6U?$char_traits@D@std@@@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@0@AAV10@PBD@Z ; std::operator<<<std::char_traits<char> >
-	add	esp, 4
-	mov	ecx, eax
-	call	DWORD PTR __imp_??6?$basic_ostream@DU?$char_traits@D@std@@@std@@QAEAAV01@P6AAAV01@AAV01@@Z@Z
-; Line 171
-	test	edi, edi
-	js	SHORT $LN2@getHeight
-	movss	xmm2, DWORD PTR [ebx]
-	movd	xmm0, edi
-	cvtdq2ps xmm0, xmm0
-	comiss	xmm2, xmm0
-	jbe	SHORT $LN2@getHeight
-	test	esi, esi
-	js	SHORT $LN2@getHeight
-	movd	xmm1, esi
-	cvtdq2ps xmm1, xmm1
-	comiss	xmm2, xmm1
-	jbe	SHORT $LN2@getHeight
-; Line 172
-	mov	eax, DWORD PTR [ebx+28]
-	mov	eax, DWORD PTR [eax+esi*4]
-	movss	xmm0, DWORD PTR [eax+edi*4]
-; Line 178
-	pop	edi
-	pop	esi
-	pop	ebx
-	mov	esp, ebp
+	movss	DWORD PTR [ecx+8], xmm0
 	pop	ebp
 	ret	8
-$LN2@getHeight:
-	pop	edi
-	pop	esi
-	xorps	xmm0, xmm0
-	pop	ebx
-	mov	esp, ebp
-	pop	ebp
-	ret	8
-?getHeight@Terrain@@QAEMHH@Z ENDP			; Terrain::getHeight
+??$?0HMH@?$vec@$02M$0A@@glm@@QAE@HMH@Z ENDP		; glm::vec<3,float,0>::vec<3,float,0><int,float,int>
 _TEXT	ENDS
 END

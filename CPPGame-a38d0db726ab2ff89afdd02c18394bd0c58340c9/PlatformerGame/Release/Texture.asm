@@ -1429,11 +1429,11 @@ CONST	SEGMENT
 	ORG $+8
 PUBLIC	_stbi_zlib_decode_malloc_guesssize_headerflag
 PUBLIC	_stbi_load_from_file
-PUBLIC	_stbi_image_free
 PUBLIC	?Bind@Texture@@QAEXI@Z				; Texture::Bind
 PUBLIC	??0Texture@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z ; Texture::Texture
 PUBLIC	_stbi_load
 PUBLIC	??1Texture@@QAE@XZ				; Texture::~Texture
+PUBLIC	_stbi_image_free
 ?stbi__stdio_callbacks@@3Ustbi_io_callbacks@@A DD FLAT:?stbi__stdio_read@@YAHPAXPADH@Z ; stbi__stdio_callbacks
 	DD	FLAT:?stbi__stdio_skip@@YAXPAXH@Z
 	DD	FLAT:?stbi__stdio_eof@@YAHPAX@Z
